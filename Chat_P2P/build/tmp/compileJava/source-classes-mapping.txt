@@ -1,2 +1,0 @@
-Chat_P2P/Main.java
- Chat_P2P.Main
