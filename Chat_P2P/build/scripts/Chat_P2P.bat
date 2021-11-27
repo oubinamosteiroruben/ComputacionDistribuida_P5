@@ -67,7 +67,7 @@ goto fail
 :execute
 @rem Setup the command line
 
-set CLASSPATH=%APP_HOME%\lib\Chat_P2P.jar;%APP_HOME%\lib\postgresql-42.1.4.jar
+set CLASSPATH=%APP_HOME%\lib\Chat_P2P.jar;%APP_HOME%\lib\sqlite-jdbc-3.30.1.jar;%APP_HOME%\lib\commons-codec-1.7.jar
 
 
 @rem Execute Chat_P2P

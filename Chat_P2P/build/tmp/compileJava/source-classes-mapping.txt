@@ -1,2 +1,4 @@
 Chat_P2P/Main.java
  Chat_P2P.Main
+Chat_P2P/GeneracionDeContrasenhas.java
+ Chat_P2P.GeneracionDeContrasenhas

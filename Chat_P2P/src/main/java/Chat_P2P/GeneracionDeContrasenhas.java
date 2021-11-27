@@ -41,7 +41,7 @@ public class GeneracionDeContrasenhas {
 
     public void funcionDePruebaParaLaGestionDeContrasenhas() throws Exception {
         // aqui tenemos la contraseña que queremos hashear
-        String password = "loquemeinteresadelared";
+        String password = "1234";
         
         // creamos la clase donde tenemos todas las funciones necesarias
         GeneracionDeContrasenhas gc = new GeneracionDeContrasenhas();
@@ -61,7 +61,9 @@ public class GeneracionDeContrasenhas {
             // obtenemos la contraseña hasheada a partir de la informacion introducida en el login
             String result = Hex.encodeHexString(gc.generarContrasenha("aquiVaLaContrasenhaIntroducida", Hex.decodeHex(saltEjemplo.toCharArray())));
             // TODO: y ahora hacemos una consulta para comprobar si "result" coincide con la contraseña de la base de datos
-            
+        
+        //System.out.println("Password: " + contrasenhaHasheada);
+        //System.out.println("Salt: " + saltTexto);
     }
 
 }
