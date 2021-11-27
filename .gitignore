@@ -1,5 +1,5 @@
 .gradle
-/build/
+/Chat_P2P/build/
 
 # Ignore Gradle GUI config
 gradle-app.setting
