@@ -5,17 +5,27 @@
  */
 package gui;
 
+import Chat_P2P.FachadaAplicacion;
+import gui.paneles.*;
+import javax.swing.JPanel;
+
 /**
  *
  * @author ruben
  */
 public class VLogin extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VLogin
-     */
-    public VLogin() {
+    private final FachadaAplicacion fa;
+    
+    private JPanel panelActual;
+    
+    public VLogin(FachadaAplicacion fa) {
         initComponents();
+        this.fa = fa;
+        this.panelActual = new LoginPanel_Login();
+        this.panelActual.setVisible(true);
+        this.loginPanel.add(this.panelActual);
+        this.loginPanel.setVisible(true);
     }
 
     /**
