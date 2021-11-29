@@ -93,24 +93,19 @@ public class VLogin extends javax.swing.JFrame {
 
 
     public void mostrarIniciarSesion(){
-        LoginPanel_Login lpl = new LoginPanel_Login(this);
-        lpl.setSize(this.loginPanel.getSize());
-        lpl.setVisible(true);
-        
-        this.loginPanel.removeAll();
-        this.loginPanel.add(lpl, BorderLayout.CENTER);
-        this.loginPanel.revalidate();
-        this.loginPanel.repaint();
-        this.loginPanel.setVisible(true);
+        actualizarLoginPanel(new LoginPanel_Login(this));
     }
     
     public void mostrarRegistrar(){
-        LoginPanel_SignIn lps = new LoginPanel_SignIn(this);
-        lps.setSize(this.loginPanel.getSize());
-        lps.setVisible(true);
+        actualizarLoginPanel(new LoginPanel_SignIn(this));
+    }
+    
+    public void actualizarLoginPanel(JPanel newPanel){
+        newPanel.setSize(this.loginPanel.getSize());
+        newPanel.setVisible(true);
         
         this.loginPanel.removeAll();
-        this.loginPanel.add(lps, BorderLayout.CENTER);
+        this.loginPanel.add(newPanel, BorderLayout.CENTER);
         this.loginPanel.revalidate();
         this.loginPanel.repaint();
         this.loginPanel.setVisible(true);

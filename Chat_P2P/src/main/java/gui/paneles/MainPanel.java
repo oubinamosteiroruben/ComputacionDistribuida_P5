@@ -5,17 +5,24 @@
  */
 package gui.paneles;
 
+import gui.VUsuario;
+import java.awt.BorderLayout;
+
 /**
  *
  * @author ruben
  */
 public class MainPanel extends javax.swing.JPanel {
 
+    private final VUsuario vu;
     /**
      * Creates new form MainPanel
      */
-    public MainPanel() {
+    public MainPanel(VUsuario vu) {
+        this.vu = vu;
         initComponents();
+        mostrarPanelIzq();
+        mostrarPanelDer();
     }
 
     /**
@@ -27,7 +34,8 @@ public class MainPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        mainPanel_izq = new MainPanel_Izq();
+        mainPanel_izq = new javax.swing.JPanel();
+        mainPanel_der = new javax.swing.JPanel();
 
         setMaximumSize(new java.awt.Dimension(542, 454));
         setMinimumSize(new java.awt.Dimension(542, 454));
@@ -45,6 +53,22 @@ public class MainPanel extends javax.swing.JPanel {
         );
         mainPanel_izqLayout.setVerticalGroup(
             mainPanel_izqLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 0, Short.MAX_VALUE)
+        );
+
+        mainPanel_der.setMaximumSize(new java.awt.Dimension(330, 430));
+        mainPanel_der.setMinimumSize(new java.awt.Dimension(330, 430));
+        mainPanel_der.setName("mainPanel_der"); // NOI18N
+        mainPanel_der.setPreferredSize(new java.awt.Dimension(330, 430));
+
+        org.jdesktop.layout.GroupLayout mainPanel_derLayout = new org.jdesktop.layout.GroupLayout(mainPanel_der);
+        mainPanel_der.setLayout(mainPanel_derLayout);
+        mainPanel_derLayout.setHorizontalGroup(
+            mainPanel_derLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 330, Short.MAX_VALUE)
+        );
+        mainPanel_derLayout.setVerticalGroup(
+            mainPanel_derLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(0, 430, Short.MAX_VALUE)
         );
 
@@ -55,19 +79,52 @@ public class MainPanel extends javax.swing.JPanel {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(mainPanel_izq, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(361, Short.MAX_VALUE))
+                .add(18, 18, 18)
+                .add(mainPanel_der, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(mainPanel_izq, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(layout.createSequentialGroup()
+                        .add(mainPanel_der, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(0, 0, Short.MAX_VALUE))
+                    .add(mainPanel_izq, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel mainPanel_der;
     private javax.swing.JPanel mainPanel_izq;
     // End of variables declaration//GEN-END:variables
+
+    private void mostrarPanelIzq(){
+        MainPanel_Izq mpi = new MainPanel_Izq(this);
+        
+        mpi.setSize(this.mainPanel_izq.getSize());
+        mpi.setVisible(true);
+        
+        this.mainPanel_izq.removeAll();
+        this.mainPanel_izq.add(mpi, BorderLayout.CENTER);
+        this.mainPanel_izq.revalidate();
+        this.mainPanel_izq.repaint();
+        this.mainPanel_izq.setVisible(true);
+    }
+    
+    private void mostrarPanelDer(){
+        MainPanel_Der mpd = new MainPanel_Der(this);
+        
+        mpd.setSize(this.mainPanel_der.getSize());
+        mpd.setVisible(true);
+        
+        this.mainPanel_der.removeAll();
+        this.mainPanel_der.add(mpd, BorderLayout.CENTER);
+        this.mainPanel_der.revalidate();
+        this.mainPanel_der.repaint();
+        this.mainPanel_der.setVisible(true);
+    }
 }

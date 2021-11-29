@@ -5,16 +5,20 @@
  */
 package gui.paneles;
 
+import gui.VUsuario;
+
 /**
  *
  * @author ruben
  */
 public class MainPanel_Izq extends javax.swing.JPanel {
 
+    private final MainPanel mp;
     /**
      * Creates new form MainPanel_Izq
      */
-    public MainPanel_Izq() {
+    public MainPanel_Izq(MainPanel mp) {
+        this.mp = mp;
         initComponents();
     }
 
@@ -53,6 +57,11 @@ public class MainPanel_Izq extends javax.swing.JPanel {
 
         buttonSolicitudes.setText("Solicitudes");
         buttonSolicitudes.setName("buttonSolicitudes"); // NOI18N
+        buttonSolicitudes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSolicitudesActionPerformed(evt);
+            }
+        });
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Amigos");
@@ -82,6 +91,11 @@ public class MainPanel_Izq extends javax.swing.JPanel {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buttonSolicitudesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSolicitudesActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_buttonSolicitudesActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

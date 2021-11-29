@@ -6,17 +6,19 @@
 package gui;
 
 import Chat_P2P.FachadaAplicacion;
+import gui.paneles.MainPanel;
+import gui.paneles.SolicitudesPanel;
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
 
-/**
- *
- * @author ruben
- */
 public class VUsuario extends javax.swing.JFrame {
 
     private final FachadaAplicacion fa;
     public VUsuario(FachadaAplicacion fa) {
         initComponents();
         this.fa = fa;
+        mostrarMainUsuarios();
+        
     }
 
     /**
@@ -70,4 +72,25 @@ public class VUsuario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel mainPanel;
     // End of variables declaration//GEN-END:variables
+
+
+    public void mostrarMainUsuarios(){
+        actualizarMainPanel(new MainPanel(this));
+    }
+    
+    public void mostrarSolicitudes(){
+        actualizarMainPanel(new SolicitudesPanel(this));
+    }
+    
+    
+    public void actualizarMainPanel(JPanel newPanel){
+        newPanel.setSize(this.mainPanel.getSize());
+        newPanel.setVisible(true);
+        
+        this.mainPanel.removeAll();
+        this.mainPanel.add(newPanel, BorderLayout.CENTER);
+        this.mainPanel.revalidate();
+        this.mainPanel.repaint();
+        this.mainPanel.setVisible(true);
+    }
 }
