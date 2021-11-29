@@ -5,7 +5,7 @@ import gui.FachadaGui;
 
 public class FachadaAplicacion {
     
-    private FachadaGui fg;
+    private final FachadaGui fg;
     
     public FachadaAplicacion(){
         this.fg = new FachadaGui(this);

@@ -22,4 +22,8 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         return server.getAmigos(usuario);
     }
     
+    public Boolean registrarUsuario(Usuario usuario) throws RemoteException{
+        return server.registrarUsuario(usuario);
+    }
+    
 }

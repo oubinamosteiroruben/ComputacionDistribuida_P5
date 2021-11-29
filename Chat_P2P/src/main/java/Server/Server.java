@@ -86,4 +86,9 @@ public class Server {
         return null;
     }
     
+    
+    public Boolean registrarUsuario(Usuario usuario){
+        return fs.registrarUsuario(usuario);
+    }
+    
 }

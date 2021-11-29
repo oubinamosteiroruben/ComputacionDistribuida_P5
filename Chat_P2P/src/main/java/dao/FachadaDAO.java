@@ -10,6 +10,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import modelos.Usuario;
 
 public class FachadaDAO {
     private final FachadaServer fs;
@@ -54,5 +55,11 @@ public class FachadaDAO {
         }
     }
 
+    
+    //-------------------------------------------------------------------
+    
+    public Boolean registrarUsuario(Usuario usuario){
+        return daoUsuarios.registrarUsuario(usuario);
+    }
     
 }

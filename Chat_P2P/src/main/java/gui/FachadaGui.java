@@ -2,6 +2,7 @@
 package gui;
 
 import Chat_P2P.FachadaAplicacion;
+import gui.paneles.LoginPanel_Login;
 
 public class FachadaGui {
     private final FachadaAplicacion fa;
@@ -17,7 +18,5 @@ public class FachadaGui {
     public void iniciarVista(){
         this.vl.setVisible(true);
     }
-    
-    
     
 }

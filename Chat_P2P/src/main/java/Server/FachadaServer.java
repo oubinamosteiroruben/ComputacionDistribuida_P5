@@ -2,6 +2,7 @@
 package Server;
 
 import dao.FachadaDAO;
+import modelos.Usuario;
 
 public class FachadaServer {
     private final FachadaDAO fd;
@@ -22,6 +23,10 @@ public class FachadaServer {
     
     public void muestraExcepcion(String e) {
         System.out.println("Excepcion: " + e);
+    }
+    
+    public Boolean registrarUsuario(Usuario usuario){
+        return fd.registrarUsuario(usuario);
     }
 
 }

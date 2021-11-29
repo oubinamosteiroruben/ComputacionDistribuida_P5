@@ -7,6 +7,7 @@ package gui;
 
 import Chat_P2P.FachadaAplicacion;
 import gui.paneles.*;
+import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
 /**
@@ -17,15 +18,11 @@ public class VLogin extends javax.swing.JFrame {
 
     private final FachadaAplicacion fa;
     
-    private JPanel panelActual;
-    
     public VLogin(FachadaAplicacion fa) {
-        initComponents();
+        
         this.fa = fa;
-        this.panelActual = new LoginPanel_Login();
-        this.panelActual.setVisible(true);
-        this.loginPanel.add(this.panelActual);
-        this.loginPanel.setVisible(true);
+        initComponents();
+        mostrarIniciarSesion();
     }
 
     /**
@@ -38,7 +35,7 @@ public class VLogin extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        loginPanel = new javax.swing.JPanel();
+        loginPanel = new LoginPanel_Login(this);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,7 +45,7 @@ public class VLogin extends javax.swing.JFrame {
 
         loginPanel.setMaximumSize(new java.awt.Dimension(255, 255));
         loginPanel.setMinimumSize(new java.awt.Dimension(255, 255));
-        loginPanel.setName("loginPanel"); // NOI18N
+        loginPanel.setName(""); // NOI18N
         loginPanel.setPreferredSize(new java.awt.Dimension(255, 255));
 
         org.jdesktop.layout.GroupLayout loginPanelLayout = new org.jdesktop.layout.GroupLayout(loginPanel);
@@ -66,11 +63,13 @@ public class VLogin extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+            .add(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(loginPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(jLabel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE))
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(layout.createSequentialGroup()
+                        .add(12, 12, 12)
+                        .add(loginPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .add(jLabel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -91,4 +90,29 @@ public class VLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel loginPanel;
     // End of variables declaration//GEN-END:variables
+
+
+    public void mostrarIniciarSesion(){
+        LoginPanel_Login lpl = new LoginPanel_Login(this);
+        lpl.setSize(this.loginPanel.getSize());
+        lpl.setVisible(true);
+        
+        this.loginPanel.removeAll();
+        this.loginPanel.add(lpl, BorderLayout.CENTER);
+        this.loginPanel.revalidate();
+        this.loginPanel.repaint();
+        this.loginPanel.setVisible(true);
+    }
+    
+    public void mostrarRegistrar(){
+        LoginPanel_SignIn lps = new LoginPanel_SignIn(this);
+        lps.setSize(this.loginPanel.getSize());
+        lps.setVisible(true);
+        
+        this.loginPanel.removeAll();
+        this.loginPanel.add(lps, BorderLayout.CENTER);
+        this.loginPanel.revalidate();
+        this.loginPanel.repaint();
+        this.loginPanel.setVisible(true);
+    }
 }

@@ -5,17 +5,20 @@
  */
 package gui.paneles;
 
+import Chat_P2P.FachadaAplicacion;
+import gui.VLogin;
+
 /**
  *
  * @author ruben
  */
 public class LoginPanel_SignIn extends javax.swing.JPanel {
 
-    /**
-     * Creates new form LoginPanel_SignIn
-     */
-    public LoginPanel_SignIn() {
+    private final VLogin vl;
+    
+    public LoginPanel_SignIn(VLogin vl) {
         initComponents();
+        this.vl = vl;
     }
 
     /**
@@ -31,10 +34,10 @@ public class LoginPanel_SignIn extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        buttonEntrar = new javax.swing.JButton();
+        password1 = new javax.swing.JPasswordField();
+        buttonIniciarSesion = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jPasswordField2 = new javax.swing.JPasswordField();
+        password2 = new javax.swing.JPasswordField();
 
         setMaximumSize(new java.awt.Dimension(255, 255));
         setMinimumSize(new java.awt.Dimension(255, 255));
@@ -51,23 +54,28 @@ public class LoginPanel_SignIn extends javax.swing.JPanel {
 
         txtUsername.setName("txtUsername"); // NOI18N
 
-        jPasswordField1.setName("jPasswordField1"); // NOI18N
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+        password1.setName("password1"); // NOI18N
+        password1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
+                password1ActionPerformed(evt);
             }
         });
 
-        buttonEntrar.setText("Iniciar Sesión");
-        buttonEntrar.setName("buttonEntrar"); // NOI18N
+        buttonIniciarSesion.setText("Iniciar Sesión");
+        buttonIniciarSesion.setName("buttonIniciarSesion"); // NOI18N
+        buttonIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonIniciarSesionActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Password");
         jLabel4.setName("jLabel4"); // NOI18N
 
-        jPasswordField2.setName("jPasswordField2"); // NOI18N
-        jPasswordField2.addActionListener(new java.awt.event.ActionListener() {
+        password2.setName("password2"); // NOI18N
+        password2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField2ActionPerformed(evt);
+                password2ActionPerformed(evt);
             }
         });
 
@@ -79,7 +87,7 @@ public class LoginPanel_SignIn extends javax.swing.JPanel {
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
-                        .add(buttonEntrar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 109, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(buttonIniciarSesion, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 109, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(18, 18, 18)
                         .add(buttonRegistrar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 103, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(layout.createSequentialGroup()
@@ -99,11 +107,11 @@ public class LoginPanel_SignIn extends javax.swing.JPanel {
                                         .add(18, 18, 18)))
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(layout.createSequentialGroup()
-                                        .add(jPasswordField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 132, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .add(password2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 132, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                         .add(0, 1, Short.MAX_VALUE))
                                     .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                                         .add(0, 0, Short.MAX_VALUE)
-                                        .add(jPasswordField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 132, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))))))
+                                        .add(password1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 132, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -115,37 +123,42 @@ public class LoginPanel_SignIn extends javax.swing.JPanel {
                     .add(txtUsername, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(19, 19, 19)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jPasswordField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(password1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jLabel4))
                 .add(21, 21, 21)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel3)
-                    .add(jPasswordField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(password2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(buttonEntrar)
+                    .add(buttonIniciarSesion)
                     .add(buttonRegistrar))
                 .add(26, 26, 26))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+    private void password1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_password1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
+    }//GEN-LAST:event_password1ActionPerformed
 
-    private void jPasswordField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField2ActionPerformed
+    private void password2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_password2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField2ActionPerformed
+    }//GEN-LAST:event_password2ActionPerformed
+
+    private void buttonIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIniciarSesionActionPerformed
+        // TODO add your handling code here:
+        vl.mostrarIniciarSesion();
+    }//GEN-LAST:event_buttonIniciarSesionActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonEntrar;
+    private javax.swing.JButton buttonIniciarSesion;
     private javax.swing.JButton buttonRegistrar;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField jPasswordField2;
+    private javax.swing.JPasswordField password1;
+    private javax.swing.JPasswordField password2;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

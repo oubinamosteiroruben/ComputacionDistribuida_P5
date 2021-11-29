@@ -5,16 +5,21 @@
  */
 package gui.paneles;
 
+import Chat_P2P.FachadaAplicacion;
+import gui.FachadaGui;
+import gui.VLogin;
+
 /**
  *
  * @author ruben
  */
 public class LoginPanel_Login extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Main
-     */
-    public LoginPanel_Login() {
+    
+    private final VLogin vl;
+    
+    public LoginPanel_Login(VLogin vl) {
+        this.vl = vl;
         initComponents();
     }
 
@@ -40,6 +45,11 @@ public class LoginPanel_Login extends javax.swing.JPanel {
 
         buttonRegistrar.setText("Registrarse");
         buttonRegistrar.setName("buttonRegistrar"); // NOI18N
+        buttonRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRegistrarActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Username");
         jLabel2.setName("jLabel2"); // NOI18N
@@ -67,8 +77,8 @@ public class LoginPanel_Login extends javax.swing.JPanel {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
                         .add(29, 29, 29)
-                        .add(buttonRegistrar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 103, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(buttonRegistrar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(18, 18, 18)
                         .add(buttonEntrar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 78, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(layout.createSequentialGroup()
                         .addContainerGap(28, Short.MAX_VALUE)
@@ -83,8 +93,8 @@ public class LoginPanel_Login extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .addContainerGap(53, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(49, Short.MAX_VALUE)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel2)
                     .add(txtUsername, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
@@ -92,17 +102,22 @@ public class LoginPanel_Login extends javax.swing.JPanel {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel3)
                     .add(jPasswordField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(41, 41, 41)
+                .add(47, 47, 47)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(buttonRegistrar)
                     .add(buttonEntrar))
-                .add(44, 44, 44))
+                .add(42, 42, 42))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordField1ActionPerformed
+
+    private void buttonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRegistrarActionPerformed
+        // TODO add your handling code here:
+        vl.mostrarRegistrar();
+    }//GEN-LAST:event_buttonRegistrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
