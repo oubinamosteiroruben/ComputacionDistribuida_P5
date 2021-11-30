@@ -4,7 +4,6 @@ package Server;
 import definiciones.Definiciones;
 import modelos.Usuario;
 import java.util.ArrayList;
-import java.util.List;
 
 import java.rmi.*;
 import java.rmi.server.*;
@@ -12,11 +11,12 @@ import java.rmi.registry.Registry;
 import java.rmi.registry.LocateRegistry;
 import java.net.*;
 import java.io.*;
+import modelos.Mensaje;
 
 
 public class Server {
     
-    private List<Usuario> usuariosOnline;
+    private ArrayList<Usuario> usuariosOnline;
     private final FachadaServer fs;
     
     public Server(FachadaServer fs){
@@ -79,16 +79,32 @@ public class Server {
         }
     }
     
-    public List<Usuario> getAmigos(Usuario usuario){
-        /*
-        HAY QUE IMPLEMENTARLO
-        */
-        return null;
+    public Boolean iniciarSesion(String username, String password){
+        return this.fs.iniciarSesion(username, password);
     }
     
+    public Mensaje registrarUsuario(String username, String password){
+        return this.fs.registrarUsuario(username, password);
+    }
     
-    public Boolean registrarUsuario(Usuario usuario){
-        return fs.registrarUsuario(usuario);
+    public ArrayList<String> obtenerAmigos(String username){
+        return this.fs.obtenerAmigos(username);
+    }
+    
+    public Boolean enviarPeticion(String usernameEmisor, String usernameReceptor){
+        return this.fs.enviarPeticion(usernameEmisor, usernameReceptor);
+    }
+    
+    public Boolean aceptarPeticion(String usernameEmisor, String usernameReceptor){
+        return this.fs.aceptarPeticion(usernameEmisor, usernameReceptor);
+    }
+    
+    public Boolean rechazarPeticion(String usernameEmisor, String usernameReceptor){
+        return this.fs.rechazarPeticion(usernameEmisor, usernameReceptor);
+    }
+    
+    public ArrayList<String> obtenerPeticiones(String usernameEmisor){
+        return this.fs.obtenerPeticiones(usernameEmisor);
     }
     
 }

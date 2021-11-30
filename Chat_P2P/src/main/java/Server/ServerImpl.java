@@ -3,8 +3,8 @@ package Server;
 import java.rmi.*;
 import java.rmi.server.*;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
+import modelos.Mensaje;
 import modelos.Usuario;
 
 public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
@@ -16,14 +16,15 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         this.server = s;
     }
 
-    public List<Usuario> iniciarSesion(Usuario usuario) throws RemoteException{
-        server.iniciarSesion(usuario);
+    // esto hay que cambiarlo !!!
+    public ArrayList<String> iniciarSesion(String username, String password) throws RemoteException{
+        server.iniciarSesion(username, password);
         
-        return server.getAmigos(usuario);
+        return server.obtenerAmigos(username);
     }
     
-    public Boolean registrarUsuario(Usuario usuario) throws RemoteException{
-        return server.registrarUsuario(usuario);
+    public Mensaje registrarUsuario(String username, String password) throws RemoteException{
+        return server.registrarUsuario(username, password);
     }
     
 }

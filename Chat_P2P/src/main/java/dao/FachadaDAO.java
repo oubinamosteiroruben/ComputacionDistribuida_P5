@@ -3,13 +3,9 @@ package dao;
 
 import Server.FachadaServer;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.sql.Timestamp;
+import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+import modelos.Mensaje;
 import modelos.Usuario;
 
 public class FachadaDAO {
@@ -21,45 +17,58 @@ public class FachadaDAO {
     // ------------------------------ Constructor ------------------------------
     public FachadaDAO(FachadaServer fs) {
 
-        Properties configuracion = new Properties();
         this.fs = fs;
-        FileInputStream arqConfiguracion;
+        String url = "BaseDeDatos/BD_Chat_P2P.db"; // establecer la ruta
 
         try {
-            arqConfiguracion = new FileInputStream("baseDatos.properties");
-            configuracion.load(arqConfiguracion);
-            arqConfiguracion.close();
-
-            Properties usuario = new Properties();
-
-            String gestor = configuracion.getProperty("gestor");
-
-            usuario.setProperty("user", configuracion.getProperty("usuario"));
-            usuario.setProperty("password", configuracion.getProperty("clave"));
-            this.conexion = java.sql.DriverManager.getConnection("jdbc:" + gestor + "://"
-                    + configuracion.getProperty("servidor") + ":"
-                    + configuracion.getProperty("puerto") + "/"
-                    + configuracion.getProperty("baseDatos"),
-                    usuario);
-            
-            this.daoUsuarios = new DAOUsuarios(this.conexion, this.fs);
-        } catch (FileNotFoundException f) {
-            System.out.println(f.getMessage());
-            this.fs.muestraExcepcion(f.getMessage());
-        } catch (IOException i) {
-            System.out.println(i.getMessage());
-            this.fs.muestraExcepcion(i.getMessage());
-        } catch (java.sql.SQLException e) {
-            System.out.println(e.getMessage());
+            this.conexion = DriverManager.getConnection("jdbc:sqlite:" + url);
+            if (this.conexion != null) {
+                System.out.println("La conexión con la base de datos se ha realizado correctamente.");
+                this.daoUsuarios = new DAOUsuarios(this.conexion, this.fs);
+            }
+        }catch (SQLException e) {
             this.fs.muestraExcepcion(e.getMessage());
         }
     }
 
     
     //-------------------------------------------------------------------
+    public void cerrarConexion(String url){
+        try {
+            this.conexion.close();
+        } catch (SQLException e) {
+            this.fs.muestraExcepcion(e.getMessage());
+        }
+     }
+
+    //-------------------------------------------------------------------
     
-    public Boolean registrarUsuario(Usuario usuario){
-        return daoUsuarios.registrarUsuario(usuario);
+    public Boolean iniciarSesion(String username, String password){
+        return this.daoUsuarios.iniciarSesion(username, password);
+    }
+    
+    public Mensaje registrarUsuario(String username, String password){
+        return this.daoUsuarios.registrarUsuario(username, password);
+    }
+    
+    public ArrayList<String> obtenerAmigos(String username){
+        return this.daoUsuarios.obtenerAmigos(username);
+    }
+    
+    public Boolean enviarPeticion(String usernameEmisor, String usernameReceptor){
+        return this.daoUsuarios.enviarPeticion(usernameEmisor, usernameReceptor);
+    }
+    
+    public Boolean aceptarPeticion(String usernameEmisor, String usernameReceptor){
+        return this.daoUsuarios.aceptarPeticion(usernameEmisor, usernameReceptor);
+    }
+    
+    public Boolean rechazarPeticion(String usernameEmisor, String usernameReceptor){
+        return this.daoUsuarios.rechazarPeticion(usernameEmisor, usernameReceptor);
+    }
+    
+    public ArrayList<String> obtenerPeticiones(String usernameEmisor){
+        return this.daoUsuarios.obtenerPeticiones(usernameEmisor);
     }
     
 }
