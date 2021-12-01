@@ -1,9 +1,10 @@
 
 package Server;
 
+import Chat_P2P.RMI.PeerImpl;
 import definiciones.Definiciones;
 import modelos.Usuario;
-import java.util.ArrayList;
+import java.util.*;
 
 import java.rmi.*;
 import java.rmi.server.*;
@@ -16,12 +17,14 @@ import modelos.Mensaje;
 
 public class Server {
     
-    private ArrayList<Usuario> usuariosOnline;
+    private HashMap<String, Usuario> usuariosOnline;
     private final FachadaServer fs;
     
     public Server(FachadaServer fs){
         this.fs = fs;
-        this.usuariosOnline = new ArrayList<>();
+        this.usuariosOnline = new HashMap<>();
+        
+        iniciarServidor();
     }
  
     
@@ -32,7 +35,7 @@ public class Server {
             int RMIPortNum = Integer.parseInt(portNum);
             startRegistry(RMIPortNum);
             ServerImpl exportedObj = new ServerImpl(this);
-            registryURL = "rmi://localhost:" + portNum + "/p5";
+            registryURL = "rmi://localhost:" + portNum + "/chatP2P";
             Naming.rebind(registryURL, exportedObj);
             System.out.println("Server chatp2p registered.  Registry currently contains:");
             // list names currently in the registry
@@ -69,24 +72,40 @@ public class Server {
     } //end listRegistry
     
     
-    public void iniciarSesion(Usuario usuario){
-        for(Usuario u: usuariosOnline){
-            if(u.getUsername().equals(usuario.getUsername())){
-                usuariosOnline.remove(u);
-            }
-        }
-    }
     
-    public Boolean iniciarSesion(String username, String password){
-        return this.fs.iniciarSesion(username, password);
+    
+    public Usuario iniciarSesion(String username, String password){
+        Usuario usuarioResultado = new Usuario(username);
+        try{
+            boolean iniciado = this.fs.iniciarSesion(username, password);
+            
+            if(iniciado){
+                    // añadimos el usuario como usuario online
+                    usuarioResultado.setPeerInterface(new PeerImpl());
+                    this.usuariosOnline.put(usuarioResultado.getUsername(), usuarioResultado);
+            }
+            
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        return usuarioResultado;
     }
     
     public Mensaje registrarUsuario(String username, String password){
         return this.fs.registrarUsuario(username, password);
     }
     
-    public ArrayList<String> obtenerAmigos(String username){
-        return this.fs.obtenerAmigos(username);
+    public HashMap<String, Usuario> obtenerAmigos(String username){
+        HashMap<String,Usuario> amigosOnline = new HashMap<>();
+        
+        for(String user: this.fs.obtenerAmigos(username)){
+            if(this.usuariosOnline.get(user) != null){
+                // si es amigo y está online, se le envía al cliente
+                amigosOnline.put(user, this.usuariosOnline.get(user));
+            }
+        }
+        return amigosOnline;
     }
     
     public Boolean enviarPeticion(String usernameEmisor, String usernameReceptor){

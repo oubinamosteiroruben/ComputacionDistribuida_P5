@@ -112,6 +112,10 @@ public class VLogin extends javax.swing.JFrame {
         this.loginPanel.setVisible(true);
     }
     
+    public Boolean iniciarSesion(String username, String password) throws Exception{
+        return this.fa.iniciarSesion(username,password);
+    }
+    
     public Mensaje registrarUsuario(String username, String password) throws Exception{
         return this.fa.registrarUsuario(username,password);
     }

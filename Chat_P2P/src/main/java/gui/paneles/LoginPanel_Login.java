@@ -6,6 +6,8 @@
 package gui.paneles;
 
 import Chat_P2P.FachadaAplicacion;
+import static definiciones.Definiciones.CAMPOS_INCOMPLETOS;
+import static definiciones.Definiciones.DATOS_INCORRECTOS;
 import gui.FachadaGui;
 import gui.VLogin;
 
@@ -21,6 +23,7 @@ public class LoginPanel_Login extends javax.swing.JPanel {
     public LoginPanel_Login(VLogin vl) {
         this.vl = vl;
         initComponents();
+        this.mensajeError.setVisible(false);
     }
 
     /**
@@ -36,8 +39,9 @@ public class LoginPanel_Login extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtPassword = new javax.swing.JPasswordField();
         buttonEntrar = new javax.swing.JButton();
+        mensajeError = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(255, 255));
         setMinimumSize(new java.awt.Dimension(255, 255));
@@ -59,15 +63,23 @@ public class LoginPanel_Login extends javax.swing.JPanel {
 
         txtUsername.setName("txtUsername"); // NOI18N
 
-        jPasswordField1.setName("jPasswordField1"); // NOI18N
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+        txtPassword.setName("txtPassword"); // NOI18N
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
+                txtPasswordActionPerformed(evt);
             }
         });
 
         buttonEntrar.setText("Entrar");
         buttonEntrar.setName("buttonEntrar"); // NOI18N
+        buttonEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonEntrarActionPerformed(evt);
+            }
+        });
+
+        mensajeError.setText("¡Debes introducir los dos campos!");
+        mensajeError.setName("mensajeError"); // NOI18N
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
@@ -76,11 +88,6 @@ public class LoginPanel_Login extends javax.swing.JPanel {
             .add(layout.createSequentialGroup()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
-                        .add(29, 29, 29)
-                        .add(buttonRegistrar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(18, 18, 18)
-                        .add(buttonEntrar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 78, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(layout.createSequentialGroup()
                         .addContainerGap(28, Short.MAX_VALUE)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, jLabel2)
@@ -88,21 +95,32 @@ public class LoginPanel_Login extends javax.swing.JPanel {
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, txtUsername, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 132, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPasswordField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 132, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, txtPassword, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 132, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                    .add(layout.createSequentialGroup()
+                        .add(29, 29, 29)
+                        .add(buttonRegistrar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+                        .add(18, 18, 18)
+                        .add(buttonEntrar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 78, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .add(layout.createSequentialGroup()
+                .add(19, 19, 19)
+                .add(mensajeError)
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(49, Short.MAX_VALUE)
+                .addContainerGap(66, Short.MAX_VALUE)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel2)
                     .add(txtUsername, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(19, 19, 19)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel3)
-                    .add(jPasswordField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(47, 47, 47)
+                    .add(txtPassword, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(13, 13, 13)
+                .add(mensajeError)
+                .add(18, 18, 18)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(buttonRegistrar)
                     .add(buttonEntrar))
@@ -110,14 +128,42 @@ public class LoginPanel_Login extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
+    }//GEN-LAST:event_txtPasswordActionPerformed
 
     private void buttonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRegistrarActionPerformed
         // TODO add your handling code here:
         vl.mostrarRegistrar();
     }//GEN-LAST:event_buttonRegistrarActionPerformed
+
+    private void buttonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEntrarActionPerformed
+        try{
+            if((!this.txtUsername.getText().equals("")) && (!this.txtPassword.getPassword().equals(""))){
+                // obtenemos la contraseña como string
+                String passTxt = "";
+                for(char a: this.txtPassword.getPassword()){
+                    passTxt+=String.valueOf(a);
+                }
+                
+                boolean resultado = vl.iniciarSesion(this.txtUsername.getText(), passTxt);
+                if(!resultado){
+                    //mostrar mensaje de usuario incorrecto
+                    this.mensajeError.setText(DATOS_INCORRECTOS);
+                    this.mensajeError.setVisible(true);
+                } else{
+                    this.mensajeError.setVisible(false);
+                }
+            } else{
+                this.mensajeError.setText(CAMPOS_INCOMPLETOS);
+            }
+            
+        } catch(Exception e){
+            // si los campos están vacios, mostrar mensaje
+            this.mensajeError.setText(CAMPOS_INCOMPLETOS);
+            this.mensajeError.setVisible(true);
+        }
+    }//GEN-LAST:event_buttonEntrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -125,7 +171,8 @@ public class LoginPanel_Login extends javax.swing.JPanel {
     private javax.swing.JButton buttonRegistrar;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JLabel mensajeError;
+    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

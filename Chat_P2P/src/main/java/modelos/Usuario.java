@@ -1,14 +1,21 @@
 
 package modelos;
 
+import Chat_P2P.RMI.PeerInterface;
+
 
 public class Usuario {
     private String username;
-    private String ip;
+    private PeerInterface peerInterface;
     
-    public Usuario(String username, String ip){
+    public Usuario(String username){
         this.username = username;
-        this.ip = ip;
+        this.peerInterface = null;
+    }
+    
+    public Usuario(String username, PeerInterface peerInterface){
+        this.username = username;
+        this.peerInterface = peerInterface;
     }
 
     public String getUsername() {
@@ -19,12 +26,14 @@ public class Usuario {
         this.username = username;
     }
 
-    public String getIp() {
-        return ip;
+    public PeerInterface getPeerInterface() {
+        return peerInterface;
     }
 
-    public void setIp(String ip) {
-        this.ip = ip;
+    public void setPeerInterface(PeerInterface peerInterface) {
+        this.peerInterface = peerInterface;
     }
+
+    
     
 }

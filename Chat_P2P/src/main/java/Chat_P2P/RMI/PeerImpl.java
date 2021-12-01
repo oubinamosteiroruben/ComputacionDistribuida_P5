@@ -5,5 +5,7 @@ import java.rmi.*;
 import java.rmi.server.*;
 
 public class PeerImpl extends UnicastRemoteObject implements PeerInterface {
-    
+    public PeerImpl() throws RemoteException{
+        
+    }
 }

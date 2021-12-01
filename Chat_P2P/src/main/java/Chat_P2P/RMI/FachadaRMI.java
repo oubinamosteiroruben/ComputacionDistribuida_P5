@@ -2,10 +2,13 @@
 package Chat_P2P.RMI;
 
 import Chat_P2P.FachadaAplicacion;
-import static definiciones.Definiciones.BASE_PORT;
+import Server.ServerInterface;
+import static definiciones.Definiciones.PORT;
 import java.io.*;
 import java.rmi.*;
+import java.util.HashMap;
 import modelos.Mensaje;
+import modelos.Usuario;
 
 public class FachadaRMI {
     
@@ -17,7 +20,7 @@ public class FachadaRMI {
     
     public FachadaRMI(FachadaAplicacion fa){
         this.fa = fa;
-        this.port = BASE_PORT;
+        this.port = Integer.parseInt(PORT);
         try{
             declararServerInterface();
         }catch(Exception e){
@@ -26,8 +29,9 @@ public class FachadaRMI {
     }
     
     public void declararServerInterface() throws Exception{
-        int RMIPort;
-        String hostName;
+        String hostName = "localhost";
+        
+        /*
         InputStreamReader is = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader(is);
         System.out.println("Enter the RMIRegistry host namer:");
@@ -37,19 +41,39 @@ public class FachadaRMI {
         RMIPort = Integer.parseInt(portNum);
         System.out.println("Enter the id:");
         String id = br.readLine();
-        String registryURL = "rmi://" + hostName+ ":" + portNum + "/p5";
+        */
+        
+        String registryURL = "rmi://" + hostName + ":" + this.port + "/chatP2P";
             // find the remote object and cast it to an interface object
-        ServerInterface h = (ServerInterface) Naming.lookup(registryURL);
+        ServerInterface serverInterface = (ServerInterface) Naming.lookup(registryURL);
         System.out.println("Lookup completed " );
-        this.si = h;
+        this.si = serverInterface;
+        
     } //end main
+    
+    
+    public Usuario iniciarSesion(String username, String password) throws Exception{
+        // TODO: falla aquí al traer el usuario
+        Usuario usuario = new Usuario(username);
+        usuario = this.si.iniciarSesion(username, password);
+        /*try{
+            usuario = this.si.iniciarSesion(username, password);
+        } catch(Exception e){
+            System.out.println("Excepcion:");
+            e.printStackTrace();
+        }
+        System.out.println("david 2");
+        */
+        return usuario;
+    }
     
     public Mensaje registrarUsuario(String username, String password) throws Exception{
         return this.si.registrarUsuario(username, password);
     }
     
-    public void iniciarSesion(String username, String password){
-        
+    public HashMap<String, Usuario> obtenerAmigos(String username) throws Exception{
+        return this.si.obtenerAmigos(username);
     }
+    
     
 }

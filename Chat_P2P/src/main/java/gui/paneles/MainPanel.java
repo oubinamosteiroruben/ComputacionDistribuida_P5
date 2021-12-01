@@ -7,14 +7,15 @@ package gui.paneles;
 
 import gui.VUsuario;
 import java.awt.BorderLayout;
+import java.util.ArrayList;
+import modelos.Usuario;
 
-/**
- *
- * @author ruben
- */
+
 public class MainPanel extends javax.swing.JPanel {
 
     private final VUsuario vu;
+    private MainPanel_Izq mpi;
+    private MainPanel_Der mpd;
     /**
      * Creates new form MainPanel
      */
@@ -103,28 +104,32 @@ public class MainPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void mostrarPanelIzq(){
-        MainPanel_Izq mpi = new MainPanel_Izq(this);
+        this.mpi = new MainPanel_Izq(this);
         
-        mpi.setSize(this.mainPanel_izq.getSize());
-        mpi.setVisible(true);
+        this.mpi.setSize(this.mainPanel_izq.getSize());
+        this.mpi.setVisible(true);
         
         this.mainPanel_izq.removeAll();
-        this.mainPanel_izq.add(mpi, BorderLayout.CENTER);
+        this.mainPanel_izq.add(this.mpi, BorderLayout.CENTER);
         this.mainPanel_izq.revalidate();
         this.mainPanel_izq.repaint();
         this.mainPanel_izq.setVisible(true);
     }
     
     private void mostrarPanelDer(){
-        MainPanel_Der mpd = new MainPanel_Der(this);
+        this.mpd = new MainPanel_Der(this);
         
-        mpd.setSize(this.mainPanel_der.getSize());
-        mpd.setVisible(true);
+        this.mpd.setSize(this.mainPanel_der.getSize());
+        this.mpd.setVisible(true);
         
         this.mainPanel_der.removeAll();
-        this.mainPanel_der.add(mpd, BorderLayout.CENTER);
+        this.mainPanel_der.add(this.mpd, BorderLayout.CENTER);
         this.mainPanel_der.revalidate();
         this.mainPanel_der.repaint();
         this.mainPanel_der.setVisible(true);
+    }
+    
+    public void actualizarAmigos(ArrayList<Usuario> usuarios){
+        this.mpi.actualizarAmigos(usuarios);
     }
 }
