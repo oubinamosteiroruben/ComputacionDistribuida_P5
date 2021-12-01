@@ -9,6 +9,7 @@ import Chat_P2P.FachadaAplicacion;
 import gui.paneles.*;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
+import modelos.Mensaje;
 
 /**
  *
@@ -109,5 +110,9 @@ public class VLogin extends javax.swing.JFrame {
         this.loginPanel.revalidate();
         this.loginPanel.repaint();
         this.loginPanel.setVisible(true);
+    }
+    
+    public Mensaje registrarUsuario(String username, String password) throws Exception{
+        return this.fa.registrarUsuario(username,password);
     }
 }
