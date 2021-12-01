@@ -2,6 +2,7 @@
 package Chat_P2P.RMI;
 
 import Chat_P2P.FachadaAplicacion;
+import static definiciones.Definiciones.BASE_PORT;
 import java.io.*;
 import java.rmi.*;
 import modelos.Mensaje;
@@ -12,8 +13,11 @@ public class FachadaRMI {
     
     private ServerInterface si;
     
+    private Integer port;
+    
     public FachadaRMI(FachadaAplicacion fa){
         this.fa = fa;
+        this.port = BASE_PORT;
         try{
             declararServerInterface();
         }catch(Exception e){
@@ -42,6 +46,10 @@ public class FachadaRMI {
     
     public Mensaje registrarUsuario(String username, String password) throws Exception{
         return this.si.registrarUsuario(username, password);
+    }
+    
+    public void iniciarSesion(String username, String password){
+        
     }
     
 }

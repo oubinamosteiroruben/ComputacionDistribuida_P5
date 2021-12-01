@@ -39,4 +39,8 @@ public class FachadaAplicacion {
         return this.frmi.registrarUsuario(username, password);
     }
     
+    public void iniciarSesion(String username, String password){
+        this.frmi.iniciarSesion(username,password);
+    }
+    
 }

@@ -26,20 +26,18 @@ public class Server {
  
     
     public void iniciarServidor() {
-        InputStreamReader is = new InputStreamReader(System.in);
-        BufferedReader br = new BufferedReader(is);
         String portNum, registryURL;
         try{
-            portNum = Definiciones.PORTNUMBER;
+            portNum = Definiciones.PORT;
             int RMIPortNum = Integer.parseInt(portNum);
             startRegistry(RMIPortNum);
             ServerImpl exportedObj = new ServerImpl(this);
             registryURL = "rmi://localhost:" + portNum + "/p5";
             Naming.rebind(registryURL, exportedObj);
-            System.out.println("P5 Server registered.  Registry currently contains:");
+            System.out.println("Server chatp2p registered.  Registry currently contains:");
             // list names currently in the registry
             listRegistry(registryURL);
-            System.out.println("P5 Server ready.");
+            System.out.println("Server chatp2p ready.");
         }// end try
         catch (Exception re) {
             System.out.println("Exception in Server.iniciarServidor: " + re);

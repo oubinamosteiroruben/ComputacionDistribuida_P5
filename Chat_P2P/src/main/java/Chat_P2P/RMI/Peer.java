@@ -1,6 +1,7 @@
 
 package Chat_P2P.RMI;
 
+import definiciones.Definiciones;
 import java.rmi.*;
 import java.rmi.server.*;
 import java.rmi.registry.Registry;
@@ -11,16 +12,13 @@ import java.io.*;
 public class Peer {
     
     public Peer(){
-        InputStreamReader is = new InputStreamReader(System.in);
-        BufferedReader br = new BufferedReader(is);
         String portNum, registryURL;
         try{
-            System.out.println("Enter the RMIregistry port number:");
-            portNum = (br.readLine()).trim();
-            int RMIPortNum = Integer.parseInt(portNum);
+            portNum = Definiciones.PORT;
+            Integer RMIPortNum = Integer.parseInt(portNum);
             startRegistry(RMIPortNum);
             PeerImpl exportedObj = new PeerImpl();
-            registryURL = "rmi://localhost:" + portNum + "/p5";
+            registryURL = "rmi://localhost:" + portNum + "/chat";
             Naming.rebind(registryURL, exportedObj);
             System.out.println("Peer registered.  Registry currently contains:");
             // list names currently in the registry

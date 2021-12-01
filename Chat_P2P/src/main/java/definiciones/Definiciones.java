@@ -3,9 +3,6 @@ package definiciones;
 
 public class Definiciones {
     
-    public final static String PORTNUMBER = "8809"; 
-    
-    
     public final static int EXITO = 1;
     public final static int FRACASO = -1;
     public final static String MENSAJE_EXITO = "Se ha realizado correctamente.";
@@ -14,4 +11,7 @@ public class Definiciones {
 
     public final static String CAMPOS_INCOMPLETOS = "Se deben completar todos los campos";
     public final static String PASSWORDS_NO_COINCIDEN = "Las contraseñas no coinciden";
+
+    public final static String PORT = "1099";
+    
 }

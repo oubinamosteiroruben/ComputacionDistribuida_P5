@@ -172,9 +172,17 @@ public class LoginPanel_SignIn extends javax.swing.JPanel {
         // TODO add your handling code here:
         if((!txtUsername.getText().equals("")) && (!password1.getPassword().equals(""))){
             if(password1.getPassword().equals(password2.getPassword())){
-                Mensaje m = vl.registrarUsuario(txtUsername.getText(),password1.getPassword());
-                if(m.getCodigo() == FRACASO){
-                    mensajeError.setText(m.getMensaje());
+                String passTxt = "";
+                for(char a: password1.getPassword()){
+                    passTxt+=String.valueOf(a);
+                }
+                try{
+                    Mensaje m = vl.registrarUsuario(txtUsername.getText(),passTxt);
+                    if(m.getCodigo() == FRACASO){
+                        mensajeError.setText(m.getMensaje());
+                    }
+                }catch(Exception e){
+                    System.out.println("Exception: " + e);
                 }
             }else{
                 mensajeError.setText(PASSWORDS_NO_COINCIDEN);
