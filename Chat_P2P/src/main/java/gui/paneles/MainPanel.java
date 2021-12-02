@@ -8,6 +8,7 @@ package gui.paneles;
 import gui.VUsuario;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
+import javax.swing.JPanel;
 import modelos.Usuario;
 
 
@@ -106,16 +107,14 @@ public class MainPanel extends javax.swing.JPanel {
 
     private void mostrarPanelIzq(){
         this.mpi = new MainPanel_Izq(this);
-        this.mainPanel_izq.setContentPane();
-        
-        /*this.mpi.setSize(this.mainPanel_izq.getSize());
+        this.mpi.setSize(this.mainPanel_izq.getSize());
         this.mpi.setVisible(true);
         
         this.mainPanel_izq.removeAll();
-        this.mainPanel_izq.add(this.mpi, BorderLayout.CENTER);
+        this.mainPanel_izq.add((JPanel) this.mpi, BorderLayout.CENTER);
         this.mainPanel_izq.revalidate();
         this.mainPanel_izq.repaint();
-        this.mainPanel_izq.setVisible(true);*/
+        this.mainPanel_izq.setVisible(true);
         
     }
     
