@@ -28,6 +28,7 @@ public class VUsuario extends javax.swing.JFrame {
         sp = new SolicitudesPanel(this);
         sp.setSize(this.mainPanel.getSize());
         mostrarMainUsuarios();
+        //mostrarSolicitudes();
     }
 
     /**

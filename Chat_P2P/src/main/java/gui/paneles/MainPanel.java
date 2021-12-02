@@ -6,6 +6,7 @@
 package gui.paneles;
 
 import gui.VUsuario;
+import gui.modelos.ModeloTablaAmigos;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
 import javax.swing.JPanel;
@@ -15,8 +16,6 @@ import modelos.Usuario;
 public class MainPanel extends javax.swing.JPanel {
 
     private final VUsuario vu;
-    private MainPanel_Izq mpi;
-    private MainPanel_Der mpd;
     
     /**
      * Creates new form MainPanel
@@ -24,8 +23,6 @@ public class MainPanel extends javax.swing.JPanel {
     public MainPanel(VUsuario vu) {
         this.vu = vu;
         initComponents();
-        inicializarPanelIzq();
-        inicializarPanelDer();
     }
 
     /**
@@ -37,102 +34,171 @@ public class MainPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        mainPanel_izq = new javax.swing.JPanel();
-        mainPanel_der = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaConectados = new javax.swing.JTable();
+        buttonSolicitudes = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        labelTitutlo = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        textChat = new javax.swing.JTextPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtMensaje = new javax.swing.JTextArea();
+        buttonEnviar = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(542, 454));
         setMinimumSize(new java.awt.Dimension(542, 454));
         setPreferredSize(new java.awt.Dimension(542, 454));
 
-        mainPanel_izq.setBackground(new java.awt.Color(255, 0, 0));
-        mainPanel_izq.setMaximumSize(new java.awt.Dimension(170, 430));
-        mainPanel_izq.setMinimumSize(new java.awt.Dimension(170, 430));
-        mainPanel_izq.setName("mainPanel_izq"); // NOI18N
+        jPanel1.setMaximumSize(new java.awt.Dimension(170, 430));
+        jPanel1.setMinimumSize(new java.awt.Dimension(170, 430));
+        jPanel1.setName("jPanel1"); // NOI18N
 
-        org.jdesktop.layout.GroupLayout mainPanel_izqLayout = new org.jdesktop.layout.GroupLayout(mainPanel_izq);
-        mainPanel_izq.setLayout(mainPanel_izqLayout);
-        mainPanel_izqLayout.setHorizontalGroup(
-            mainPanel_izqLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 170, Short.MAX_VALUE)
+        jScrollPane1.setName("jScrollPane1"); // NOI18N
+
+        tablaConectados.setModel(new ModeloTablaAmigos(this));
+        tablaConectados.setName("tablaConectados"); // NOI18N
+        jScrollPane1.setViewportView(tablaConectados);
+
+        buttonSolicitudes.setText("Solicitudes");
+        buttonSolicitudes.setName("buttonSolicitudes"); // NOI18N
+        buttonSolicitudes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSolicitudesActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Amigos");
+        jLabel1.setName("jLabel1"); // NOI18N
+
+        org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .add(buttonSolicitudes, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                    .add(jLabel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
-        mainPanel_izqLayout.setVerticalGroup(
-            mainPanel_izqLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel1Layout.createSequentialGroup()
+                .add(27, 27, 27)
+                .add(jLabel1)
+                .add(18, 18, 18)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 284, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(27, 27, 27)
+                .add(buttonSolicitudes)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        mainPanel_der.setMaximumSize(new java.awt.Dimension(330, 430));
-        mainPanel_der.setMinimumSize(new java.awt.Dimension(330, 430));
-        mainPanel_der.setName("mainPanel_der"); // NOI18N
-        mainPanel_der.setPreferredSize(new java.awt.Dimension(330, 430));
+        jPanel2.setMaximumSize(new java.awt.Dimension(330, 430));
+        jPanel2.setMinimumSize(new java.awt.Dimension(330, 430));
+        jPanel2.setName("jPanel2"); // NOI18N
 
-        org.jdesktop.layout.GroupLayout mainPanel_derLayout = new org.jdesktop.layout.GroupLayout(mainPanel_der);
-        mainPanel_der.setLayout(mainPanel_derLayout);
-        mainPanel_derLayout.setHorizontalGroup(
-            mainPanel_derLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 330, Short.MAX_VALUE)
+        labelTitutlo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelTitutlo.setText("Nombre App");
+        labelTitutlo.setName("labelTitutlo"); // NOI18N
+
+        jScrollPane2.setName("jScrollPane2"); // NOI18N
+
+        textChat.setName("textChat"); // NOI18N
+        jScrollPane2.setViewportView(textChat);
+
+        jScrollPane3.setName("jScrollPane3"); // NOI18N
+
+        txtMensaje.setColumns(20);
+        txtMensaje.setLineWrap(true);
+        txtMensaje.setRows(1);
+        txtMensaje.setName("txtMensaje"); // NOI18N
+        jScrollPane3.setViewportView(txtMensaje);
+
+        buttonEnviar.setText("↑");
+        buttonEnviar.setName("buttonEnviar"); // NOI18N
+
+        org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(jScrollPane2)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, labelTitutlo, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel2Layout.createSequentialGroup()
+                        .add(jScrollPane3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(buttonEnviar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 45, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
         );
-        mainPanel_derLayout.setVerticalGroup(
-            mainPanel_derLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 430, Short.MAX_VALUE)
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(38, Short.MAX_VALUE)
+                .add(labelTitutlo)
+                .add(18, 18, 18)
+                .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 221, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(44, 44, 44)
+                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(jScrollPane3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 59, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(buttonEnviar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 59, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(32, 32, 32))
         );
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .add(mainPanel_izq, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(18, 18, 18)
-                .add(mainPanel_der, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(360, Short.MAX_VALUE))
+            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(212, Short.MAX_VALUE)
+                    .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 318, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createSequentialGroup()
-                        .add(mainPanel_der, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(0, 0, Short.MAX_VALUE))
-                    .add(mainPanel_izq, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void buttonSolicitudesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSolicitudesActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_buttonSolicitudesActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel mainPanel_der;
-    private javax.swing.JPanel mainPanel_izq;
+    private javax.swing.JButton buttonEnviar;
+    private javax.swing.JButton buttonSolicitudes;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel labelTitutlo;
+    private javax.swing.JTable tablaConectados;
+    private javax.swing.JTextPane textChat;
+    private javax.swing.JTextArea txtMensaje;
     // End of variables declaration//GEN-END:variables
 
-    private void inicializarPanelIzq(){
-        this.mpi = new MainPanel_Izq(this);
-        this.mpi.setSize(this.mainPanel_izq.getSize());
-        this.mpi.setVisible(true);
-        
-        this.mainPanel_izq.removeAll();
-        this.mainPanel_izq.add((JPanel) this.mpi, BorderLayout.CENTER);
-        this.mainPanel_izq.revalidate();
-        this.mainPanel_izq.repaint();
-        this.mainPanel_izq.setVisible(true);
-        
-    }
-    
-    private void inicializarPanelDer(){
-        this.mpd = new MainPanel_Der(this);
-        
-        this.mpd.setSize(this.mainPanel_der.getSize());
-        this.mpd.setVisible(true);
-        
-        this.mainPanel_der.removeAll();
-        this.mainPanel_der.add(this.mpd, BorderLayout.CENTER);
-        this.mainPanel_der.revalidate();
-        this.mainPanel_der.repaint();
-        this.mainPanel_der.setVisible(true);
-    }
-    
-    public void actualizarAmigos(ArrayList<Usuario> usuarios){
+    /*public void actualizarAmigos(ArrayList<Usuario> usuarios){
         this.mpi.actualizarAmigos(usuarios);
-    }
+    }*/
 }

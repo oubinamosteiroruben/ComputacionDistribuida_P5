@@ -26,8 +26,9 @@ public class SolicitudesPanel extends javax.swing.JPanel {
      */
     public SolicitudesPanel(VUsuario vu) {
         this.vu = vu;
+        this.peticiones = new ArrayList<>();
         initComponents();
-        obtenerPeticiones();
+        //obtenerPeticiones();
     }
 
     /**
@@ -61,7 +62,6 @@ public class SolicitudesPanel extends javax.swing.JPanel {
 
         txtUsername.setName("txtUsername"); // NOI18N
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buscarIcono.png"))); // NOI18N
         jButton1.setName("jButton1"); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,8 +107,8 @@ public class SolicitudesPanel extends javax.swing.JPanel {
                         .add(119, 119, 119)
                         .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 317, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .add(18, 18, 18)
-                .add(jButton1)
-                .addContainerGap(55, Short.MAX_VALUE))
+                .add(jButton1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 24, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(65, Short.MAX_VALUE))
             .add(org.jdesktop.layout.GroupLayout.TRAILING, txtError, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(

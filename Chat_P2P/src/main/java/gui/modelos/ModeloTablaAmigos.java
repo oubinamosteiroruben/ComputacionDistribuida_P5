@@ -1,7 +1,7 @@
 
 package gui.modelos;
 
-import gui.paneles.MainPanel_Izq;
+import gui.paneles.MainPanel;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -11,18 +11,23 @@ public final class ModeloTablaAmigos extends AbstractTableModel {
 
     private List<Usuario> amigos;
     
-    private final MainPanel_Izq mpi;
+    private final MainPanel mp;
 
     // ------------------------------------------------------------------------
     // ----------------------------- Constructor ------------------------------
     public ModeloTablaAmigos() {
         this.amigos = new ArrayList<>();
-        this.mpi = null;
+        this.mp = null;
     }
     
-    public ModeloTablaAmigos(List<Usuario> amigos, MainPanel_Izq mpi) {
+    public ModeloTablaAmigos(List<Usuario> amigos, MainPanel mp) {
         this.amigos = amigos;
-        this.mpi = mpi;
+        this.mp = mp;
+    }
+    
+    public ModeloTablaAmigos(MainPanel mp) {
+        this.amigos = new ArrayList<>();
+        this.mp = mp;
     }
 
     // ------------------------------------------------------------------------
