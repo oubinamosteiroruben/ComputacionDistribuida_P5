@@ -108,4 +108,5 @@ public class VUsuario extends javax.swing.JFrame {
     public void enviarPeticion(String username) throws Exception{
         this.fa.enviarPeticion(username);
     }
+    
 }

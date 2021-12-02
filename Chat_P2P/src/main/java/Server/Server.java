@@ -120,8 +120,8 @@ public class Server {
         return this.fs.rechazarPeticion(usernameEmisor, usernameReceptor);
     }
     
-    public ArrayList<String> obtenerPeticiones(String usernameEmisor){
-        return this.fs.obtenerPeticiones(usernameEmisor);
+    public ArrayList<String> obtenerPeticiones(String usernameReceptor){
+        return this.fs.obtenerPeticiones(usernameReceptor);
     }
     
 }

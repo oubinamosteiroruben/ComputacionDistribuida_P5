@@ -21,6 +21,8 @@ public class LoginPanel_SignIn extends javax.swing.JPanel {
     public LoginPanel_SignIn(VLogin vl) {
         initComponents();
         this.vl = vl;
+        this.mensajeError.setVisible(false);
+        this.mensajeExito.setVisible(false);
     }
 
     /**
@@ -41,6 +43,7 @@ public class LoginPanel_SignIn extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         password2 = new javax.swing.JPasswordField();
         mensajeError = new javax.swing.JLabel();
+        mensajeExito = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(255, 255));
         setMinimumSize(new java.awt.Dimension(255, 255));
@@ -87,9 +90,15 @@ public class LoginPanel_SignIn extends javax.swing.JPanel {
             }
         });
 
+        mensajeError.setForeground(new java.awt.Color(255, 0, 0));
         mensajeError.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        mensajeError.setText("jLabel1");
+        mensajeError.setText("mensaje de error");
         mensajeError.setName("mensajeError"); // NOI18N
+
+        mensajeExito.setForeground(new java.awt.Color(153, 153, 0));
+        mensajeExito.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        mensajeExito.setText("Usuario registrado con éxito.");
+        mensajeExito.setName("mensajeExito"); // NOI18N
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
@@ -100,34 +109,31 @@ public class LoginPanel_SignIn extends javax.swing.JPanel {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(mensajeError, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(layout.createSequentialGroup()
+                        .add(buttonIniciarSesion, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 109, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(18, 18, 18)
+                        .add(buttonRegistrar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 103, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(layout.createSequentialGroup()
+                        .add(9, 9, 9)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(layout.createSequentialGroup()
-                                .add(buttonIniciarSesion, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 109, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .add(18, 18, 18)
-                                .add(buttonRegistrar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 103, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                            .add(layout.createSequentialGroup()
-                                .add(9, 9, 9)
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                                     .add(layout.createSequentialGroup()
-                                        .add(jLabel2)
-                                        .add(18, 18, 18)
+                                        .add(83, 83, 83)
                                         .add(txtUsername, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 132, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                                        .add(jLabel4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 71, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .add(password1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 132, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                                .add(19, 19, 19))
+                            .add(layout.createSequentialGroup()
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(jLabel2)
                                     .add(layout.createSequentialGroup()
-                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                            .add(layout.createSequentialGroup()
-                                                .add(jLabel3)
-                                                .add(39, 39, 39))
-                                            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                                                .add(jLabel4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 71, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                                .add(18, 18, 18)))
-                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                            .add(layout.createSequentialGroup()
-                                                .add(password2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 132, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                                .add(0, 1, Short.MAX_VALUE))
-                                            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                                                .add(0, 0, Short.MAX_VALUE)
-                                                .add(password1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 132, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))))))
-                        .add(0, 0, Short.MAX_VALUE)))
+                                        .add(jLabel3)
+                                        .add(39, 39, 39)
+                                        .add(password2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 132, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                                .add(0, 0, Short.MAX_VALUE))))
+                    .add(mensajeExito, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -145,13 +151,15 @@ public class LoginPanel_SignIn extends javax.swing.JPanel {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel3)
                     .add(password2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(18, 18, 18)
                 .add(mensajeError)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(mensajeExito)
+                .add(18, 18, 18)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(buttonIniciarSesion)
                     .add(buttonRegistrar))
-                .add(26, 26, 26))
+                .add(14, 14, 14))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -170,21 +178,28 @@ public class LoginPanel_SignIn extends javax.swing.JPanel {
 
     private void buttonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRegistrarActionPerformed
         // TODO add your handling code here:
+        this.mensajeError.setVisible(false);
+        this.mensajeExito.setVisible(false);
         if((!txtUsername.getText().equals("")) && (!password1.getPassword().equals(""))){
             if(String.valueOf(password1.getPassword()).equals(String.valueOf(password2.getPassword()))){
                 try{
                     Mensaje m = vl.registrarUsuario(txtUsername.getText(),String.valueOf(password1.getPassword()));
                     if(m.getCodigo() == FRACASO){
-                        mensajeError.setText(m.getMensaje());
+                        this.mensajeError.setText(m.getMensaje());
+                        this.mensajeError.setVisible(true);
+                    } else{
+                        this.mensajeExito.setVisible(true);
                     }
                 }catch(Exception e){
                     System.out.println("Exception: " + e);
                 }
             }else{
-                mensajeError.setText(PASSWORDS_NO_COINCIDEN);
+                this.mensajeError.setText(PASSWORDS_NO_COINCIDEN);
+                this.mensajeError.setVisible(true);
             }
         }else{
-            mensajeError.setText(CAMPOS_INCOMPLETOS);
+            this.mensajeError.setText(CAMPOS_INCOMPLETOS);
+            this.mensajeError.setVisible(true);
         }
     }//GEN-LAST:event_buttonRegistrarActionPerformed
 
@@ -196,6 +211,7 @@ public class LoginPanel_SignIn extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel mensajeError;
+    private javax.swing.JLabel mensajeExito;
     private javax.swing.JPasswordField password1;
     private javax.swing.JPasswordField password2;
     private javax.swing.JTextField txtUsername;

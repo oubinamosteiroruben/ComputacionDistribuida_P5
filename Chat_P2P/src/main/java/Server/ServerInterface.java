@@ -17,6 +17,6 @@ public interface ServerInterface extends Remote {
     
     public HashMap<String,Usuario> obtenerAmigos(String username) throws RemoteException;
     
-    public Boolean enviarPeticion(String usernameEmisor, String usernameReceptor) throws RemoteException;
+   public Boolean enviarPeticion(String usernameEmisor, String usernameReceptor) throws RemoteException;
     
 }

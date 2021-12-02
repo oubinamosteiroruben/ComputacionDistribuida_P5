@@ -288,7 +288,7 @@ public class DAOUsuarios extends AbstractDAO{
     }
     
     // obtiene todas las peticiones pendientes y las devuelve en un arraylist
-    public ArrayList<String> obtenerPeticiones(String usernameEmisor){
+    public ArrayList<String> obtenerPeticiones(String usernameReceptor){
         // Rechazar peticion de amistad
         PreparedStatement st = null;
         ResultSet rs;
@@ -298,8 +298,8 @@ public class DAOUsuarios extends AbstractDAO{
         
         try {
             st = con.prepareStatement("SELECT amigoReceptor FROM solicitudAmistad "
-                                        + "WHERE amigoEmisor = ? AND estado = ?");
-            st.setString(1, usernameEmisor);
+                                        + "WHERE amigoReceptor = ? AND estado = ?");
+            st.setString(1, usernameReceptor);
             st.setString(3, "p");
             rs = st.executeQuery();
             

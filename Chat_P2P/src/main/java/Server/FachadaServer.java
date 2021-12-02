@@ -56,8 +56,8 @@ public class FachadaServer {
         return this.fd.rechazarPeticion(usernameEmisor, usernameReceptor);
     }
     
-    public ArrayList<String> obtenerPeticiones(String usernameEmisor){
-        return this.fd.obtenerPeticiones(usernameEmisor);
+    public ArrayList<String> obtenerPeticiones(String usernameReceptor){
+        return this.fd.obtenerPeticiones(usernameReceptor);
     }
 
 }

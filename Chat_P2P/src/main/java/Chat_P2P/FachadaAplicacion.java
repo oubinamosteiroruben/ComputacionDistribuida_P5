@@ -45,7 +45,7 @@ public class FachadaAplicacion {
             this.amigos = this.frmi.obtenerAmigos(this.usuarioActual.getUsername());
             this.fg.lanzarChat();
             resultado = true;
-        }
+        } 
         
         return resultado;
     }
@@ -75,7 +75,5 @@ public class FachadaAplicacion {
     public void enviarPeticion(String usernameReceptor) throws Exception{
         this.frmi.enviarPeticion(usuarioActual.getUsername(), usernameReceptor);
     }
-    
-    
     
 }

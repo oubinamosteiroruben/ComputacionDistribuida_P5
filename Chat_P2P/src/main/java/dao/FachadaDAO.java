@@ -67,8 +67,8 @@ public class FachadaDAO {
         return this.daoUsuarios.rechazarPeticion(usernameEmisor, usernameReceptor);
     }
     
-    public ArrayList<String> obtenerPeticiones(String usernameEmisor){
-        return this.daoUsuarios.obtenerPeticiones(usernameEmisor);
+    public ArrayList<String> obtenerPeticiones(String usernameReceptor){
+        return this.daoUsuarios.obtenerPeticiones(usernameReceptor);
     }
     
 }
