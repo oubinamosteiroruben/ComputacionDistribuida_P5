@@ -14,6 +14,7 @@ public class FachadaAplicacion {
     
     private Usuario usuarioActual;
     private HashMap<String, Usuario> amigos;
+    private ArrayList<String> solicitudesRecibidas;
     
     
     public FachadaAplicacion(){
@@ -74,6 +75,15 @@ public class FachadaAplicacion {
     
     public void enviarPeticion(String usernameReceptor) throws Exception{
         this.frmi.enviarPeticion(usuarioActual.getUsername(), usernameReceptor);
+    }
+    
+    public ArrayList<String> obtenerPeticiones() throws Exception{
+        return this.frmi.obtenerPeticiones(usuarioActual.getUsername());
+    }
+    
+    public void actualizarPeticiones() throws Exception{
+        solicitudesRecibidas = obtenerPeticiones();
+        this.fg.actualizarPeticiones(solicitudesRecibidas);
     }
     
 }

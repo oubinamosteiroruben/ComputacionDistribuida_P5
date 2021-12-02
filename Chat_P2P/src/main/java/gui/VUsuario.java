@@ -10,6 +10,7 @@ import gui.paneles.MainPanel;
 import gui.paneles.SolicitudesPanel;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JPanel;
 import modelos.Usuario;
 
@@ -17,12 +18,16 @@ public class VUsuario extends javax.swing.JFrame {
 
     private final FachadaAplicacion fa;
     private MainPanel mp;
+    private SolicitudesPanel sp;
     
     public VUsuario(FachadaAplicacion fa) {
         initComponents();
         this.fa = fa;
+        mp = new MainPanel(this);
+        mp.setSize(this.mainPanel.getSize());
+        sp = new SolicitudesPanel(this);
+        sp.setSize(this.mainPanel.getSize());
         mostrarMainUsuarios();
-        
     }
 
     /**
@@ -79,20 +84,19 @@ public class VUsuario extends javax.swing.JFrame {
 
 
     public void mostrarMainUsuarios(){
-        actualizarMainPanel(new MainPanel(this));
+        actualizarMainPanel(mp);
     }
     
     public void mostrarSolicitudes(){
-        actualizarMainPanel(new SolicitudesPanel(this));
+        actualizarMainPanel(sp);
     }
     
     
-    public void actualizarMainPanel(JPanel newPanel){
-        newPanel.setSize(this.mainPanel.getSize());
-        newPanel.setVisible(true);
+    public void actualizarMainPanel(JPanel actualPanel){
+        actualPanel.setVisible(true);
         
         this.mainPanel.removeAll();
-        this.mainPanel.add(newPanel, BorderLayout.CENTER);
+        this.mainPanel.add(actualPanel, BorderLayout.CENTER);
         this.mainPanel.revalidate();
         this.mainPanel.repaint();
         this.mainPanel.setVisible(true);
@@ -109,4 +113,12 @@ public class VUsuario extends javax.swing.JFrame {
         this.fa.enviarPeticion(username);
     }
     
+    public void actualizarPeticiones(ArrayList<String> peticiones){
+        this.sp.actualizarPeticiones(peticiones);
+    }
+    
+    public ArrayList<String> obtenerPeticiones() throws Exception{
+        return this.fa.obtenerPeticiones();
+    }
+
 }
