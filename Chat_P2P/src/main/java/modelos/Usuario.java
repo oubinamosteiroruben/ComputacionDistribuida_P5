@@ -2,9 +2,12 @@
 package modelos;
 
 import Chat_P2P.RMI.PeerInterface;
+import java.io.Serializable;
 
 
-public class Usuario {
+public class Usuario implements Serializable{
+    
+    private static final long serialVersionUID = 1L;
     private String username;
     private PeerInterface peerInterface;
     

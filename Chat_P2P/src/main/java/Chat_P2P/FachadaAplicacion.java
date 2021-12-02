@@ -20,7 +20,6 @@ public class FachadaAplicacion {
         this.amigos = new HashMap<>();
         this.fg = new FachadaGui(this);
         this.frmi = new FachadaRMI(this);
-        
     }
     
     public static void main(String args[]) {

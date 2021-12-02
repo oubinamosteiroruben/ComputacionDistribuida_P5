@@ -171,13 +171,9 @@ public class LoginPanel_SignIn extends javax.swing.JPanel {
     private void buttonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRegistrarActionPerformed
         // TODO add your handling code here:
         if((!txtUsername.getText().equals("")) && (!password1.getPassword().equals(""))){
-            if(password1.getPassword().equals(password2.getPassword())){
-                String passTxt = "";
-                for(char a: password1.getPassword()){
-                    passTxt+=String.valueOf(a);
-                }
+            if(String.valueOf(password1.getPassword()).equals(String.valueOf(password2.getPassword()))){
                 try{
-                    Mensaje m = vl.registrarUsuario(txtUsername.getText(),passTxt);
+                    Mensaje m = vl.registrarUsuario(txtUsername.getText(),String.valueOf(password1.getPassword()));
                     if(m.getCodigo() == FRACASO){
                         mensajeError.setText(m.getMensaje());
                     }

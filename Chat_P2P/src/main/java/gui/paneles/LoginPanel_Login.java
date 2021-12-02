@@ -8,6 +8,7 @@ package gui.paneles;
 import Chat_P2P.FachadaAplicacion;
 import static definiciones.Definiciones.CAMPOS_INCOMPLETOS;
 import static definiciones.Definiciones.DATOS_INCORRECTOS;
+import static definiciones.Definiciones.ERROR_NORMAL;
 import gui.FachadaGui;
 import gui.VLogin;
 
@@ -78,39 +79,37 @@ public class LoginPanel_Login extends javax.swing.JPanel {
             }
         });
 
-        mensajeError.setText("¡Debes introducir los dos campos!");
         mensajeError.setName("mensajeError"); // NOI18N
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                     .add(layout.createSequentialGroup()
-                        .addContainerGap(28, Short.MAX_VALUE)
+                        .add(0, 0, Short.MAX_VALUE)
+                        .add(mensajeError, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 215, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
+                        .add(29, 29, 29)
+                        .add(buttonRegistrar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+                        .add(18, 18, 18)
+                        .add(buttonEntrar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 78, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(layout.createSequentialGroup()
+                        .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, jLabel2)
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, jLabel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 71, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, txtUsername, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 132, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, txtPassword, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 132, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                    .add(layout.createSequentialGroup()
-                        .add(29, 29, 29)
-                        .add(buttonRegistrar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
-                        .add(18, 18, 18)
-                        .add(buttonEntrar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 78, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-            .add(layout.createSequentialGroup()
-                .add(19, 19, 19)
-                .add(mensajeError)
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, txtPassword, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 132, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                .add(23, 23, 23))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(65, Short.MAX_VALUE)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel2)
                     .add(txtUsername, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
@@ -119,7 +118,7 @@ public class LoginPanel_Login extends javax.swing.JPanel {
                     .add(jLabel3)
                     .add(txtPassword, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(13, 13, 13)
-                .add(mensajeError)
+                .add(mensajeError, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(18, 18, 18)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(buttonRegistrar)
@@ -139,14 +138,10 @@ public class LoginPanel_Login extends javax.swing.JPanel {
 
     private void buttonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEntrarActionPerformed
         try{
-            if((!this.txtUsername.getText().equals("")) && (!this.txtPassword.getPassword().equals(""))){
+            if((!this.txtUsername.getText().equals("")) && (!String.valueOf(this.txtPassword.getPassword()).equals(""))){
                 // obtenemos la contraseña como string
-                String passTxt = "";
-                for(char a: this.txtPassword.getPassword()){
-                    passTxt+=String.valueOf(a);
-                }
                 
-                boolean resultado = vl.iniciarSesion(this.txtUsername.getText(), passTxt);
+                boolean resultado = vl.iniciarSesion(this.txtUsername.getText(), String.valueOf(this.txtPassword.getPassword()));
                 if(!resultado){
                     //mostrar mensaje de usuario incorrecto
                     this.mensajeError.setText(DATOS_INCORRECTOS);
@@ -160,7 +155,7 @@ public class LoginPanel_Login extends javax.swing.JPanel {
             
         } catch(Exception e){
             // si los campos están vacios, mostrar mensaje
-            this.mensajeError.setText(CAMPOS_INCOMPLETOS);
+            this.mensajeError.setText(ERROR_NORMAL);
             this.mensajeError.setVisible(true);
         }
     }//GEN-LAST:event_buttonEntrarActionPerformed

@@ -1,7 +1,10 @@
 package modelos;
 
+import java.io.Serializable;
 
-public class Mensaje {
+public class Mensaje implements Serializable{
+    
+    private static final long serialVersionUID = 1L;
     private int codigo;
     private String mensaje;
     

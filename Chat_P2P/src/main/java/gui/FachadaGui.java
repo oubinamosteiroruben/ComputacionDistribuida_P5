@@ -6,13 +6,13 @@ import gui.paneles.LoginPanel_Login;
 
 public class FachadaGui {
     private final FachadaAplicacion fa;
-    private final VUsuario vu;
+    private VUsuario vu;
     private final VLogin vl;
     
     public FachadaGui(FachadaAplicacion fa){
         this.fa = fa;
         vl = new VLogin(fa);
-        vu = new VUsuario(fa);
+        //vu = new VUsuario(fa);
     }
     
     public void iniciarVista(){
@@ -24,6 +24,7 @@ public class FachadaGui {
         this.vl.setVisible(false);
         this.vl.dispose();
         // abrimos el chat
+        this.vu = new VUsuario(this.fa);
         this.vu.setVisible(true);
         this.vu.actualizarAmigos();
     }

@@ -42,6 +42,7 @@ public class MainPanel extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(542, 454));
         setPreferredSize(new java.awt.Dimension(542, 454));
 
+        mainPanel_izq.setBackground(new java.awt.Color(255, 0, 0));
         mainPanel_izq.setMaximumSize(new java.awt.Dimension(170, 430));
         mainPanel_izq.setMinimumSize(new java.awt.Dimension(170, 430));
         mainPanel_izq.setName("mainPanel_izq"); // NOI18N
@@ -105,15 +106,17 @@ public class MainPanel extends javax.swing.JPanel {
 
     private void mostrarPanelIzq(){
         this.mpi = new MainPanel_Izq(this);
+        this.mainPanel_izq.setContentPane();
         
-        this.mpi.setSize(this.mainPanel_izq.getSize());
+        /*this.mpi.setSize(this.mainPanel_izq.getSize());
         this.mpi.setVisible(true);
         
         this.mainPanel_izq.removeAll();
         this.mainPanel_izq.add(this.mpi, BorderLayout.CENTER);
         this.mainPanel_izq.revalidate();
         this.mainPanel_izq.repaint();
-        this.mainPanel_izq.setVisible(true);
+        this.mainPanel_izq.setVisible(true);*/
+        
     }
     
     private void mostrarPanelDer(){
