@@ -72,6 +72,10 @@ public class FachadaAplicacion {
         this.amigos = amigos;
     }
     
+    public void enviarPeticion(String usernameReceptor) throws Exception{
+        this.frmi.enviarPeticion(usuarioActual.getUsername(), usernameReceptor);
+    }
+    
     
     
 }

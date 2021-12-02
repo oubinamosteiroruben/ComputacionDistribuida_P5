@@ -5,6 +5,7 @@
  */
 package gui.paneles;
 
+import static definiciones.Definiciones.CAMPOS_INCOMPLETOS;
 import gui.VUsuario;
 
 /**
@@ -39,7 +40,7 @@ public class SolicitudesPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        txtError = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(542, 454));
         setMinimumSize(new java.awt.Dimension(542, 454));
@@ -55,6 +56,11 @@ public class SolicitudesPanel extends javax.swing.JPanel {
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buscarIcono.png"))); // NOI18N
         jButton1.setName("jButton1"); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Pendientes");
@@ -79,9 +85,8 @@ public class SolicitudesPanel extends javax.swing.JPanel {
         jButton2.setText("<");
         jButton2.setName("jButton2"); // NOI18N
 
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("jLabel4");
-        jLabel4.setName("jLabel4"); // NOI18N
+        txtError.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtError.setName("txtError"); // NOI18N
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
@@ -107,7 +112,7 @@ public class SolicitudesPanel extends javax.swing.JPanel {
                 .add(18, 18, 18)
                 .add(jButton1)
                 .addContainerGap(55, Short.MAX_VALUE))
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jLabel4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, txtError, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -123,14 +128,19 @@ public class SolicitudesPanel extends javax.swing.JPanel {
                         .add(jLabel2))
                     .add(jButton1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 35, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(jLabel4)
+                .add(txtError)
                 .add(25, 25, 25)
                 .add(jLabel3)
                 .add(18, 18, 18)
                 .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 181, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        enviarPeticion();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -139,9 +149,23 @@ public class SolicitudesPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel txtError;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
+
+
+    private void enviarPeticion(){
+        try{
+            if(!this.txtUsername.getText().equals("")){
+                this.vu.enviarPeticion(this.txtUsername.getText()); // HAY QUE PONERLE UN MENSAJE
+            }else{
+                txtError.setText(CAMPOS_INCOMPLETOS);
+            }
+        }catch(Exception e){
+            System.out.println("Exception: " + e);
+        }
+        
+    }
 }

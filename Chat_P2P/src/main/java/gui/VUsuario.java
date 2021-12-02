@@ -104,4 +104,8 @@ public class VUsuario extends javax.swing.JFrame {
         // TODO: llamar aqui a la función, mirar porqué me da un error
         //this.mainPanel.actualizarAmigos(usuarios);
     }
+    
+    public void enviarPeticion(String username) throws Exception{
+        this.fa.enviarPeticion(username);
+    }
 }

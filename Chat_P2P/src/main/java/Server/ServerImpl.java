@@ -30,6 +30,9 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         return server.obtenerAmigos(username);
     }
     
+    public Boolean enviarPeticion(String usernameEmisor, String usernameReceptor) throws RemoteException{
+        return server.enviarPeticion(usernameEmisor, usernameReceptor);
+    }
     
     
 }

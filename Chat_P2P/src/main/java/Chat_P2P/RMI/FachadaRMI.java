@@ -75,5 +75,8 @@ public class FachadaRMI {
         return this.si.obtenerAmigos(username);
     }
     
+    public Boolean enviarPeticion(String usernameEmisor, String usernameReceptor) throws Exception{
+        return this.si.enviarPeticion(usernameEmisor,usernameReceptor);
+    }
     
 }
