@@ -6,7 +6,11 @@
 package gui.paneles;
 
 import static definiciones.Definiciones.CAMPOS_INCOMPLETOS;
+import static definiciones.Definiciones.ERROR_NORMAL;
 import gui.VUsuario;
+import gui.modelos.ModeloTablaPeticiones;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -15,12 +19,15 @@ import gui.VUsuario;
 public class SolicitudesPanel extends javax.swing.JPanel {
 
     private final VUsuario vu;
+    
+    private List<String> peticiones;
     /**
      * Creates new form AmistadesPanel
      */
     public SolicitudesPanel(VUsuario vu) {
         this.vu = vu;
         initComponents();
+        obtenerPeticiones();
     }
 
     /**
@@ -38,7 +45,7 @@ public class SolicitudesPanel extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaPeticiones = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         txtError = new javax.swing.JLabel();
 
@@ -68,19 +75,9 @@ public class SolicitudesPanel extends javax.swing.JPanel {
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jTable1.setName("jTable1"); // NOI18N
-        jScrollPane1.setViewportView(jTable1);
+        tablaPeticiones.setModel(new ModeloTablaPeticiones(this));
+        tablaPeticiones.setName("tablaPeticiones"); // NOI18N
+        jScrollPane1.setViewportView(tablaPeticiones);
 
         jButton2.setText("<");
         jButton2.setName("jButton2"); // NOI18N
@@ -150,7 +147,7 @@ public class SolicitudesPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tablaPeticiones;
     private javax.swing.JLabel txtError;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
@@ -164,8 +161,24 @@ public class SolicitudesPanel extends javax.swing.JPanel {
                 txtError.setText(CAMPOS_INCOMPLETOS);
             }
         }catch(Exception e){
+            txtError.setText(ERROR_NORMAL);
             System.out.println("Exception: " + e);
         }
-        
+    }
+    
+    public void actualizarPeticiones(ArrayList<String> peticiones){
+        this.peticiones = peticiones;
+    }
+    
+    public void actualizarTablaPeticiones(){
+        ((ModeloTablaPeticiones) tablaPeticiones.getModel()).setFilas(this.peticiones);
+    }
+    
+    public void obtenerPeticiones(){
+        try{
+            this.peticiones = this.vu.obtenerPeticiones();
+        }catch(Exception e){
+            System.out.println("Excpetion: " + e);
+        }
     }
 }

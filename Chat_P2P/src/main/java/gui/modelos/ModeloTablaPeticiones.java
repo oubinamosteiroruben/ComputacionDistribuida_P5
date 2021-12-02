@@ -12,21 +12,21 @@ import javax.swing.table.AbstractTableModel;
 import modelos.Usuario;
 
 
-public final class ModeloTablaSolicitudes extends AbstractTableModel {
+public final class ModeloTablaPeticiones extends AbstractTableModel {
 
-    private List<Usuario> solicitudes;
+    private List<String> peticiones;
     
     private final SolicitudesPanel si;
 
     // ------------------------------------------------------------------------
     // ----------------------------- Constructor ------------------------------
-    public ModeloTablaSolicitudes() {
-        this.solicitudes = new ArrayList<>();
+    /*public ModeloTablaPeticiones() {
+        this.peticiones = new ArrayList<>();
         this.si = null;
-    }
+    }*/
     
-    public ModeloTablaSolicitudes(List<Usuario> solicitudes, SolicitudesPanel si) {
-        this.solicitudes = solicitudes;
+    public ModeloTablaPeticiones(SolicitudesPanel si) {
+        this.peticiones = new ArrayList<>();
         this.si = si;
     }
 
@@ -34,7 +34,7 @@ public final class ModeloTablaSolicitudes extends AbstractTableModel {
     // -------------------------- Overrides Getters ---------------------------
     @Override
     public final int getRowCount() {
-        return this.solicitudes.size();
+        return this.peticiones.size();
     }
 
     @Override
@@ -47,7 +47,7 @@ public final class ModeloTablaSolicitudes extends AbstractTableModel {
         Object resultado=null;
 
         switch (columnIndex){
-            case 0: resultado = this.solicitudes.get(rowIndex).getUsername(); break;
+            case 0: resultado = this.peticiones.get(rowIndex); break;
             case 1: 
                     JButton buttonSi = new JButton("SI");
                     buttonSi.addActionListener(new ActionListener() {
@@ -94,23 +94,23 @@ public final class ModeloTablaSolicitudes extends AbstractTableModel {
 
     // ------------------------------------------------------------------------
     // ------------------------------ Funciones -------------------------------
-    public final void setFilas(java.util.List<Usuario> solicitudes) {
+    public final void setFilas(java.util.List<String> solicitudes) {
         if (solicitudes != null ) {
-            this.solicitudes = solicitudes;
+            this.peticiones = solicitudes;
             fireTableDataChanged();
         }
     }
 
-    public final Usuario obtenerSolicitud(int i) {
-        return this.solicitudes.get(i);
+    public final String obtenerSolicitud(int i) {
+        return this.peticiones.get(i);
     }
 
     public final void actualizarTabla() {
         fireTableDataChanged();
     }
 
-    public final void nuevaSolicitud(Usuario u) {
-        this.solicitudes.add(u);
-        fireTableRowsInserted(this.solicitudes.size() - 1, this.solicitudes.size() - 1);
+    public final void nuevaSolicitud(String username) {
+        this.peticiones.add(username);
+        fireTableRowsInserted(this.peticiones.size() - 1, this.peticiones.size() - 1);
     }
 }

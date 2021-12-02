@@ -17,14 +17,15 @@ public class MainPanel extends javax.swing.JPanel {
     private final VUsuario vu;
     private MainPanel_Izq mpi;
     private MainPanel_Der mpd;
+    
     /**
      * Creates new form MainPanel
      */
     public MainPanel(VUsuario vu) {
         this.vu = vu;
         initComponents();
-        mostrarPanelIzq();
-        mostrarPanelDer();
+        inicializarPanelIzq();
+        inicializarPanelDer();
     }
 
     /**
@@ -105,7 +106,7 @@ public class MainPanel extends javax.swing.JPanel {
     private javax.swing.JPanel mainPanel_izq;
     // End of variables declaration//GEN-END:variables
 
-    private void mostrarPanelIzq(){
+    private void inicializarPanelIzq(){
         this.mpi = new MainPanel_Izq(this);
         this.mpi.setSize(this.mainPanel_izq.getSize());
         this.mpi.setVisible(true);
@@ -118,7 +119,7 @@ public class MainPanel extends javax.swing.JPanel {
         
     }
     
-    private void mostrarPanelDer(){
+    private void inicializarPanelDer(){
         this.mpd = new MainPanel_Der(this);
         
         this.mpd.setSize(this.mainPanel_der.getSize());

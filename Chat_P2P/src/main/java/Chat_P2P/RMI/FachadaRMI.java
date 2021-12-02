@@ -6,7 +6,9 @@ import Server.ServerInterface;
 import static definiciones.Definiciones.PORT;
 import java.io.*;
 import java.rmi.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import modelos.Mensaje;
 import modelos.Usuario;
 
@@ -79,4 +81,7 @@ public class FachadaRMI {
         return this.si.enviarPeticion(usernameEmisor,usernameReceptor);
     }
     
+    public ArrayList<String> obtenerPeticiones(String usernameReceptor) throws Exception{
+        return this.si.obtenerPeticiones(usernameReceptor);
+    }
 }

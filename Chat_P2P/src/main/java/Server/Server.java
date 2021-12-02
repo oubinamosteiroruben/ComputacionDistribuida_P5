@@ -23,7 +23,6 @@ public class Server {
     public Server(FachadaServer fs){
         this.fs = fs;
         this.usuariosOnline = new HashMap<>();
-        
         iniciarServidor();
     }
  

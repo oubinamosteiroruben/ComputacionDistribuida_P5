@@ -4,6 +4,7 @@ import modelos.Usuario;
 import java.rmi.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import modelos.Mensaje;
 
 public interface ServerInterface extends Remote {
@@ -19,4 +20,5 @@ public interface ServerInterface extends Remote {
     
    public Boolean enviarPeticion(String usernameEmisor, String usernameReceptor) throws RemoteException;
     
+    public ArrayList<String> obtenerPeticiones(String usernameReceptor) throws RemoteException;
 }

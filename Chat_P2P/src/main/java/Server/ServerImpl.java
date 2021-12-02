@@ -34,5 +34,9 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         return server.enviarPeticion(usernameEmisor, usernameReceptor);
     }
     
+    public ArrayList<String> obtenerPeticiones(String usernameReceptor) throws RemoteException{
+        return server.obtenerPeticiones(usernameReceptor);
+    }
+    
     
 }
