@@ -43,6 +43,7 @@ public class FachadaAplicacion {
         Usuario usuario = this.frmi.iniciarSesion(username,password);
         if(usuario.getPeerInterface() != null){
             this.usuarioActual = usuario;
+            usuario.getPeerInterface().setFachadaAplicacion(this);
             this.amigos = this.frmi.obtenerAmigos(this.usuarioActual.getUsername());
             this.fg.lanzarChat();
             resultado = true;
@@ -86,4 +87,8 @@ public class FachadaAplicacion {
         this.fg.actualizarPeticiones(solicitudesRecibidas);
     }
     
+    public void actualizarAmigos() {
+        ArrayList<Usuario> amigosOn = new ArrayList<>(this.amigos.values());
+        this.fg.actualizarAmigos(amigosOn);
+    }
 }

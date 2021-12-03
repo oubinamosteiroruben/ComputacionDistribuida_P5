@@ -107,9 +107,9 @@ public class MainPanel_Izq extends javax.swing.JPanel {
     private javax.swing.JTable tablaConectados;
     // End of variables declaration//GEN-END:variables
 
-    public void actualizarAmigos(ArrayList<Usuario> usuarios){
+    /*public void actualizarAmigos(ArrayList<String> usuarios){
         // TODO: hacer el modelo tabla y coger del arraylist solo los usernames
         //this.tablaConectados ...
-    }
+    }*/
 
 }

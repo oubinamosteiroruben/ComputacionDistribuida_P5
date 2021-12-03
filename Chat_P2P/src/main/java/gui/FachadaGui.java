@@ -4,6 +4,8 @@ package gui;
 import Chat_P2P.FachadaAplicacion;
 import gui.paneles.LoginPanel_Login;
 import java.util.ArrayList;
+import java.util.HashMap;
+import modelos.Usuario;
 
 public class FachadaGui {
     private final FachadaAplicacion fa;
@@ -32,6 +34,10 @@ public class FachadaGui {
     
     public void actualizarPeticiones(ArrayList<String> peticiones){
         this.vu.actualizarPeticiones(peticiones);
+    }
+    
+    public void actualizarAmigos(ArrayList<Usuario> amigos){
+        this.vu.actualizarAmigos(amigos);
     }
     
 }

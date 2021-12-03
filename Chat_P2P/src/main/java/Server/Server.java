@@ -79,9 +79,9 @@ public class Server {
             boolean iniciado = this.fs.iniciarSesion(username, password);
             
             if(iniciado){
-                    // añadimos el usuario como usuario online
-                    usuarioResultado.setPeerInterface(new PeerImpl());
-                    this.usuariosOnline.put(usuarioResultado.getUsername(), usuarioResultado);
+                // añadimos el usuario como usuario online
+                usuarioResultado.setPeerInterface(new PeerImpl());
+                this.usuariosOnline.put(usuarioResultado.getUsername(), usuarioResultado);
             }
             
         } catch(Exception e){
@@ -102,6 +102,13 @@ public class Server {
             if(this.usuariosOnline.get(user) != null){
                 // si es amigo y está online, se le envía al cliente
                 amigosOnline.put(user, this.usuariosOnline.get(user));
+                
+                // y se le notifica a ese amigo que ahora está online
+                try{
+                    this.usuariosOnline.get(user).getPeerInterface().notificarAmigoOnline(this.usuariosOnline.get(username));
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
             }
         }
         return amigosOnline;

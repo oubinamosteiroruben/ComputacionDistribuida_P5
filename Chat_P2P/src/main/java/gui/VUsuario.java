@@ -121,5 +121,9 @@ public class VUsuario extends javax.swing.JFrame {
     public ArrayList<String> obtenerPeticiones() throws Exception{
         return this.fa.obtenerPeticiones();
     }
+    
+    public void actualizarAmigos(ArrayList<Usuario> amigos){
+        this.mp.actualizarAmigos(amigos);
+    }
 
 }

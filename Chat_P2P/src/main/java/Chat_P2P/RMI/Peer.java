@@ -1,6 +1,7 @@
 
 package Chat_P2P.RMI;
 
+import Chat_P2P.FachadaAplicacion;
 import definiciones.Definiciones;
 import java.rmi.*;
 import java.rmi.server.*;
@@ -8,10 +9,14 @@ import java.rmi.registry.Registry;
 import java.rmi.registry.LocateRegistry;
 import java.net.*;
 import java.io.*;
+import modelos.Usuario;
 
 public class Peer {
     
+    private FachadaAplicacion fa;
+    
     public Peer(){
+        
         String portNum, registryURL;
         try{
             portNum = Definiciones.PORT;
@@ -55,4 +60,21 @@ public class Peer {
         for (int i=0; i < names.length; i++)
             System.out.println(names[i]);
     } //end listRegistry
+
+    
+    public FachadaAplicacion getFachadaAplicacion() {
+        return fa;
+    }
+
+    public void setFachadaAplicacion(FachadaAplicacion fa) {
+        this.fa = fa;
+    }
+    
+    public void notificarAmigoOnline(Usuario amigo){
+        if(this.fa != null){
+            // añadimos el amigo a sus amigos online
+            this.fa.getAmigos().put(amigo.getUsername(), amigo);
+            this.fa.actualizarAmigos();
+        }
+    }
 }
