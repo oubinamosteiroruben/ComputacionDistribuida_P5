@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
@@ -39,7 +40,7 @@ public final class ModeloTablaPeticiones extends AbstractTableModel {
 
     @Override
     public final int getColumnCount() {
-        return 2;
+        return 1;
     }
 
     @Override
@@ -48,7 +49,7 @@ public final class ModeloTablaPeticiones extends AbstractTableModel {
 
         switch (columnIndex){
             case 0: resultado = this.peticiones.get(rowIndex); break;
-            case 1: 
+            /*case 1: 
                     JButton buttonSi = new JButton("SI");
                     buttonSi.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent arg0) {
@@ -63,7 +64,8 @@ public final class ModeloTablaPeticiones extends AbstractTableModel {
                             System.out.println("BOTON NO PULSADO DE " + rowIndex);
                         }
                     });
-                    resultado = buttonNo; break;
+                    buttonNo.setVisible(true);
+                    resultado = buttonNo; break;*/
         }
         return resultado;
     }
@@ -74,8 +76,8 @@ public final class ModeloTablaPeticiones extends AbstractTableModel {
 
         switch (col){
             case 0: nombre = "Usuario"; break;
-            case 1: nombre = "Si"; break;
-            case 2: nombre = "No"; break;
+            /*case 1: nombre = "Si"; break;
+            case 2: nombre = "No"; break;*/
         }
         return nombre;
     }
@@ -86,8 +88,8 @@ public final class ModeloTablaPeticiones extends AbstractTableModel {
 
         switch (col){
             case 0: clase = java.lang.String.class; break;
-            case 1: clase = JButton.class; break;
-            case 2: clase = JButton.class; break;
+            /*case 1: clase = JButton.class; break;
+            case 2: clase = JButton.class; break;*/
         }
         return clase;
     }
@@ -101,7 +103,7 @@ public final class ModeloTablaPeticiones extends AbstractTableModel {
         }
     }
 
-    public final String obtenerSolicitud(int i) {
+    public final String obtenerPeticion(int i) {
         return this.peticiones.get(i);
     }
 

@@ -31,6 +31,9 @@ public class MainPanel extends javax.swing.JPanel {
         this.vu = vu;
         initComponents();
         this.textChat.setEditable(false);
+        this.txtNombreAmigo.setText("Selecciona un amigo");
+        this.txtMensaje.setEnabled(false);
+        this.buttonEnviar.setEnabled(false);
     }
 
     /**
@@ -204,11 +207,13 @@ public class MainPanel extends javax.swing.JPanel {
 
     private void buttonSolicitudesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSolicitudesActionPerformed
         // TODO add your handling code here:
-
+        this.vu.mostrarSolicitudes();
     }//GEN-LAST:event_buttonSolicitudesActionPerformed
 
     private void tablaConectadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaConectadosMouseClicked
         // TODO add your handling code here:
+        this.txtMensaje.setEnabled(false);
+        this.buttonEnviar.setEnabled(false);
         String amigo;
         ModeloTablaAmigos m;
         m = (ModeloTablaAmigos) this.tablaConectados.getModel();
@@ -216,6 +221,8 @@ public class MainPanel extends javax.swing.JPanel {
         if (amigo != null) {
             this.amigoChatActual = amigo;
             actualizarChat();
+            this.txtMensaje.setEnabled(true);
+            this.buttonEnviar.setEnabled(true);
         }
     }//GEN-LAST:event_tablaConectadosMouseClicked
 
