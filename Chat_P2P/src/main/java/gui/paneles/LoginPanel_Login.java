@@ -143,8 +143,6 @@ public class LoginPanel_Login extends javax.swing.JPanel {
     private void buttonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEntrarActionPerformed
         try{
             if((!this.txtUsername.getText().equals("")) && (!String.valueOf(this.txtPassword.getPassword()).equals(""))){
-                // obtenemos la contraseña como string
-                
                 boolean resultado = vl.iniciarSesion(this.txtUsername.getText(), String.valueOf(this.txtPassword.getPassword()));
                 if(!resultado){
                     //mostrar mensaje de usuario incorrecto
@@ -158,6 +156,7 @@ public class LoginPanel_Login extends javax.swing.JPanel {
             }
             
         } catch(Exception e){
+            System.out.println("Exception: " + e);
             // si los campos están vacios, mostrar mensaje
             this.mensajeError.setText(ERROR_NORMAL);
             this.mensajeError.setVisible(true);

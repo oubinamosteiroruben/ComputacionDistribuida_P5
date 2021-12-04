@@ -1,7 +1,8 @@
 
 package Server;
 
-import Chat_P2P.RMI.PeerImpl;
+import Cliente.PeerChatInterface;
+import Cliente.PeerConectionInterface;
 import definiciones.Definiciones;
 import modelos.Usuario;
 import java.util.*;
@@ -13,11 +14,12 @@ import java.rmi.registry.LocateRegistry;
 import java.net.*;
 import java.io.*;
 import modelos.Mensaje;
+import modelos.PeerController;
 
 
 public class Server {
     
-    private HashMap<String, Usuario> usuariosOnline;
+    private HashMap<String, Sesion> usuariosOnline;
     private final FachadaServer fs;
     
     public Server(FachadaServer fs){
@@ -33,7 +35,7 @@ public class Server {
             portNum = Definiciones.PORT;
             int RMIPortNum = Integer.parseInt(portNum);
             startRegistry(RMIPortNum);
-            ServerImpl exportedObj = new ServerImpl(this);
+            ServerImpl exportedObj = new ServerImpl(this.fs);
             registryURL = "rmi://localhost:" + portNum + "/chatP2P";
             Naming.rebind(registryURL, exportedObj);
             System.out.println("Server chatp2p registered.  Registry currently contains:");
@@ -71,7 +73,25 @@ public class Server {
     } //end listRegistry
     
     
+    public void addUsuarioConectado(String username, PeerChatInterface peerChatInterface, PeerConectionInterface peerConectionInterface){
+        Sesion sesion = new Sesion(username,peerChatInterface,peerConectionInterface);
+        this.usuariosOnline.put(username, sesion);
+    }
     
+    public HashMap<String,PeerChatInterface> obtenerInfoAmigosConectados(List<String> nombresAmigos){
+        HashMap<String,PeerChatInterface> amigos = new HashMap<>();
+        
+        for(String amigo: nombresAmigos){
+            Sesion s = this.usuariosOnline.get(amigo);
+            if(s!=null){
+                amigos.put(amigo, s.getPeerChatInterface());
+            }
+        }
+        
+        return amigos;
+    }
+    
+    /*
     
     public Usuario iniciarSesion(String username, String password){
         Usuario usuarioResultado = new Usuario(username);
@@ -79,9 +99,15 @@ public class Server {
             boolean iniciado = this.fs.iniciarSesion(username, password);
             
             if(iniciado){
-                    // añadimos el usuario como usuario online
-                    usuarioResultado.setPeerInterface(new PeerImpl());
-                    this.usuariosOnline.put(usuarioResultado.getUsername(), usuarioResultado);
+                // añadimos el usuario como usuario online
+                /*System.out.println("hola 1");
+                Peer peer = new Peer();
+                System.out.println("hola 2");
+                usuarioResultado.setPeerInterface(peer.getPeerInterface());
+                System.out.println("hola 3");
+                this.usuariosOnline.put(usuarioResultado.getUsername(), usuarioResultado);*/
+              /*  PeerController.getInstance().anhadirUsuarioOnline(usuarioResultado);
+                usuarioResultado.setConectado(true);
             }
             
         } catch(Exception e){
@@ -102,6 +128,15 @@ public class Server {
             if(this.usuariosOnline.get(user) != null){
                 // si es amigo y está online, se le envía al cliente
                 amigosOnline.put(user, this.usuariosOnline.get(user));
+                
+                // y se le notifica a ese amigo que ahora está online
+                try{
+                    PeerController.getInstance().notificarAmigoOnline(this.usuariosOnline.get(username), 
+                                                                        this.usuariosOnline.get(user));
+                    //this.usuariosOnline.get(user).getPeerInterface().notificarAmigoOnline(this.usuariosOnline.get(username));
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
             }
         }
         return amigosOnline;
@@ -123,4 +158,5 @@ public class Server {
         return this.fs.obtenerPeticiones(usernameReceptor);
     }
     
+*/
 }

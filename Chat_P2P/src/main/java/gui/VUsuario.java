@@ -103,7 +103,7 @@ public class VUsuario extends javax.swing.JFrame {
         this.mainPanel.setVisible(true);
     }
     
-    public void actualizarAmigos(){
+    /*public void actualizarAmigos(){
         ArrayList<Usuario> usuarios = new ArrayList<>(this.fa.getAmigos().values());
         
         // TODO: llamar aqui a la función, mirar porqué me da un error
@@ -121,5 +121,9 @@ public class VUsuario extends javax.swing.JFrame {
     public ArrayList<String> obtenerPeticiones() throws Exception{
         return this.fa.obtenerPeticiones();
     }
+    
+    public void actualizarAmigos(ArrayList<Usuario> amigos){
+        this.mp.actualizarAmigos(amigos);
+    }*/
 
 }
