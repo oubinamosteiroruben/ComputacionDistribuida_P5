@@ -31,13 +31,15 @@ public class FachadaGui {
         this.vu.setVisible(true);
       //  this.vu.actualizarAmigos();
     }
+    
+    public void actualizarAmigosConectados(ArrayList<String> amigos){
+        this.vu.actualizarAmigosConectados(amigos);
+    }
+    
     /*
     public void actualizarPeticiones(ArrayList<String> peticiones){
         this.vu.actualizarPeticiones(peticiones);
     }
     
-    public void actualizarAmigos(ArrayList<Usuario> amigos){
-        this.vu.actualizarAmigos(amigos);
-    }
     */
 }

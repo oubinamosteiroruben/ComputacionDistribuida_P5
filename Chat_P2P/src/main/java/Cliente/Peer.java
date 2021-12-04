@@ -7,6 +7,7 @@ import java.util.HashMap;
 public class Peer {
 
     private String usuario;
+    private Cliente cliente;
     
     private HashMap<String,PeerChatInterface> amigos;
     
@@ -29,6 +30,14 @@ public class Peer {
             instance = new Peer();
         }
         return instance;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
     
     public void setUsuario(String usuario){

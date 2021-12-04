@@ -9,7 +9,7 @@ import modelos.Usuario;
 
 public final class ModeloTablaAmigos extends AbstractTableModel {
 
-    private List<Usuario> amigos;
+    private List<String> amigos;
     
     private final MainPanel mp;
 
@@ -20,7 +20,7 @@ public final class ModeloTablaAmigos extends AbstractTableModel {
         this.mp = null;
     }
     
-    public ModeloTablaAmigos(List<Usuario> amigos, MainPanel mp) {
+    public ModeloTablaAmigos(List<String> amigos, MainPanel mp) {
         this.amigos = amigos;
         this.mp = mp;
     }
@@ -47,7 +47,7 @@ public final class ModeloTablaAmigos extends AbstractTableModel {
         Object resultado=null;
 
         switch (columnIndex){
-            case 0: resultado = this.amigos.get(rowIndex).getUsername(); break;
+            case 0: resultado = this.amigos.get(rowIndex); break;
         }
         return resultado;
     }
@@ -74,14 +74,14 @@ public final class ModeloTablaAmigos extends AbstractTableModel {
 
     // ------------------------------------------------------------------------
     // ------------------------------ Funciones -------------------------------
-    public final void setFilas(java.util.List<Usuario> amigos) {
+    public final void setFilas(java.util.List<String> amigos) {
         if (amigos != null ) {
             this.amigos = amigos;
             fireTableDataChanged();
         }
     }
 
-    public final Usuario obtenerAmigo(int i) {
+    public final String obtenerAmigo(int i) {
         return this.amigos.get(i);
     }
 
@@ -89,8 +89,8 @@ public final class ModeloTablaAmigos extends AbstractTableModel {
         fireTableDataChanged();
     }
 
-    public final void nuevoAmigo(Usuario u) {
-        this.amigos.add(u);
+    public final void nuevoAmigo(String amigo) {
+        this.amigos.add(amigo);
         fireTableRowsInserted(this.amigos.size() - 1, this.amigos.size() - 1);
     }
 }

@@ -11,6 +11,7 @@ public class FachadaCliente {
     public FachadaCliente(FachadaAplicacion fa){
         this.fa = fa;
         this.cliente = new Cliente(fa);
+        Peer.getInstance().setCliente(this.cliente);
     }
     
     public Boolean iniciarSesion(String username, String password) throws Exception{

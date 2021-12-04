@@ -24,6 +24,16 @@ public class Cliente {
             System.out.println("Exception: " + e);
         }
     }
+
+    public FachadaAplicacion getFachadaAplicacion() {
+        return fa;
+    }
+
+    public void setFachadaAplicacion(FachadaAplicacion fa) {
+        this.fa = fa;
+    }
+    
+    
     
     public ServerInterface obtenerServidor(){
         ServerInterface serverInterface = null;
@@ -41,11 +51,11 @@ public class Cliente {
     
     public Boolean iniciarSesion(String username, String password) throws Exception{
         Boolean resultado = false;
-        Peer p = Peer.getInstance();
         HashMap<String,PeerChatInterface> amigos = Peer.getInstance().getServer().iniciarSesion(username,password,Peer.getInstance().getPeerChat(),Peer.getInstance().getPeerConection());
         
         if(amigos != null){
             resultado = true;
+            // le fijamos los amigos que están online al cliente actual
             Peer.getInstance().setAmigos(amigos);
         }
         return  resultado;
