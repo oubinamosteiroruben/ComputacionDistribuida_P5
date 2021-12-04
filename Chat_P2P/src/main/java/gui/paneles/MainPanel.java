@@ -9,7 +9,9 @@ import gui.VUsuario;
 import gui.modelos.ModeloTablaAmigos;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.JPanel;
+import modelos.MensajeChat;
 import modelos.Usuario;
 
 
@@ -17,10 +19,15 @@ public class MainPanel extends javax.swing.JPanel {
 
     private final VUsuario vu;
     
+    private String amigoChatActual;
+    
+    private HashMap<String,ArrayList<MensajeChat>> conversaciones; 
     /**
      * Creates new form MainPanel
      */
     public MainPanel(VUsuario vu) {
+        this.conversaciones = new HashMap<>();
+        this.amigoChatActual = null;
         this.vu = vu;
         initComponents();
         this.textChat.setEditable(false);
@@ -42,6 +49,7 @@ public class MainPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         labelTitutlo = new javax.swing.JLabel();
+        txtNombreAmigo = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         textChat = new javax.swing.JTextPane();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -60,6 +68,11 @@ public class MainPanel extends javax.swing.JPanel {
 
         tablaConectados.setModel(new ModeloTablaAmigos(this));
         tablaConectados.setName("tablaConectados"); // NOI18N
+        tablaConectados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaConectadosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaConectados);
 
         buttonSolicitudes.setText("Solicitudes");
@@ -106,6 +119,10 @@ public class MainPanel extends javax.swing.JPanel {
         labelTitutlo.setText("Nombre App");
         labelTitutlo.setName("labelTitutlo"); // NOI18N
 
+        txtNombreAmigo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtNombreAmigo.setText("nombreAmigo");
+        txtNombreAmigo.setName("txtNombreAmigo"); // NOI18N
+
         jScrollPane2.setName("jScrollPane2"); // NOI18N
 
         textChat.setName("textChat"); // NOI18N
@@ -135,19 +152,26 @@ public class MainPanel extends javax.swing.JPanel {
                         .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(buttonEnviar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 45, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+            .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(org.jdesktop.layout.GroupLayout.TRAILING, txtNombreAmigo, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .add(labelTitutlo, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(18, 18, 18)
-                .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 221, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(labelTitutlo, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                .add(47, 47, 47)
+                .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 192, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(44, 44, 44)
                 .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                     .add(jScrollPane3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 59, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(buttonEnviar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 59, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(32, 32, 32))
+            .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(jPanel2Layout.createSequentialGroup()
+                    .add(65, 65, 65)
+                    .add(txtNombreAmigo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 38, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(327, Short.MAX_VALUE)))
         );
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
@@ -157,7 +181,7 @@ public class MainPanel extends javax.swing.JPanel {
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(430, Short.MAX_VALUE))
+                .addContainerGap(421, Short.MAX_VALUE))
             .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                 .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                     .addContainerGap(189, Short.MAX_VALUE)
@@ -169,7 +193,7 @@ public class MainPanel extends javax.swing.JPanel {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
             .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                 .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                     .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -182,6 +206,18 @@ public class MainPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_buttonSolicitudesActionPerformed
+
+    private void tablaConectadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaConectadosMouseClicked
+        // TODO add your handling code here:
+        String amigo;
+        ModeloTablaAmigos m;
+        m = (ModeloTablaAmigos) this.tablaConectados.getModel();
+        amigo = m.obtenerAmigo(this.tablaConectados.getSelectedRow());
+        if (amigo != null) {
+            this.amigoChatActual = amigo;
+            actualizarChat();
+        }
+    }//GEN-LAST:event_tablaConectadosMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -197,9 +233,30 @@ public class MainPanel extends javax.swing.JPanel {
     private javax.swing.JTable tablaConectados;
     private javax.swing.JTextPane textChat;
     private javax.swing.JTextArea txtMensaje;
+    private javax.swing.JLabel txtNombreAmigo;
     // End of variables declaration//GEN-END:variables
 
     public void actualizarAmigosConectados(ArrayList<String> amigos){
         ((ModeloTablaAmigos) this.tablaConectados.getModel()).setFilas(amigos);
+    }
+    
+    public void actualizarChat(){
+        String contenido = "";
+        if(this.amigoChatActual != null){
+            ArrayList<MensajeChat> chat = this.conversaciones.get(this.amigoChatActual);
+            if(chat == null){
+                this.conversaciones.put(this.amigoChatActual, new ArrayList<>());
+            }else{
+                for(MensajeChat mc: chat){
+                    contenido+=mc.getEmisor()+": " + mc.getCuerpo() + "\n";
+                }
+            }
+        }
+        this.textChat.setText(contenido);
+        this.txtNombreAmigo.setText(this.amigoChatActual);
+    }
+    
+    public void nuevoMensaje(){
+        
     }
 }
