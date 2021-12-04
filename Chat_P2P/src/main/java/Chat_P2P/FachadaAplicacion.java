@@ -3,6 +3,7 @@ package Chat_P2P;
 
 import Cliente.Cliente;
 import Cliente.FachadaCliente;
+import Cliente.Peer;
 import gui.FachadaGui;
 import java.util.*;
 import modelos.Mensaje;
@@ -47,11 +48,27 @@ public class FachadaAplicacion {
     
     // ------------------- Login -------------------
     public Boolean iniciarSesion(String username, String password) throws Exception{
-        return this.fc.iniciarSesion(username, password);
+        boolean iniciado = this.fc.iniciarSesion(username, password);
+        if(iniciado){
+            Peer.getInstance().setUsuario(username);
+            this.fg.lanzarChat();
+            
+            ArrayList<String> amigos = new ArrayList<>();
+            amigos.addAll(Peer.getInstance().getAmigos().keySet());
+            actualizarAmigosConectados(amigos);
+        }
+        
+        return iniciado;
     }
     
     public Boolean registrarUsuario(String username, String password) throws Exception{
-        return this.fc.registrarUsuario(username,password);
+        boolean iniciado = this.fc.registrarUsuario(username,password);
+        if(iniciado){
+            Peer.getInstance().setUsuario(username);
+            this.fg.lanzarChat();
+        }
+        
+        return iniciado;
     }
     
     

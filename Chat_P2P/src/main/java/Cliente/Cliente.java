@@ -6,6 +6,7 @@ import Server.ServerInterface;
 import definiciones.Definiciones;
 import gui.FachadaGui;
 import java.rmi.Naming;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Cliente {
@@ -51,19 +52,20 @@ public class Cliente {
     
     public Boolean iniciarSesion(String username, String password) throws Exception{
         Boolean resultado = false;
-        HashMap<String,PeerChatInterface> amigos = Peer.getInstance().getServer().iniciarSesion(username,password,Peer.getInstance().getPeerChat(),Peer.getInstance().getPeerConection());
+        HashMap<String,PeerChatInterface> amigosResultado = Peer.getInstance().getServer().iniciarSesion(username,password,Peer.getInstance().getPeerChat(),Peer.getInstance().getPeerConection());
         
-        if(amigos != null){
+        // si no se ha podido iniciar sesión se devuelve un null como lista de amigos
+        if(amigosResultado != null){
             resultado = true;
             // le fijamos los amigos que están online al cliente actual
-            Peer.getInstance().setAmigos(amigos);
+            Peer.getInstance().setAmigos(amigosResultado);
+            
         }
         return  resultado;
     }
     
     public Boolean registrarUsuario(String username, String password) throws Exception{
         Boolean resultado = false;
-        Peer p = Peer.getInstance();
         HashMap<String,PeerChatInterface> amigos = Peer.getInstance().getServer().registrarUsuario(username,password,Peer.getInstance().getPeerChat(),Peer.getInstance().getPeerConection());
         
         if(amigos != null){
