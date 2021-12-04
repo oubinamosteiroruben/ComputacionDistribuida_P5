@@ -1,8 +1,8 @@
 
 package Server;
 
-import Chat_P2P.RMI.Peer;
-import Chat_P2P.RMI.PeerImpl;
+import Cliente.PeerChatInterface;
+import Cliente.PeerConectionInterface;
 import definiciones.Definiciones;
 import modelos.Usuario;
 import java.util.*;
@@ -19,7 +19,7 @@ import modelos.PeerController;
 
 public class Server {
     
-    private HashMap<String, Usuario> usuariosOnline;
+    private HashMap<String, Sesion> usuariosOnline;
     private final FachadaServer fs;
     
     public Server(FachadaServer fs){
@@ -35,7 +35,7 @@ public class Server {
             portNum = Definiciones.PORT;
             int RMIPortNum = Integer.parseInt(portNum);
             startRegistry(RMIPortNum);
-            ServerImpl exportedObj = new ServerImpl(this);
+            ServerImpl exportedObj = new ServerImpl(this.fs);
             registryURL = "rmi://localhost:" + portNum + "/chatP2P";
             Naming.rebind(registryURL, exportedObj);
             System.out.println("Server chatp2p registered.  Registry currently contains:");
@@ -73,7 +73,25 @@ public class Server {
     } //end listRegistry
     
     
+    public void addUsuarioConectado(String username, PeerChatInterface peerChatInterface, PeerConectionInterface peerConectionInterface){
+        Sesion sesion = new Sesion(username,peerChatInterface,peerConectionInterface);
+        this.usuariosOnline.put(username, sesion);
+    }
     
+    public HashMap<String,PeerChatInterface> obtenerInfoAmigosConectados(List<String> nombresAmigos){
+        HashMap<String,PeerChatInterface> amigos = new HashMap<>();
+        
+        for(String amigo: nombresAmigos){
+            Sesion s = this.usuariosOnline.get(amigo);
+            if(s!=null){
+                amigos.put(amigo, s.getPeerChatInterface());
+            }
+        }
+        
+        return amigos;
+    }
+    
+    /*
     
     public Usuario iniciarSesion(String username, String password){
         Usuario usuarioResultado = new Usuario(username);
@@ -88,7 +106,7 @@ public class Server {
                 usuarioResultado.setPeerInterface(peer.getPeerInterface());
                 System.out.println("hola 3");
                 this.usuariosOnline.put(usuarioResultado.getUsername(), usuarioResultado);*/
-                PeerController.getInstance().anhadirUsuarioOnline(usuarioResultado);
+              /*  PeerController.getInstance().anhadirUsuarioOnline(usuarioResultado);
                 usuarioResultado.setConectado(true);
             }
             
@@ -140,4 +158,5 @@ public class Server {
         return this.fs.obtenerPeticiones(usernameReceptor);
     }
     
+*/
 }

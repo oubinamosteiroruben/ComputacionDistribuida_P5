@@ -1,7 +1,8 @@
 
 package Chat_P2P;
 
-import Chat_P2P.RMI.FachadaRMI;
+import Cliente.Cliente;
+import Cliente.FachadaCliente;
 import gui.FachadaGui;
 import java.util.*;
 import modelos.Mensaje;
@@ -10,23 +11,28 @@ import modelos.Usuario;
 public class FachadaAplicacion {
     
     private final FachadaGui fg;
-    private final FachadaRMI frmi;
+    private final FachadaCliente fc;
+    
+    /*private final FachadaRMI frmi;
     
     private Usuario usuarioActual;
     private HashMap<String, Usuario> amigos;
     private ArrayList<String> solicitudesRecibidas;
-    
+    */
     
     public FachadaAplicacion(){
-        this.amigos = new HashMap<>();
+        this.fc = new FachadaCliente(this);
         this.fg = new FachadaGui(this);
-        this.frmi = new FachadaRMI(this);
+/*        this.amigos = new HashMap<>();
+        this.fg = new FachadaGui(this);
+        this.frmi = new FachadaRMI(this);*/
     }
     
     public static void main(String args[]) {
         FachadaAplicacion fa;
 
         fa = new FachadaAplicacion();
+        
         fa.iniciaInterfazUsuario();
     }
     
@@ -35,11 +41,26 @@ public class FachadaAplicacion {
         this.fg.iniciarVista();
     }
     
+    public void actualizarAmigosConectados(ArrayList<String> amigos){
+        this.fg.actualizarAmigosConectados(amigos);
+    }
+    
+    // ------------------- Login -------------------
+    public Boolean iniciarSesion(String username, String password) throws Exception{
+        return this.fc.iniciarSesion(username, password);
+    }
+    
+    public Boolean registrarUsuario(String username, String password) throws Exception{
+        return this.fc.registrarUsuario(username,password);
+    }
+    
+    
+    /*
     //------------------- Login -------------------
     
     public Boolean iniciarSesion(String username, String password) throws Exception{
         boolean resultado = false;
-        Usuario usuario = this.frmi.iniciarSesion(username,password);
+        this.amigos = this.frmi.iniciarSesion(username,password);
         
         if(usuario.isConectado()){
             this.usuarioActual = usuario;
@@ -55,7 +76,7 @@ public class FachadaAplicacion {
             this.fg.lanzarChat();
             resultado = true;
         } */
-        
+        /*
         return resultado;
     }
     
@@ -98,4 +119,6 @@ public class FachadaAplicacion {
         ArrayList<Usuario> amigosOn = new ArrayList<>(this.amigos.values());
         this.fg.actualizarAmigos(amigosOn);
     }
+    
+    */
 }

@@ -156,6 +156,7 @@ public class LoginPanel_Login extends javax.swing.JPanel {
             }
             
         } catch(Exception e){
+            System.out.println("Exception: " + e);
             // si los campos están vacios, mostrar mensaje
             this.mensajeError.setText(ERROR_NORMAL);
             this.mensajeError.setVisible(true);
