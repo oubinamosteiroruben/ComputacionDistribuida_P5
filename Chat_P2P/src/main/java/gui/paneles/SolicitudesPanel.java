@@ -113,6 +113,11 @@ public class SolicitudesPanel extends javax.swing.JPanel {
 
         buttonRechazar.setText("Rechazar");
         buttonRechazar.setName("buttonRechazar"); // NOI18N
+        buttonRechazar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRechazarActionPerformed(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
@@ -206,6 +211,16 @@ public class SolicitudesPanel extends javax.swing.JPanel {
         this.buttonAceptar.setEnabled(false);
         this.buttonRechazar.setEnabled(false);
     }//GEN-LAST:event_buttonAceptarActionPerformed
+
+    private void buttonRechazarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRechazarActionPerformed
+        // TODO add your handling code here:
+        /*
+        rechazar
+        */
+        this.peticiones.remove(this.tablaPeticiones.getSelectedRow());
+        this.buttonAceptar.setEnabled(false);
+        this.buttonRechazar.setEnabled(false);
+    }//GEN-LAST:event_buttonRechazarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
