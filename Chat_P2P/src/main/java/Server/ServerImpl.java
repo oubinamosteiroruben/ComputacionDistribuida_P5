@@ -24,7 +24,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         if(this.fs.iniciarSesion(username, password,peerChatInterface,peerConnectionInterface)){
             resultado = this.fs.obtenerAmigos(username);
             // se le avisa a los amigos conectados que se ha iniciado sesión
-            for(PeerChatInterface peer: resultado.values()){
+            for(PeerConectionInterface peer: this.fs.obtenerConectionAmigos(username).values()){
                 peer.notificarConexion(username, peerChatInterface);
             }
         }

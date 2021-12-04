@@ -91,6 +91,19 @@ public class Server {
         return amigos;
     }
     
+    public HashMap<String,PeerConectionInterface> obtenerConectionAmigosConectados(List<String> nombresAmigos){
+        HashMap<String,PeerConectionInterface> amigos = new HashMap<>();
+        
+        for(String amigo: nombresAmigos){
+            Sesion s = this.usuariosOnline.get(amigo);
+            if(s!=null){
+                amigos.put(amigo, s.getPeerConectionInterface());
+            }
+        }
+        
+        return amigos;
+    }
+    
     /*
     
     public Usuario iniciarSesion(String username, String password){

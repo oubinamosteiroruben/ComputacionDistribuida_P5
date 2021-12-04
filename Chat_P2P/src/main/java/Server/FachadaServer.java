@@ -37,6 +37,10 @@ public class FachadaServer {
         return this.server.obtenerInfoAmigosConectados(this.fd.obtenerAmigos(username));
     }
     
+    public HashMap<String,PeerConectionInterface> obtenerConectionAmigos(String username){
+        return this.server.obtenerConectionAmigosConectados(this.fd.obtenerAmigos(username));
+    }
+    
     public Mensaje registrarUsuario(String username, String password, PeerChatInterface peerChatInterface, PeerConectionInterface peerConectionInterface){
         Mensaje resultado = this.fd.registrarUsuario(username, password);
         if(resultado.getCodigo() == Definiciones.EXITO){

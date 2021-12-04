@@ -15,13 +15,5 @@ public class PeerChatImpl extends UnicastRemoteObject implements PeerChatInterfa
         System.out.println("Hello");
     }
     
-    public void notificarConexion(String username, PeerChatInterface peerChatInterface) throws RemoteException{
-        // añadimos el amigo a la lista
-        Peer.getInstance().getAmigos().put(username, peerChatInterface);
-        
-        // actualizamos la interfaz grafica
-        ArrayList<String> amigos = new ArrayList<>();
-        amigos.addAll(Peer.getInstance().getAmigos().keySet());
-        Peer.getInstance().getCliente().getFachadaAplicacion().actualizarAmigosConectados(amigos);
-    }
+    
 }
