@@ -6,6 +6,7 @@
 package gui.paneles;
 
 import Chat_P2P.FachadaAplicacion;
+import definiciones.Definiciones;
 import static definiciones.Definiciones.*;
 import gui.VLogin;
 import modelos.Mensaje;
@@ -183,13 +184,19 @@ public class LoginPanel_SignIn extends javax.swing.JPanel {
         if((!txtUsername.getText().equals("")) && (!password1.getPassword().equals(""))){
             if(String.valueOf(password1.getPassword()).equals(String.valueOf(password2.getPassword()))){
                 try{
-                    Mensaje m = vl.registrarUsuario(txtUsername.getText(),String.valueOf(password1.getPassword()));
-                    if(m.getCodigo() == FRACASO){
-                        this.mensajeError.setText(m.getMensaje());
+                    Boolean resultado = vl.registrarUsuario(txtUsername.getText(),String.valueOf(password1.getPassword()));
+                    if(resultado){
+                        this.mensajeError.setText(Definiciones.ERROR_NORMAL);
                         this.mensajeError.setVisible(true);
                     } else{
                         this.mensajeExito.setVisible(true);
                     }
+                    /*if(m.getCodigo() == FRACASO){
+                        this.mensajeError.setText(m.getMensaje());
+                        this.mensajeError.setVisible(true);
+                    } else{
+                        this.mensajeExito.setVisible(true);
+                    }*/
                 }catch(Exception e){
                     System.out.println("Exception: " + e);
                 }

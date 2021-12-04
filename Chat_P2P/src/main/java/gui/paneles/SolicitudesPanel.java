@@ -136,7 +136,7 @@ public class SolicitudesPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        enviarPeticion();
+        //enviarPeticion();
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
@@ -152,7 +152,7 @@ public class SolicitudesPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 
-
+/*
     private void enviarPeticion(){
         try{
             if(!this.txtUsername.getText().equals("")){
@@ -180,5 +180,5 @@ public class SolicitudesPanel extends javax.swing.JPanel {
         }catch(Exception e){
             System.out.println("Excpetion: " + e);
         }
-    }
+    }*/
 }

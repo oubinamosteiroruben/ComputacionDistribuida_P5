@@ -199,7 +199,7 @@ public class MainPanel extends javax.swing.JPanel {
     private javax.swing.JTextArea txtMensaje;
     // End of variables declaration//GEN-END:variables
 
-    public void actualizarAmigos(ArrayList<Usuario> usuarios){
-        ((ModeloTablaAmigos) this.tablaConectados.getModel()).setFilas(usuarios);
+    public void actualizarAmigosConectados(ArrayList<String> amigos){
+        ((ModeloTablaAmigos) this.tablaConectados.getModel()).setFilas(amigos);
     }
 }

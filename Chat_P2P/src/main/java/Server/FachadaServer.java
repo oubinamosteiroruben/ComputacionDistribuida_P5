@@ -1,8 +1,12 @@
 
 package Server;
 
+import Cliente.PeerChatInterface;
+import Cliente.PeerConectionInterface;
 import dao.FachadaDAO;
+import definiciones.Definiciones;
 import java.util.ArrayList;
+import java.util.HashMap;
 import modelos.Mensaje;
 import modelos.Usuario;
 
@@ -19,11 +23,35 @@ public class FachadaServer {
         FachadaServer fs;
         fs = new FachadaServer();
         
-        
     }
     
-    //--------------------------------------------------------
+    public Boolean iniciarSesion(String username, String password, PeerChatInterface peerChatInterface, PeerConectionInterface peerConectionInterface){
+        Boolean resultado = this.fd.iniciarSesion(username, password);
+        if(resultado){
+            server.addUsuarioConectado(username,peerChatInterface,peerConectionInterface);
+        }
+        return resultado;
+    }
     
+    public HashMap<String,PeerChatInterface> obtenerAmigos(String username){
+        return this.server.obtenerInfoAmigosConectados(this.fd.obtenerAmigos(username));
+    }
+    
+    public Mensaje registrarUsuario(String username, String password, PeerChatInterface peerChatInterface, PeerConectionInterface peerConectionInterface){
+        Mensaje resultado = this.fd.registrarUsuario(username, password);
+        if(resultado.getCodigo() == Definiciones.EXITO){
+            server.addUsuarioConectado(username,peerChatInterface,peerConectionInterface);
+        }
+        return resultado;
+    }
+    
+    public void muestraExcepcion(String e) {
+        System.out.println("Excepcion: " + e);
+    }
+    
+    
+    //--------------------------------------------------------
+    /*
     public void cerrarConexion(){
         this.cerrarConexion();
     }
@@ -59,5 +87,5 @@ public class FachadaServer {
     public ArrayList<String> obtenerPeticiones(String usernameReceptor){
         return this.fd.obtenerPeticiones(usernameReceptor);
     }
-
+*/
 }
