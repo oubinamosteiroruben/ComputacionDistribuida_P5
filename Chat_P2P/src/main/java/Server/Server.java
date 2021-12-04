@@ -1,6 +1,7 @@
 
 package Server;
 
+import Chat_P2P.RMI.Peer;
 import Chat_P2P.RMI.PeerImpl;
 import definiciones.Definiciones;
 import modelos.Usuario;
@@ -13,6 +14,7 @@ import java.rmi.registry.LocateRegistry;
 import java.net.*;
 import java.io.*;
 import modelos.Mensaje;
+import modelos.PeerController;
 
 
 public class Server {
@@ -79,9 +81,15 @@ public class Server {
             boolean iniciado = this.fs.iniciarSesion(username, password);
             
             if(iniciado){
-                    // añadimos el usuario como usuario online
-                    usuarioResultado.setPeerInterface(new PeerImpl());
-                    this.usuariosOnline.put(usuarioResultado.getUsername(), usuarioResultado);
+                // añadimos el usuario como usuario online
+                /*System.out.println("hola 1");
+                Peer peer = new Peer();
+                System.out.println("hola 2");
+                usuarioResultado.setPeerInterface(peer.getPeerInterface());
+                System.out.println("hola 3");
+                this.usuariosOnline.put(usuarioResultado.getUsername(), usuarioResultado);*/
+                PeerController.getInstance().anhadirUsuarioOnline(usuarioResultado);
+                usuarioResultado.setConectado(true);
             }
             
         } catch(Exception e){
@@ -102,6 +110,15 @@ public class Server {
             if(this.usuariosOnline.get(user) != null){
                 // si es amigo y está online, se le envía al cliente
                 amigosOnline.put(user, this.usuariosOnline.get(user));
+                
+                // y se le notifica a ese amigo que ahora está online
+                try{
+                    PeerController.getInstance().notificarAmigoOnline(this.usuariosOnline.get(username), 
+                                                                        this.usuariosOnline.get(user));
+                    //this.usuariosOnline.get(user).getPeerInterface().notificarAmigoOnline(this.usuariosOnline.get(username));
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
             }
         }
         return amigosOnline;

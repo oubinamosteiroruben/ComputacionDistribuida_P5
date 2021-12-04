@@ -56,8 +56,7 @@ public class FachadaRMI {
     
     public Usuario iniciarSesion(String username, String password) throws Exception{
         // TODO: falla aquí al traer el usuario
-        Usuario usuario = new Usuario(username);
-        usuario = this.si.iniciarSesion(username, password);
+        Usuario usuario = this.si.iniciarSesion(username, password);
         /*try{
             usuario = this.si.iniciarSesion(username, password);
         } catch(Exception e){

@@ -39,14 +39,22 @@ public class FachadaAplicacion {
     
     public Boolean iniciarSesion(String username, String password) throws Exception{
         boolean resultado = false;
-        
         Usuario usuario = this.frmi.iniciarSesion(username,password);
-        if(usuario.getPeerInterface() != null){
+        
+        if(usuario.isConectado()){
             this.usuarioActual = usuario;
             this.amigos = this.frmi.obtenerAmigos(this.usuarioActual.getUsername());
             this.fg.lanzarChat();
             resultado = true;
-        } 
+        }
+        
+        /*if(usuario.getPeerInterface() != null){
+            this.usuarioActual = usuario;
+            usuario.getPeerInterface().setFachadaAplicacion(this);
+            this.amigos = this.frmi.obtenerAmigos(this.usuarioActual.getUsername());
+            this.fg.lanzarChat();
+            resultado = true;
+        } */
         
         return resultado;
     }
@@ -86,4 +94,8 @@ public class FachadaAplicacion {
         this.fg.actualizarPeticiones(solicitudesRecibidas);
     }
     
+    public void actualizarAmigos() {
+        ArrayList<Usuario> amigosOn = new ArrayList<>(this.amigos.values());
+        this.fg.actualizarAmigos(amigosOn);
+    }
 }

@@ -1,6 +1,7 @@
 
 package Chat_P2P.RMI;
 
+import Chat_P2P.FachadaAplicacion;
 import definiciones.Definiciones;
 import java.rmi.*;
 import java.rmi.server.*;
@@ -8,17 +9,23 @@ import java.rmi.registry.Registry;
 import java.rmi.registry.LocateRegistry;
 import java.net.*;
 import java.io.*;
+import modelos.Usuario;
 
 public class Peer {
     
+    private FachadaAplicacion fa;
+    private PeerInterface peerInterface;
+    
     public Peer(){
+        
         String portNum, registryURL;
         try{
             portNum = Definiciones.PORT;
             Integer RMIPortNum = Integer.parseInt(portNum);
             startRegistry(RMIPortNum);
             PeerImpl exportedObj = new PeerImpl();
-            registryURL = "rmi://localhost:" + portNum + "/chat";
+            this.peerInterface = exportedObj;
+            registryURL = "rmi://localhost:" + portNum + "/peer";
             Naming.rebind(registryURL, exportedObj);
             System.out.println("Peer registered.  Registry currently contains:");
             // list names currently in the registry
@@ -55,4 +62,30 @@ public class Peer {
         for (int i=0; i < names.length; i++)
             System.out.println(names[i]);
     } //end listRegistry
+
+    
+    public FachadaAplicacion getFachadaAplicacion() {
+        return fa;
+    }
+
+    public void setFachadaAplicacion(FachadaAplicacion fa) {
+        this.fa = fa;
+    }
+
+    public PeerInterface getPeerInterface() {
+        return peerInterface;
+    }
+
+    public void setPeerInterface(PeerInterface peerInterface) {
+        this.peerInterface = peerInterface;
+    }
+    
+    
+    public void notificarAmigoOnline(Usuario amigo){
+        if(this.fa != null){
+            // añadimos el amigo a sus amigos online
+            this.fa.getAmigos().put(amigo.getUsername(), amigo);
+            this.fa.actualizarAmigos();
+        }
+    }
 }
