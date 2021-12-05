@@ -4,6 +4,7 @@ package Server;
 import Cliente.PeerChatInterface;
 import Cliente.PeerConectionInterface;
 import definiciones.Definiciones;
+import static definiciones.Definiciones.HOSTNAME;
 import modelos.Usuario;
 import java.util.*;
 
@@ -36,7 +37,7 @@ public class Server {
             int RMIPortNum = Integer.parseInt(portNum);
             startRegistry(RMIPortNum);
             ServerImpl exportedObj = new ServerImpl(this.fs);
-            registryURL = "rmi://localhost:" + portNum + "/chatP2P";
+            registryURL = "rmi://" + HOSTNAME + ":" + portNum + "/chatP2P";
             Naming.rebind(registryURL, exportedObj);
             System.out.println("Server chatp2p registered.  Registry currently contains:");
             // list names currently in the registry

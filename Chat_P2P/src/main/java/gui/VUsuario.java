@@ -6,6 +6,7 @@
 package gui;
 
 import Chat_P2P.FachadaAplicacion;
+import static definiciones.Definiciones.NOMBRE_APP;
 import gui.paneles.MainPanel;
 import gui.paneles.SolicitudesPanel;
 import java.awt.BorderLayout;
@@ -25,6 +26,7 @@ public class VUsuario extends javax.swing.JFrame {
     public VUsuario(FachadaAplicacion fa) {
         initComponents();
         this.fa = fa;
+        this.setTitle(NOMBRE_APP);
         mp = new MainPanel(this);
         mp.setSize(this.mainPanel.getSize());
         sp = new SolicitudesPanel(this);
@@ -63,7 +65,7 @@ public class VUsuario extends javax.swing.JFrame {
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 454, Short.MAX_VALUE)
+            .add(0, 511, Short.MAX_VALUE)
         );
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
@@ -87,6 +89,10 @@ public class VUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        cerrarAplicacion();
+    }//GEN-LAST:event_formWindowClosing
+
+    public void cerrarAplicacion(){
         // le decimos al servidor que se va a desconectar
         try{
             // avisamos al servidor y a todos los amigos
@@ -94,8 +100,8 @@ public class VUsuario extends javax.swing.JFrame {
         } catch(Exception e){
             e.printStackTrace();
         }
-    }//GEN-LAST:event_formWindowClosing
-
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel mainPanel;
     // End of variables declaration//GEN-END:variables

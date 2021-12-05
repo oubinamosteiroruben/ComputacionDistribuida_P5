@@ -5,11 +5,15 @@
  */
 package gui.paneles;
 
+import Cliente.Peer;
+import static definiciones.Definiciones.RUTA_ICON;
 import gui.VUsuario;
 import gui.modelos.ModeloTablaAmigos;
 import java.awt.BorderLayout;
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.HashMap;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import modelos.MensajeChat;
 import modelos.Usuario;
@@ -34,6 +38,8 @@ public class MainPanel extends javax.swing.JPanel {
         this.txtNombreAmigo.setText("Selecciona un amigo");
         this.txtMensaje.setEnabled(false);
         this.buttonEnviar.setEnabled(false);
+        this.txtNombreUsuario.setText("Hola, " + Peer.getInstance().getUsuario() + ".");
+        this.setIcon();
     }
 
     /**
@@ -51,13 +57,16 @@ public class MainPanel extends javax.swing.JPanel {
         buttonSolicitudes = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        labelTitutlo = new javax.swing.JLabel();
         txtNombreAmigo = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         textChat = new javax.swing.JTextPane();
         jScrollPane3 = new javax.swing.JScrollPane();
         txtMensaje = new javax.swing.JTextArea();
         buttonEnviar = new javax.swing.JButton();
+        txtNombreUsuario = new javax.swing.JLabel();
+        salirDeLaAplicacion = new javax.swing.JLabel();
+        icon = new javax.swing.JLabel();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 100), new java.awt.Dimension(0, 100), new java.awt.Dimension(32767, 100));
 
         setMaximumSize(new java.awt.Dimension(542, 454));
         setMinimumSize(new java.awt.Dimension(542, 454));
@@ -105,11 +114,11 @@ public class MainPanel extends javax.swing.JPanel {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel1Layout.createSequentialGroup()
-                .add(27, 27, 27)
+                .addContainerGap()
                 .add(jLabel1)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 280, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(18, 18, 18)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 284, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(27, 27, 27)
                 .add(buttonSolicitudes)
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -117,10 +126,6 @@ public class MainPanel extends javax.swing.JPanel {
         jPanel2.setMaximumSize(new java.awt.Dimension(330, 430));
         jPanel2.setMinimumSize(new java.awt.Dimension(330, 430));
         jPanel2.setName("jPanel2"); // NOI18N
-
-        labelTitutlo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelTitutlo.setText("DabenChat");
-        labelTitutlo.setName("labelTitutlo"); // NOI18N
 
         txtNombreAmigo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtNombreAmigo.setText("nombreAmigo");
@@ -147,66 +152,94 @@ public class MainPanel extends javax.swing.JPanel {
             }
         });
 
+        txtNombreUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtNombreUsuario.setText("Hola, ");
+        txtNombreUsuario.setName("txtNombreUsuario"); // NOI18N
+
+        salirDeLaAplicacion.setFont(new java.awt.Font("Helvetica Neue", 2, 13)); // NOI18N
+        salirDeLaAplicacion.setForeground(new java.awt.Color(51, 102, 255));
+        salirDeLaAplicacion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        salirDeLaAplicacion.setText(" Salir de la aplicación. ");
+        salirDeLaAplicacion.setName("salirDeLaAplicacion"); // NOI18N
+        salirDeLaAplicacion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                salirDeLaAplicacionMouseClicked(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel2Layout.createSequentialGroup()
+            .add(txtNombreAmigo, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+            .add(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(jScrollPane2)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, labelTitutlo, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel2Layout.createSequentialGroup()
-                        .add(jScrollPane3)
+                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jPanel2Layout.createSequentialGroup()
+                        .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(buttonEnviar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 45, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
-            .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                .add(org.jdesktop.layout.GroupLayout.TRAILING, txtNombreAmigo, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE))
+                        .add(buttonEnviar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 45, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jPanel2Layout.createSequentialGroup()
+                        .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jScrollPane2)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, salirDeLaAplicacion, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, txtNombreUsuario, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .add(labelTitutlo, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                .add(47, 47, 47)
+                .add(txtNombreUsuario)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(salirDeLaAplicacion)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(txtNombreAmigo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 29, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 192, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(44, 44, 44)
+                .add(18, 18, 18)
                 .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                     .add(jScrollPane3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 59, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(buttonEnviar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 59, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(32, 32, 32))
-            .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                .add(jPanel2Layout.createSequentialGroup()
-                    .add(65, 65, 65)
-                    .add(txtNombreAmigo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 38, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(327, Short.MAX_VALUE)))
+                .add(40, 40, 40))
         );
+
+        icon.setName("icon"); // NOI18N
+
+        filler1.setName("filler1"); // NOI18N
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(421, Short.MAX_VALUE))
-            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(194, Short.MAX_VALUE)
-                    .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(23, 23, 23)))
+            .add(layout.createSequentialGroup()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(33, 33, 33)
+                        .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(layout.createSequentialGroup()
+                        .add(208, 208, 208)
+                        .add(icon, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 96, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .add(32, 32, 32)
+                .add(filler1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
-            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(filler1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(layout.createSequentialGroup()
+                        .add(0, 0, Short.MAX_VALUE)
+                        .add(icon, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 85, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(18, 18, 18)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                            .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 396, Short.MAX_VALUE))))
+                .add(32, 32, 32))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -246,23 +279,38 @@ public class MainPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_buttonEnviarActionPerformed
 
+    private void salirDeLaAplicacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salirDeLaAplicacionMouseClicked
+        this.vu.cerrarAplicacion();
+        System.exit(0);
+    }//GEN-LAST:event_salirDeLaAplicacionMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonEnviar;
     private javax.swing.JButton buttonSolicitudes;
+    private javax.swing.Box.Filler filler1;
+    private javax.swing.JLabel icon;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JLabel labelTitutlo;
+    private javax.swing.JLabel salirDeLaAplicacion;
     private javax.swing.JTable tablaConectados;
     private javax.swing.JTextPane textChat;
     private javax.swing.JTextArea txtMensaje;
     private javax.swing.JLabel txtNombreAmigo;
+    private javax.swing.JLabel txtNombreUsuario;
     // End of variables declaration//GEN-END:variables
 
+    public void setIcon(){
+        ImageIcon imgIcon = new ImageIcon(RUTA_ICON);
+        Image imgEscalada = imgIcon.getImage().getScaledInstance(96, 85, Image.SCALE_SMOOTH);
+        ImageIcon iconoEscalado = new ImageIcon(imgEscalada);
+        this.icon.setIcon(iconoEscalado);
+    }
+    
     public String getAmigoChatActual(){
         return this.amigoChatActual;
     }

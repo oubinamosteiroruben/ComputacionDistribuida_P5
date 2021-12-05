@@ -4,6 +4,7 @@ package Cliente;
 import Chat_P2P.FachadaAplicacion;
 import Server.ServerInterface;
 import definiciones.Definiciones;
+import static definiciones.Definiciones.HOSTNAME;
 import gui.FachadaGui;
 import java.rmi.Naming;
 import java.util.ArrayList;
@@ -40,8 +41,7 @@ public class Cliente {
     public ServerInterface obtenerServidor(){
         ServerInterface serverInterface = null;
         try{
-            String hostName = "localhost";
-            String registryURL = "rmi://" + hostName + ":" + Definiciones.PORT + "/chatP2P";
+            String registryURL = "rmi://" + HOSTNAME + ":" + Definiciones.PORT + "/chatP2P";
                 // find the remote object and cast it to an interface object
             serverInterface = (ServerInterface) Naming.lookup(registryURL);
             System.out.println("Lookup completed " );

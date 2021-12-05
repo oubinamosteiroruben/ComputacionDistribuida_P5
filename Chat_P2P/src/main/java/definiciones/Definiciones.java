@@ -2,7 +2,14 @@
 package definiciones;
 
 public class Definiciones {
+    //-------------------------- configuracion ----------------------------------
+    public final static String NOMBRE_APP = "DabenChat";
+    public final static String RUTA_ICON = "src/main/java/img/iconLogo.png";
+    public final static String PORT = "1099";
+    public final static String HOSTNAME = "localhost";
     
+    
+    //------------------------------ otros --------------------------------------
     public final static int EXITO = 1;
     public final static int FRACASO = -1;
     public final static String MENSAJE_EXITO = "Se ha realizado correctamente.";
@@ -14,6 +21,6 @@ public class Definiciones {
     public final static String PASSWORDS_NO_COINCIDEN = "Las contraseñas no coinciden";
     public final static String ERROR_NORMAL = "Error inesperado";
 
-    public final static String PORT = "1099";
+    
     
 }

@@ -6,8 +6,12 @@
 package gui;
 
 import Chat_P2P.FachadaAplicacion;
+import static definiciones.Definiciones.NOMBRE_APP;
+import static definiciones.Definiciones.RUTA_ICON;
 import gui.paneles.*;
 import java.awt.BorderLayout;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import modelos.Mensaje;
 
@@ -24,6 +28,9 @@ public class VLogin extends javax.swing.JFrame {
         this.fa = fa;
         initComponents();
         mostrarIniciarSesion();
+        this.setTitle(NOMBRE_APP);
+        //this.icon.setIcon(new ImageIcon("src/main/java/img/iconLogo.png"));
+        this.setIcon();
     }
 
     /**
@@ -36,7 +43,8 @@ public class VLogin extends javax.swing.JFrame {
     private void initComponents() {
 
         loginPanel = new LoginPanel_Login(this);
-        name = new javax.swing.JLabel();
+        icon = new javax.swing.JLabel();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(80, 0), new java.awt.Dimension(80, 0), new java.awt.Dimension(80, 32767));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(110, 221, 241));
@@ -54,16 +62,18 @@ public class VLogin extends javax.swing.JFrame {
         loginPanel.setLayout(loginPanelLayout);
         loginPanelLayout.setHorizontalGroup(
             loginPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
+            .add(0, 255, Short.MAX_VALUE)
         );
         loginPanelLayout.setVerticalGroup(
             loginPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 348, Short.MAX_VALUE)
+            .add(0, 346, Short.MAX_VALUE)
         );
 
-        name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        name.setText("DabenChat");
-        name.setName("name"); // NOI18N
+        icon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        icon.setIconTextGap(1);
+        icon.setName("icon"); // NOI18N
+
+        filler1.setName("filler1"); // NOI18N
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -72,17 +82,27 @@ public class VLogin extends javax.swing.JFrame {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(name, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
-                    .add(loginPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .add(loginPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                        .add(filler1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(icon, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 97, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(name, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(loginPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 348, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+            .add(layout.createSequentialGroup()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(layout.createSequentialGroup()
+                        .add(39, 39, 39)
+                        .add(filler1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 17, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(12, Short.MAX_VALUE)
+                        .add(icon, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 86, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)))
+                .add(loginPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 346, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -91,11 +111,19 @@ public class VLogin extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.Box.Filler filler1;
+    private javax.swing.JLabel icon;
     private javax.swing.JPanel loginPanel;
-    private javax.swing.JLabel name;
     // End of variables declaration//GEN-END:variables
 
 
+    public void setIcon(){
+        ImageIcon imgIcon = new ImageIcon(RUTA_ICON);
+        Image imgEscalada = imgIcon.getImage().getScaledInstance(97, 86, Image.SCALE_SMOOTH);
+        ImageIcon iconoEscalado = new ImageIcon(imgEscalada);
+        this.icon.setIcon(iconoEscalado);
+    }
+    
     public void mostrarIniciarSesion(){
         actualizarLoginPanel(new LoginPanel_Login(this));
     }
