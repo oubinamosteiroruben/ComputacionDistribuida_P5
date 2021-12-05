@@ -5,6 +5,7 @@ import Chat_P2P.FachadaAplicacion;
 import gui.paneles.LoginPanel_Login;
 import java.util.ArrayList;
 import java.util.HashMap;
+import modelos.MensajeChat;
 import modelos.Usuario;
 
 public class FachadaGui {
@@ -36,6 +37,9 @@ public class FachadaGui {
         this.vu.actualizarAmigosConectados(amigos);
     }
     
+    public void recibirMensaje(MensajeChat mc){
+        this.vu.recibirMensaje(mc);
+    }
     /*
     public void actualizarPeticiones(ArrayList<String> peticiones){
         this.vu.actualizarPeticiones(peticiones);

@@ -246,6 +246,9 @@
             <Property name="text" type="java.lang.String" value="&#x2191;"/>
             <Property name="name" type="java.lang.String" value="buttonEnviar" noResource="true"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonEnviarActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

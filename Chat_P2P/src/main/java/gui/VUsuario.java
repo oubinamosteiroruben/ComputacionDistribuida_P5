@@ -12,6 +12,7 @@ import java.awt.BorderLayout;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JPanel;
+import modelos.MensajeChat;
 import modelos.Usuario;
 
 public class VUsuario extends javax.swing.JFrame {
@@ -107,6 +108,17 @@ public class VUsuario extends javax.swing.JFrame {
         this.mp.actualizarAmigosConectados(amigos);
     }
     
+    public String getUsuarioActual(){
+        return this.fa.getUsuarioActual();
+    }
+    
+    public void enviarMensaje(MensajeChat mc) throws Exception{
+        this.fa.enviarMensaje(mc);
+    }
+    
+    public void recibirMensaje(MensajeChat mc){
+        this.mp.recibirMensaje(mc);
+    }
     /*
     public void enviarPeticion(String username) throws Exception{
         this.fa.enviarPeticion(username);

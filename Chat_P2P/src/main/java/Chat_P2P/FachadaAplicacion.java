@@ -7,6 +7,7 @@ import Cliente.Peer;
 import gui.FachadaGui;
 import java.util.*;
 import modelos.Mensaje;
+import modelos.MensajeChat;
 import modelos.Usuario;
 
 public class FachadaAplicacion {
@@ -69,6 +70,18 @@ public class FachadaAplicacion {
         }
         
         return iniciado;
+    }
+    
+    public String getUsuarioActual(){
+        return this.fc.getUsuarioActual();
+    }
+    
+    public void enviarMensaje(MensajeChat mc) throws Exception{
+        this.fc.enviarMensaje(mc);
+    }
+    
+    public void recibirMensaje(MensajeChat mc){
+        this.fg.recibirMensaje(mc);
     }
     
     

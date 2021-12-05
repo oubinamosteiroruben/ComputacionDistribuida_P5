@@ -141,6 +141,11 @@ public class MainPanel extends javax.swing.JPanel {
 
         buttonEnviar.setText("↑");
         buttonEnviar.setName("buttonEnviar"); // NOI18N
+        buttonEnviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonEnviarActionPerformed(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -226,6 +231,22 @@ public class MainPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_tablaConectadosMouseClicked
 
+    private void buttonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEnviarActionPerformed
+        // TODO add your handling code here:
+        try{
+              
+            if(!this.txtMensaje.getText().equals("") && this.amigoChatActual != null){
+                MensajeChat mc = new MensajeChat(this.vu.getUsuarioActual(),amigoChatActual,this.txtMensaje.getText());
+                this.conversaciones.get(amigoChatActual).add(mc);
+                this.vu.enviarMensaje(mc);
+                actualizarChat();
+                this.txtMensaje.setText("");
+            }
+        }catch(Exception e){
+            System.out.println("Exception: " + e);
+        }
+    }//GEN-LAST:event_buttonEnviarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonEnviar;
@@ -245,6 +266,15 @@ public class MainPanel extends javax.swing.JPanel {
 
     public void actualizarAmigosConectados(ArrayList<String> amigos){
         ((ModeloTablaAmigos) this.tablaConectados.getModel()).setFilas(amigos);
+        HashMap<String,ArrayList<MensajeChat>> conversacionesAux = new HashMap<>();
+        for(String a: amigos){
+            if(this.conversaciones.get(a) == null){
+                conversacionesAux.put(a,new ArrayList<>());
+            }else{
+                conversacionesAux.put(a, this.conversaciones.get(a));
+            }
+        }
+        this.conversaciones = conversacionesAux;
     }
     
     public void actualizarChat(){
@@ -263,7 +293,16 @@ public class MainPanel extends javax.swing.JPanel {
         this.txtNombreAmigo.setText(this.amigoChatActual);
     }
     
-    public void nuevoMensaje(){
-        
+    public void recibirMensaje(MensajeChat mc){
+        this.conversaciones.get(mc.getEmisor()).add(mc);
+        if(mc.getEmisor().equals(amigoChatActual)){
+            actualizarChat();
+        }else{
+            /*
+            Avisa de alguna forma
+            */
+        }
     }
+    
+    
 }
