@@ -18,8 +18,6 @@ public interface ServerInterface extends Remote {
     
     public HashMap<String,Usuario> obtenerAmigos(String username) throws RemoteException;
     
-    public Boolean enviarPeticion(String usernameEmisor, String usernameReceptor) throws RemoteException;
-    
     public ArrayList<String> obtenerPeticiones(String usernameReceptor) throws RemoteException;
 
 
@@ -29,5 +27,12 @@ public interface ServerInterface extends Remote {
 
     public HashMap<String,PeerChatInterface> registrarUsuario(String username, String password, PeerChatInterface peerChatInterface, PeerConectionInterface peerConnectionInterface) throws RemoteException;
 
-
+    public Boolean enviarPeticion(String usernameEmisor, String usernameReceptor) throws RemoteException;
+    
+    public Boolean aceptarPeticion(String usernameEmisor, String usernameReceptor) throws RemoteException;
+    
+    public Boolean rechazarPeticion(String usernameEmisor, String usernameReceptor) throws RemoteException;
+    
+    public ArrayList<String> obtenerPeticiones(String usuarioActual) throws RemoteException;
+    
 }

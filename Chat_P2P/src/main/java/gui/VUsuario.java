@@ -12,6 +12,7 @@ import java.awt.BorderLayout;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JPanel;
+import modelos.Mensaje;
 import modelos.MensajeChat;
 import modelos.Usuario;
 
@@ -119,18 +120,29 @@ public class VUsuario extends javax.swing.JFrame {
     public void recibirMensaje(MensajeChat mc){
         this.mp.recibirMensaje(mc);
     }
-    /*
-    public void enviarPeticion(String username) throws Exception{
-        this.fa.enviarPeticion(username);
+    
+    public Boolean enviarPeticion(String usernameOrigen, String usernameDestino) throws Exception{
+        return this.fa.enviarPeticion(usernameOrigen, usernameDestino);
     }
+    
+    public Boolean aceptarPeticion(String usernameOrigen, String usernameDestino) throws Exception{
+        return this.fa.aceptarPeticion(usernameOrigen, usernameDestino);
+    }
+    
+    public Boolean rechazarPeticion(String usernameOrigen, String usernameDestino) throws Exception{
+        return this.fa.rechazarPeticion(usernameOrigen, usernameDestino);
+    }
+    
+    public ArrayList<String> obtenerPeticiones() throws Exception{
+        return this.fa.obtenerPeticiones(this.getUsuarioActual());
+    }
+    
+    /*
     
     public void actualizarPeticiones(ArrayList<String> peticiones){
         this.sp.actualizarPeticiones(peticiones);
     }
     
-    public ArrayList<String> obtenerPeticiones() throws Exception{
-        return this.fa.obtenerPeticiones();
-    }
     
     public void actualizarAmigos(ArrayList<Usuario> amigos){
         this.mp.actualizarAmigos(amigos);

@@ -5,12 +5,9 @@
  */
 package gui.paneles;
 
-import static definiciones.Definiciones.CAMPOS_INCOMPLETOS;
-import static definiciones.Definiciones.ERROR_NORMAL;
 import gui.VUsuario;
 import gui.modelos.ModeloTablaPeticiones;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -29,12 +26,17 @@ public class SolicitudesPanel extends javax.swing.JPanel {
     public SolicitudesPanel(VUsuario vu) {
         this.vu = vu;
         this.peticiones = new ArrayList<>();
-        this.peticiones.add("Roberto");
+        //this.peticiones.add("Roberto");
         initComponents();
-        actualizarTablaPeticiones();
+        
         this.buttonAceptar.setEnabled(false);
         this.buttonRechazar.setEnabled(false);
-        //obtenerPeticiones();
+        this.mensajeError.setVisible(false);
+        this.mensajeExito.setVisible(false);
+        this.mensajeError2.setVisible(false);
+        obtenerPeticiones();
+        actualizarTablaPeticiones();
+        
     }
 
     /**
@@ -57,6 +59,9 @@ public class SolicitudesPanel extends javax.swing.JPanel {
         txtError = new javax.swing.JLabel();
         buttonAceptar = new javax.swing.JButton();
         buttonRechazar = new javax.swing.JButton();
+        mensajeError = new javax.swing.JLabel();
+        mensajeExito = new javax.swing.JLabel();
+        mensajeError2 = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(542, 454));
         setMinimumSize(new java.awt.Dimension(542, 454));
@@ -119,12 +124,33 @@ public class SolicitudesPanel extends javax.swing.JPanel {
             }
         });
 
+        mensajeError.setBackground(new java.awt.Color(0, 0, 0));
+        mensajeError.setForeground(new java.awt.Color(255, 51, 0));
+        mensajeError.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        mensajeError.setText("La solicitud no se ha podido enviar");
+        mensajeError.setName("mensajeError"); // NOI18N
+
+        mensajeExito.setBackground(new java.awt.Color(0, 0, 0));
+        mensajeExito.setForeground(new java.awt.Color(153, 153, 0));
+        mensajeExito.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        mensajeExito.setText("La solicitud se ha enviado con éxito");
+        mensajeExito.setName("mensajeExito"); // NOI18N
+
+        mensajeError2.setForeground(new java.awt.Color(255, 51, 0));
+        mensajeError2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        mensajeError2.setText("¡Se ha producido un error al aceptar la petición!");
+        mensajeError2.setName("mensajeError2"); // NOI18N
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jLabel3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, txtError, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .add(99, 99, 99)
+                .add(mensajeError, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 325, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(18, 18, 18)
+                .add(txtError, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .add(layout.createSequentialGroup()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                     .add(layout.createSequentialGroup()
@@ -134,10 +160,12 @@ public class SolicitudesPanel extends javax.swing.JPanel {
                                 .add(jButton2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 57, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .add(32, 32, 32)
                                 .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 320, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                            .add(layout.createSequentialGroup()
-                                .add(jLabel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 67, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(txtUsername, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 330, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                                .add(mensajeExito, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 325, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(layout.createSequentialGroup()
+                                    .add(jLabel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 67, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                    .add(txtUsername, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 330, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))))
                     .add(layout.createSequentialGroup()
                         .add(119, 119, 119)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
@@ -145,7 +173,8 @@ public class SolicitudesPanel extends javax.swing.JPanel {
                                 .add(buttonAceptar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 101, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .add(107, 107, 107)
                                 .add(buttonRechazar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 317, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
+                            .add(mensajeError2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .add(18, 18, 18)
                 .add(jButton1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 24, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(65, Short.MAX_VALUE))
@@ -159,13 +188,22 @@ public class SolicitudesPanel extends javax.swing.JPanel {
                     .add(jButton2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                        .add(txtUsername, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(jLabel2))
-                    .add(jButton1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 35, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(txtError)
-                .add(25, 25, 25)
+                    .add(layout.createSequentialGroup()
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(layout.createSequentialGroup()
+                                .add(jButton1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 35, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                .add(txtError))
+                            .add(layout.createSequentialGroup()
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                                    .add(txtUsername, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(jLabel2))
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                .add(mensajeError)))
+                        .add(20, 20, 20))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                        .add(mensajeExito)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)))
                 .add(jLabel3)
                 .add(18, 18, 18)
                 .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 142, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -173,13 +211,33 @@ public class SolicitudesPanel extends javax.swing.JPanel {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(buttonAceptar)
                     .add(buttonRechazar))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .add(18, 18, 18)
+                .add(mensajeError2)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         //enviarPeticion();
+        this.mensajeError.setVisible(false);
+        this.mensajeExito.setVisible(false);
+        this.mensajeError2.setVisible(false);
+        if(!this.txtUsername.getText().equals("")){
+            try{
+                boolean resultado = this.vu.enviarPeticion(this.vu.getUsuarioActual(), this.txtUsername.getText());
+                if(!resultado){
+                    this.mensajeError.setVisible(true);
+                } else{
+                    this.mensajeExito.setVisible(true);
+                }
+            } catch(Exception e){
+                this.mensajeError.setVisible(true);
+            }
+        } else{
+            this.mensajeError.setVisible(true);
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -204,22 +262,45 @@ public class SolicitudesPanel extends javax.swing.JPanel {
 
     private void buttonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAceptarActionPerformed
         // TODO add your handling code here:
-        /*
-        aceptar
-        */
-        this.peticiones.remove(this.tablaPeticiones.getSelectedRow());
-        this.buttonAceptar.setEnabled(false);
-        this.buttonRechazar.setEnabled(false);
+        this.mensajeError.setVisible(false);
+        String usuario = this.peticiones.get(this.tablaPeticiones.getSelectedRow());
+        System.out.println(usuario);
+        try{
+            boolean resultado = this.vu.aceptarPeticion(this.vu.getUsuarioActual(), usuario);
+            if(resultado){
+                this.peticiones.remove(this.tablaPeticiones.getSelectedRow());
+                actualizarTablaPeticiones();
+                this.buttonAceptar.setEnabled(false);
+                this.buttonRechazar.setEnabled(false);
+            } else{
+                this.mensajeError2.setText("¡Se ha producido un error al aceptar la petición!");
+                this.mensajeError2.setVisible(true);
+            }
+        } catch(Exception e){
+            this.mensajeError2.setText("¡Se ha producido un error al aceptar la petición!");
+            this.mensajeError2.setVisible(true);
+        }
     }//GEN-LAST:event_buttonAceptarActionPerformed
 
     private void buttonRechazarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRechazarActionPerformed
         // TODO add your handling code here:
-        /*
-        rechazar
-        */
-        this.peticiones.remove(this.tablaPeticiones.getSelectedRow());
-        this.buttonAceptar.setEnabled(false);
-        this.buttonRechazar.setEnabled(false);
+        this.mensajeError2.setVisible(false);
+        String usuario = this.peticiones.get(this.tablaPeticiones.getSelectedRow());
+        try{
+            boolean resultado = this.vu.rechazarPeticion(this.vu.getUsuarioActual(), usuario);
+            if(resultado){
+                this.peticiones.remove(this.tablaPeticiones.getSelectedRow());
+                actualizarTablaPeticiones();
+                this.buttonAceptar.setEnabled(false);
+                this.buttonRechazar.setEnabled(false);
+            } else{
+                this.mensajeError2.setText("¡Se ha producido un error al rechazar la petición!");
+                this.mensajeError2.setVisible(true);
+            }
+        } catch(Exception e){
+            this.mensajeError2.setText("¡Se ha producido un error al rechazar la petición!");
+            this.mensajeError2.setVisible(true);
+        }
     }//GEN-LAST:event_buttonRechazarActionPerformed
 
 
@@ -232,6 +313,9 @@ public class SolicitudesPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel mensajeError;
+    private javax.swing.JLabel mensajeError2;
+    private javax.swing.JLabel mensajeExito;
     private javax.swing.JTable tablaPeticiones;
     private javax.swing.JLabel txtError;
     private javax.swing.JTextField txtUsername;
@@ -239,6 +323,14 @@ public class SolicitudesPanel extends javax.swing.JPanel {
 
     public void actualizarTablaPeticiones(){
         ((ModeloTablaPeticiones) tablaPeticiones.getModel()).setFilas(this.peticiones);
+    }
+    
+    public void obtenerPeticiones(){
+        try{
+            this.peticiones = this.vu.obtenerPeticiones();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
     
     
@@ -264,11 +356,5 @@ public class SolicitudesPanel extends javax.swing.JPanel {
         ((ModeloTablaPeticiones) tablaPeticiones.getModel()).setFilas(this.peticiones);
     }
     
-    public void obtenerPeticiones(){
-        try{
-            this.peticiones = this.vu.obtenerPeticiones();
-        }catch(Exception e){
-            System.out.println("Excpetion: " + e);
-        }
-    }*/
+    */
 }

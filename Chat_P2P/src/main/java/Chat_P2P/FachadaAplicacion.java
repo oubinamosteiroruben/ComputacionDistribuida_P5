@@ -84,6 +84,22 @@ public class FachadaAplicacion {
         this.fg.recibirMensaje(mc);
     }
     
+    public Boolean enviarPeticion(String usernameOrigen, String usernameDestino) throws Exception{
+        return this.fc.enviarPeticion(usernameOrigen, usernameDestino);
+    }
+    
+    public Boolean aceptarPeticion(String usernameOrigen, String usernameDestino) throws Exception{
+        return this.fc.aceptarPeticion(usernameOrigen, usernameDestino);
+    }
+    
+    public Boolean rechazarPeticion(String usernameOrigen, String usernameDestino) throws Exception{
+        return this.fc.rechazarPeticion(usernameOrigen, usernameDestino);
+    }
+    
+    public ArrayList<String> obtenerPeticiones(String usuarioActual) throws Exception{
+        return this.fc.obtenerPeticiones(usuarioActual);
+    }
+    
     
     /*
     //------------------- Login -------------------

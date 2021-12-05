@@ -8,6 +8,7 @@ import gui.FachadaGui;
 import java.rmi.Naming;
 import java.util.ArrayList;
 import java.util.HashMap;
+import modelos.Mensaje;
 
 public class Cliente {
     
@@ -73,5 +74,21 @@ public class Cliente {
             Peer.getInstance().setAmigos(amigos);
         }
         return  resultado;
+    }
+    
+    public Boolean enviarPeticion(String usernameOrigen, String usernameDestino) throws Exception{
+        return Peer.getInstance().getServer().enviarPeticion(usernameOrigen, usernameDestino);
+    }
+    
+    public Boolean aceptarPeticion(String usernameOrigen, String usernameDestino) throws Exception{
+        return Peer.getInstance().getServer().aceptarPeticion(usernameOrigen, usernameDestino);
+    }
+    
+    public Boolean rechazarPeticion(String usernameOrigen, String usernameDestino) throws Exception{
+        return Peer.getInstance().getServer().rechazarPeticion(usernameOrigen, usernameDestino);
+    }
+    
+    public ArrayList<String> obtenerPeticiones(String usuarioActual) throws Exception{
+        return Peer.getInstance().getServer().obtenerPeticiones(usuarioActual);
     }
 }

@@ -2,6 +2,8 @@
 package Cliente;
 
 import Chat_P2P.FachadaAplicacion;
+import java.util.ArrayList;
+import modelos.Mensaje;
 import modelos.MensajeChat;
 
 public class FachadaCliente {
@@ -29,6 +31,22 @@ public class FachadaCliente {
     
     public void enviarMensaje(MensajeChat mc) throws Exception{
         Peer.getInstance().getAmigos().get(mc.getReceptor()).enviarMensaje(mc);
+    }
+    
+    public Boolean enviarPeticion(String usernameOrigen, String usernameDestino) throws Exception{
+        return this.cliente.enviarPeticion(usernameOrigen, usernameDestino);
+    }
+    
+    public Boolean aceptarPeticion(String usernameOrigen, String usernameDestino) throws Exception{
+        return this.cliente.aceptarPeticion(usernameOrigen, usernameDestino);
+    }
+    
+    public Boolean rechazarPeticion(String usernameOrigen, String usernameDestino) throws Exception{
+        return this.cliente.rechazarPeticion(usernameOrigen, usernameDestino);
+    }
+    
+    public ArrayList<String> obtenerPeticiones(String usuarioActual) throws Exception{
+        return this.cliente.obtenerPeticiones(usuarioActual);
     }
     
 }

@@ -49,6 +49,22 @@ public class FachadaServer {
         return resultado;
     }
     
+    public Boolean enviarPeticion(String usernameEmisor, String usernameReceptor){
+        return this.fd.enviarPeticion(usernameEmisor, usernameReceptor);
+    }
+    
+    public Boolean aceptarPeticion(String usernameEmisor, String usernameReceptor){
+        return this.fd.aceptarPeticion(usernameEmisor, usernameReceptor);
+    }
+    
+    public Boolean rechazarPeticion(String usernameEmisor, String usernameReceptor){
+        return this.fd.rechazarPeticion(usernameEmisor, usernameReceptor);
+    }
+    
+    public ArrayList<String> obtenerPeticiones(String usuarioActual){
+        return this.fd.obtenerPeticiones(usuarioActual);
+    }
+    
     public void muestraExcepcion(String e) {
         System.out.println("Excepcion: " + e);
     }
@@ -74,10 +90,6 @@ public class FachadaServer {
     
     public ArrayList<String> obtenerAmigos(String username){
         return this.fd.obtenerAmigos(username);
-    }
-    
-    public Boolean enviarPeticion(String usernameEmisor, String usernameReceptor){
-        return this.fd.enviarPeticion(usernameEmisor, usernameReceptor);
     }
     
     public Boolean aceptarPeticion(String usernameEmisor, String usernameReceptor){

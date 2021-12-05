@@ -40,6 +40,22 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         return  resultado;
     }
     
+    public Boolean enviarPeticion(String usernameEmisor, String usernameReceptor) throws RemoteException{
+        return this.fs.enviarPeticion(usernameEmisor, usernameReceptor);
+    }
+    
+    public Boolean aceptarPeticion(String usernameEmisor, String usernameReceptor) throws RemoteException{
+        return this.fs.aceptarPeticion(usernameEmisor, usernameReceptor);
+    }
+    
+    public Boolean rechazarPeticion(String usernameEmisor, String usernameReceptor) throws RemoteException{
+        return this.fs.rechazarPeticion(usernameEmisor, usernameReceptor);
+    }
+    
+    public ArrayList<String> obtenerPeticiones(String usuarioActual) throws RemoteException{
+        return this.fs.obtenerPeticiones(usuarioActual);
+    }
+    
     /*
     private Server server;
     
@@ -59,10 +75,6 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     
     public HashMap<String,Usuario> obtenerAmigos(String username) throws RemoteException{
         return server.obtenerAmigos(username);
-    }
-    
-    public Boolean enviarPeticion(String usernameEmisor, String usernameReceptor) throws RemoteException{
-        return server.enviarPeticion(usernameEmisor, usernameReceptor);
     }
     
     public ArrayList<String> obtenerPeticiones(String usernameReceptor) throws RemoteException{

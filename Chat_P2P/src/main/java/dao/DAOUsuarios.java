@@ -213,8 +213,9 @@ public class DAOUsuarios extends AbstractDAO{
         try {
             st = con.prepareStatement("SELECT COUNT(*) = 1 AS resultado FROM solicitudAmistad "
                                         + "WHERE amigoEmisor = ? AND amigoReceptor = ? AND estado = ?");
-            st.setString(1, usernameEmisor);
-            st.setString(2, usernameReceptor);
+            // aqui se ponen al revés el emisor y el receptor
+            st.setString(1, usernameReceptor);
+            st.setString(2, usernameEmisor);
             st.setString(3, "p");
             rs = st.executeQuery();
             
@@ -223,8 +224,9 @@ public class DAOUsuarios extends AbstractDAO{
                 st = con.prepareStatement("UPDATE solicitudAmistad SET estado = ? "
                                             + "WHERE amigoEmisor = ? AND amigoReceptor = ?");
                 st.setString(1, "a");
-                st.setString(2, usernameEmisor);
-                st.setString(3, usernameReceptor);
+                // se ponen al revés emisor y receptor
+                st.setString(2, usernameReceptor);
+                st.setString(3, usernameEmisor);
                 
                 resultado = (st.executeUpdate() == 1);
             } else{
@@ -297,14 +299,14 @@ public class DAOUsuarios extends AbstractDAO{
         Connection con = super.getConexion();
         
         try {
-            st = con.prepareStatement("SELECT amigoReceptor FROM solicitudAmistad "
+            st = con.prepareStatement("SELECT amigoEmisor FROM solicitudAmistad "
                                         + "WHERE amigoReceptor = ? AND estado = ?");
             st.setString(1, usernameReceptor);
-            st.setString(3, "p");
+            st.setString(2, "p");
             rs = st.executeQuery();
             
             while(rs.next()) {
-                solicitudes.add(rs.getString("amigoReceptor"));
+                solicitudes.add(rs.getString("amigoEmisor"));
             }
         } catch (SQLException e) {
             this.getFachadaServer().muestraExcepcion(e.getMessage());
