@@ -258,8 +258,9 @@ public class DAOUsuarios extends AbstractDAO{
         try {
             st = con.prepareStatement("SELECT COUNT(*) = 1 AS resultado FROM solicitudAmistad "
                                         + "WHERE amigoEmisor = ? AND amigoReceptor = ? AND estado = ?");
-            st.setString(1, usernameEmisor);
-            st.setString(2, usernameReceptor);
+            // aqui se ponen al revés el emisor y el receptor
+            st.setString(1, usernameReceptor);
+            st.setString(2, usernameEmisor);
             st.setString(3, "p");
             rs = st.executeQuery();
             
@@ -268,8 +269,9 @@ public class DAOUsuarios extends AbstractDAO{
                 st = con.prepareStatement("UPDATE solicitudAmistad SET estado = ? "
                                             + "WHERE amigoEmisor = ? AND amigoReceptor = ?");
                 st.setString(1, "r");
-                st.setString(2, usernameEmisor);
-                st.setString(3, usernameReceptor);
+                // se ponen al revés emisor y receptor
+                st.setString(2, usernameReceptor);
+                st.setString(3, usernameEmisor);
                 
                 resultado = (st.executeUpdate() == 1);
             } else{

@@ -24,4 +24,8 @@ public class PeerConectionImpl extends UnicastRemoteObject implements PeerConect
         amigos.addAll(Peer.getInstance().getAmigos().keySet());
         Peer.getInstance().getCliente().getFachadaAplicacion().actualizarAmigosConectados(amigos);
     }
+    
+    public void notificarSolicitud(String usernameEmisor) throws RemoteException{
+        Peer.getInstance().getCliente().getFachadaAplicacion().actualizarPeticiones();
+    }
 }

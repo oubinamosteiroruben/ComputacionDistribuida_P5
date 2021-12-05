@@ -50,7 +50,11 @@ public class FachadaServer {
     }
     
     public Boolean enviarPeticion(String usernameEmisor, String usernameReceptor){
-        return this.fd.enviarPeticion(usernameEmisor, usernameReceptor);
+        boolean resultado = this.fd.enviarPeticion(usernameEmisor, usernameReceptor);
+        if(resultado){
+            server.addSolicitud(usernameEmisor, usernameReceptor);
+        }
+        return resultado;
     }
     
     public Boolean aceptarPeticion(String usernameEmisor, String usernameReceptor){

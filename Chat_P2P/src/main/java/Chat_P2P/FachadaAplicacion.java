@@ -100,6 +100,10 @@ public class FachadaAplicacion {
         return this.fc.obtenerPeticiones(usuarioActual);
     }
     
+    public void actualizarPeticiones(){
+        this.fg.actualizarPeticiones();
+    }
+    
     
     /*
     //------------------- Login -------------------

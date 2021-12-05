@@ -104,6 +104,20 @@ public class Server {
         return amigos;
     }
     
+    public void addSolicitud(String usernameEmisor, String usernameReceptor){
+        Sesion sesion = this.usuariosOnline.get(usernameReceptor);
+        if(sesion != null){
+            PeerConectionInterface peerConection = sesion.getPeerConectionInterface();
+            if(peerConection != null){
+                try{
+                    peerConection.notificarSolicitud(usernameEmisor);
+                } catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+    
     /*
     
     public Usuario iniciarSesion(String username, String password){

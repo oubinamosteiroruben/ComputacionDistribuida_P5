@@ -304,5 +304,13 @@ public class MainPanel extends javax.swing.JPanel {
         }
     }
     
+    public void mostrarNumeroSolicitudes(int numeroPeticiones){
+        String texto = "Solicitudes";
+        if(numeroPeticiones > 0){
+            texto += " (" + numeroPeticiones + ")";
+        }
+        this.buttonSolicitudes.setText(texto);
+    }
+    
     
 }

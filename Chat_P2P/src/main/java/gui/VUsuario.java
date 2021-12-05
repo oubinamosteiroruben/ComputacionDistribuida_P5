@@ -30,7 +30,7 @@ public class VUsuario extends javax.swing.JFrame {
         sp = new SolicitudesPanel(this);
         sp.setSize(this.mainPanel.getSize());
         mostrarMainUsuarios();
-        //mostrarSolicitudes();
+        mostrarNumeroSolicitudes();
     }
 
     /**
@@ -135,6 +135,16 @@ public class VUsuario extends javax.swing.JFrame {
     
     public ArrayList<String> obtenerPeticiones() throws Exception{
         return this.fa.obtenerPeticiones(this.getUsuarioActual());
+    }
+    
+    public void mostrarNumeroSolicitudes(){
+        int numeroPeticiones = this.sp.getPeticiones().size();
+        this.mp.mostrarNumeroSolicitudes(numeroPeticiones);
+    }
+    
+    public void actualizarPeticiones(){
+        this.sp.actualizarTablaPeticiones();
+        this.mostrarNumeroSolicitudes();
     }
     
     /*

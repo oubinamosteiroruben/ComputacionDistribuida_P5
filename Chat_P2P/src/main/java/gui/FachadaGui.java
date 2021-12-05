@@ -40,10 +40,10 @@ public class FachadaGui {
     public void recibirMensaje(MensajeChat mc){
         this.vu.recibirMensaje(mc);
     }
-    /*
-    public void actualizarPeticiones(ArrayList<String> peticiones){
-        this.vu.actualizarPeticiones(peticiones);
+    
+    public void actualizarPeticiones(){
+        this.vu.actualizarPeticiones();
     }
     
-    */
+    
 }

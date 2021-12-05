@@ -34,7 +34,6 @@ public class SolicitudesPanel extends javax.swing.JPanel {
         this.mensajeError.setVisible(false);
         this.mensajeExito.setVisible(false);
         this.mensajeError2.setVisible(false);
-        obtenerPeticiones();
         actualizarTablaPeticiones();
         
     }
@@ -262,7 +261,7 @@ public class SolicitudesPanel extends javax.swing.JPanel {
 
     private void buttonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAceptarActionPerformed
         // TODO add your handling code here:
-        this.mensajeError.setVisible(false);
+        this.mensajeError2.setVisible(false);
         String usuario = this.peticiones.get(this.tablaPeticiones.getSelectedRow());
         System.out.println(usuario);
         try{
@@ -322,6 +321,7 @@ public class SolicitudesPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     public void actualizarTablaPeticiones(){
+        obtenerPeticiones();
         ((ModeloTablaPeticiones) tablaPeticiones.getModel()).setFilas(this.peticiones);
     }
     
@@ -332,6 +332,7 @@ public class SolicitudesPanel extends javax.swing.JPanel {
             e.printStackTrace();
         }
     }
+    
     
     
 /*
@@ -357,4 +358,8 @@ public class SolicitudesPanel extends javax.swing.JPanel {
     }
     
     */
+
+    public ArrayList<String> getPeticiones() {
+        return peticiones;
+    }
 }
