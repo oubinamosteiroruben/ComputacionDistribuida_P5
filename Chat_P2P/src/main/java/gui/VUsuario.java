@@ -45,6 +45,11 @@ public class VUsuario extends javax.swing.JFrame {
         mainPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         mainPanel.setMaximumSize(new java.awt.Dimension(542, 454));
         mainPanel.setMinimumSize(new java.awt.Dimension(542, 454));
@@ -81,10 +86,24 @@ public class VUsuario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // le decimos al servidor que se va a desconectar
+        try{
+            // avisamos al servidor y a todos los amigos
+            this.fa.notificarDesconection();
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_formWindowClosing
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel mainPanel;
     // End of variables declaration//GEN-END:variables
 
+    
+    public MainPanel getMainPanel(){
+        return this.mp;
+    }
 
     public void mostrarMainUsuarios(){
         actualizarMainPanel(mp);

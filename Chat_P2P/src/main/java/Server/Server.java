@@ -134,6 +134,19 @@ public class Server {
         }
     }
     
+    public void notificarDesconection(String usuario){
+        HashMap<String,PeerConectionInterface> amigos = this.fs.obtenerConectionAmigos(usuario);
+        for(PeerConectionInterface peer: amigos.values()){
+            try{
+                peer.notificarDesconexion(usuario);
+            } catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+        
+        this.usuariosOnline.remove(usuario);
+    }
+    
     /*
     
     public Usuario iniciarSesion(String username, String password){

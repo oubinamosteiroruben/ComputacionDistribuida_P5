@@ -73,6 +73,10 @@ public class FachadaServer {
         return this.fd.obtenerPeticiones(usuarioActual);
     }
     
+    public void notificarDesconection(String usuario){
+        this.server.notificarDesconection(usuario);
+    }
+    
     public void muestraExcepcion(String e) {
         System.out.println("Excepcion: " + e);
     }

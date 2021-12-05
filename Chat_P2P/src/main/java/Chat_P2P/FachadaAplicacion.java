@@ -39,6 +39,11 @@ public class FachadaAplicacion {
     }
     
     // ------------------- GUI -------------------
+
+    public FachadaGui getFachadaGUI() {
+        return fg;
+    }
+    
     public void iniciaInterfazUsuario(){
         this.fg.iniciarVista();
     }
@@ -102,6 +107,10 @@ public class FachadaAplicacion {
     
     public void actualizarPeticiones(){
         this.fg.actualizarPeticiones();
+    }
+    
+    public void notificarDesconection() throws Exception{
+        this.fc.notificarDesconection(this.getUsuarioActual());
     }
     
     

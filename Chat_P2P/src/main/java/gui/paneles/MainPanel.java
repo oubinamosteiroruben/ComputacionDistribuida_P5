@@ -264,6 +264,14 @@ public class MainPanel extends javax.swing.JPanel {
     private javax.swing.JLabel txtNombreAmigo;
     // End of variables declaration//GEN-END:variables
 
+    public String getAmigoChatActual(){
+        return this.amigoChatActual;
+    }
+    
+    public void setAmigoChatActual(String amigo){
+        this.amigoChatActual = amigo;
+    }
+
     public void actualizarAmigosConectados(ArrayList<String> amigos){
         HashMap<String,ArrayList<MensajeChat>> conversacionesAux = new HashMap<>();
         for(String a: amigos){

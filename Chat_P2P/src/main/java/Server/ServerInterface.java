@@ -35,4 +35,6 @@ public interface ServerInterface extends Remote {
     
     public ArrayList<String> obtenerPeticiones(String usuarioActual) throws RemoteException;
     
+    public void notificarDesconection(String usuario) throws RemoteException;
+    
 }

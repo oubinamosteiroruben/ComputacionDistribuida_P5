@@ -91,4 +91,8 @@ public class Cliente {
     public ArrayList<String> obtenerPeticiones(String usuarioActual) throws Exception{
         return Peer.getInstance().getServer().obtenerPeticiones(usuarioActual);
     }
+    
+    public void notificarDesconection(String usuario) throws Exception{
+        Peer.getInstance().getServer().notificarDesconection(usuario);
+    }
 }

@@ -18,6 +18,10 @@ public class FachadaGui {
         vl = new VLogin(fa);
         //vu = new VUsuario(fa);
     }
+
+    public VUsuario getVUsuario() {
+        return vu;
+    }
     
     public void iniciarVista(){
         this.vl.setVisible(true);

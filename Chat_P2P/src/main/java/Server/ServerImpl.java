@@ -56,6 +56,10 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         return this.fs.obtenerPeticiones(usuarioActual);
     }
     
+    public void notificarDesconection(String usuario) throws RemoteException{
+        this.fs.notificarDesconection(usuario);
+    }
+    
     /*
     private Server server;
     

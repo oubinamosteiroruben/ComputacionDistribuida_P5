@@ -49,4 +49,8 @@ public class FachadaCliente {
         return this.cliente.obtenerPeticiones(usuarioActual);
     }
     
+    public void notificarDesconection(String usuario) throws Exception{
+        this.cliente.notificarDesconection(usuario);
+    }
+    
 }

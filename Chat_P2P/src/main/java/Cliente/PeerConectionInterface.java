@@ -10,4 +10,6 @@ public interface PeerConectionInterface extends Remote{
     public void notificarConexion(String username, PeerChatInterface peerChatInterface) throws RemoteException;
     
     public void notificarSolicitud(String usernameEmisor) throws RemoteException;
+    
+    public void notificarDesconexion(String username) throws RemoteException;
 }
