@@ -34,7 +34,7 @@
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="189" max="32767" attributes="0"/>
+                  <EmptySpace pref="194" max="32767" attributes="0"/>
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               </Group>
@@ -196,7 +196,7 @@
         <Component class="javax.swing.JLabel" name="labelTitutlo">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Nombre App"/>
+            <Property name="text" type="java.lang.String" value="DabenChat"/>
             <Property name="name" type="java.lang.String" value="labelTitutlo" noResource="true"/>
           </Properties>
         </Component>

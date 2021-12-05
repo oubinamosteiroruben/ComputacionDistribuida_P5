@@ -119,7 +119,7 @@ public class MainPanel extends javax.swing.JPanel {
         jPanel2.setName("jPanel2"); // NOI18N
 
         labelTitutlo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelTitutlo.setText("Nombre App");
+        labelTitutlo.setText("DabenChat");
         labelTitutlo.setName("labelTitutlo"); // NOI18N
 
         txtNombreAmigo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -157,7 +157,7 @@ public class MainPanel extends javax.swing.JPanel {
                     .add(jScrollPane2)
                     .add(org.jdesktop.layout.GroupLayout.LEADING, labelTitutlo, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel2Layout.createSequentialGroup()
-                        .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+                        .add(jScrollPane3)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(buttonEnviar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 45, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
             .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -167,7 +167,7 @@ public class MainPanel extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .add(labelTitutlo, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                .add(labelTitutlo, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
                 .add(47, 47, 47)
                 .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 192, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(44, 44, 44)
@@ -192,7 +192,7 @@ public class MainPanel extends javax.swing.JPanel {
                 .addContainerGap(421, Short.MAX_VALUE))
             .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                 .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(189, Short.MAX_VALUE)
+                    .addContainerGap(194, Short.MAX_VALUE)
                     .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(23, 23, 23)))
         );
@@ -234,7 +234,6 @@ public class MainPanel extends javax.swing.JPanel {
     private void buttonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEnviarActionPerformed
         // TODO add your handling code here:
         try{
-              
             if(!this.txtMensaje.getText().equals("") && this.amigoChatActual != null){
                 MensajeChat mc = new MensajeChat(this.vu.getUsuarioActual(),amigoChatActual,this.txtMensaje.getText());
                 this.conversaciones.get(amigoChatActual).add(mc);
