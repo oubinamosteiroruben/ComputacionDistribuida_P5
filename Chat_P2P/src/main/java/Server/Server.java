@@ -118,6 +118,22 @@ public class Server {
         }
     }
     
+    public void solicitudAceptada(String amigo1, String amigo2){
+        // si los dos están en linea, les avisamos mutuamente
+        if(this.usuariosOnline.containsKey(amigo1) && this.usuariosOnline.containsKey(amigo2)){
+            try{
+                Sesion sesion1 = this.usuariosOnline.get(amigo1);
+                Sesion sesion2 = this.usuariosOnline.get(amigo2);
+                // avisamos al amigo 1
+                sesion1.getPeerConectionInterface().notificarConexion(sesion2.getUsername(), sesion2.getPeerChatInterface());
+                // avisamos al amigo 2
+                sesion2.getPeerConectionInterface().notificarConexion(sesion1.getUsername(), sesion1.getPeerChatInterface());
+            } catch(Exception e){
+                e.printStackTrace();
+            }      
+        }
+    }
+    
     /*
     
     public Usuario iniciarSesion(String username, String password){

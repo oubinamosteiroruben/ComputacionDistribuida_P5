@@ -58,7 +58,11 @@ public class FachadaServer {
     }
     
     public Boolean aceptarPeticion(String usernameEmisor, String usernameReceptor){
-        return this.fd.aceptarPeticion(usernameEmisor, usernameReceptor);
+        boolean resultado = this.fd.aceptarPeticion(usernameEmisor, usernameReceptor);
+        if(resultado){
+            server.solicitudAceptada(usernameEmisor, usernameReceptor);
+        }
+        return resultado;
     }
     
     public Boolean rechazarPeticion(String usernameEmisor, String usernameReceptor){

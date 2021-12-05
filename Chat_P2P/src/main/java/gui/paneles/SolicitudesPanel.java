@@ -263,7 +263,6 @@ public class SolicitudesPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         this.mensajeError2.setVisible(false);
         String usuario = this.peticiones.get(this.tablaPeticiones.getSelectedRow());
-        System.out.println(usuario);
         try{
             boolean resultado = this.vu.aceptarPeticion(this.vu.getUsuarioActual(), usuario);
             if(resultado){
