@@ -265,7 +265,6 @@ public class MainPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     public void actualizarAmigosConectados(ArrayList<String> amigos){
-        ((ModeloTablaAmigos) this.tablaConectados.getModel()).setFilas(amigos);
         HashMap<String,ArrayList<MensajeChat>> conversacionesAux = new HashMap<>();
         for(String a: amigos){
             if(this.conversaciones.get(a) == null){
@@ -275,6 +274,7 @@ public class MainPanel extends javax.swing.JPanel {
             }
         }
         this.conversaciones = conversacionesAux;
+        ((ModeloTablaAmigos) this.tablaConectados.getModel()).setFilas(this.conversaciones);
     }
     
     public void actualizarChat(){
@@ -284,8 +284,16 @@ public class MainPanel extends javax.swing.JPanel {
             if(chat == null){
                 this.conversaciones.put(this.amigoChatActual, new ArrayList<>());
             }else{
+                Boolean flag = false;
                 for(MensajeChat mc: chat){
+                    if(mc.getEmisor().equals(this.amigoChatActual) && !mc.isLeido()){
+                        mc.setLeido(true);
+                        flag = true;
+                    }
                     contenido+=mc.getEmisor()+": " + mc.getCuerpo() + "\n";
+                }
+                if(flag){
+                    ((ModeloTablaAmigos) this.tablaConectados.getModel()).setFilas(this.conversaciones);
                 }
             }
         }
@@ -298,9 +306,7 @@ public class MainPanel extends javax.swing.JPanel {
         if(mc.getEmisor().equals(amigoChatActual)){
             actualizarChat();
         }else{
-            /*
-            Avisa de alguna forma
-            */
+            ((ModeloTablaAmigos) this.tablaConectados.getModel()).setFilas(this.conversaciones);
         }
     }
     

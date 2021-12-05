@@ -268,6 +268,7 @@ public class SolicitudesPanel extends javax.swing.JPanel {
             if(resultado){
                 this.peticiones.remove(this.tablaPeticiones.getSelectedRow());
                 actualizarTablaPeticiones();
+                this.vu.mostrarNumeroSolicitudes();
                 this.buttonAceptar.setEnabled(false);
                 this.buttonRechazar.setEnabled(false);
             } else{
@@ -289,6 +290,7 @@ public class SolicitudesPanel extends javax.swing.JPanel {
             if(resultado){
                 this.peticiones.remove(this.tablaPeticiones.getSelectedRow());
                 actualizarTablaPeticiones();
+                this.vu.mostrarNumeroSolicitudes();
                 this.buttonAceptar.setEnabled(false);
                 this.buttonRechazar.setEnabled(false);
             } else{

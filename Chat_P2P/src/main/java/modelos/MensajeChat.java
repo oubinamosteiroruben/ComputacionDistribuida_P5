@@ -9,12 +9,13 @@ public class MensajeChat implements Serializable{
     private String emisor;
     private String receptor;
     private String cuerpo;
-    
+    private Boolean leido;
     
     public MensajeChat(String emisor, String receptor, String cuerpo){
         this.emisor = emisor;
         this.receptor = receptor;
         this.cuerpo = cuerpo;
+        this.leido = false;
     }
 
     public String getEmisor() {
@@ -39,6 +40,14 @@ public class MensajeChat implements Serializable{
 
     public void setCuerpo(String cuerpo) {
         this.cuerpo = cuerpo;
+    }
+    
+    public Boolean isLeido(){
+        return this.leido;
+    }
+    
+    public void setLeido(Boolean leido){
+        this.leido = true;
     }
     
 }

@@ -3,29 +3,40 @@ package gui.modelos;
 
 import gui.paneles.MainPanel;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
+import modelos.MensajeChat;
 import modelos.Usuario;
 
 public final class ModeloTablaAmigos extends AbstractTableModel {
 
-    private List<String> amigos;
-    
+    //private List<String> amigos;
+    private HashMap<String,ArrayList<MensajeChat>> conversaciones;
+    private ArrayList<String> amigos;
     private final MainPanel mp;
 
     // ------------------------------------------------------------------------
     // ----------------------------- Constructor ------------------------------
     public ModeloTablaAmigos() {
+        this.conversaciones = new HashMap<>();
         this.amigos = new ArrayList<>();
+        //this.amigos = new ArrayList<>();
         this.mp = null;
     }
     
-    public ModeloTablaAmigos(List<String> amigos, MainPanel mp) {
-        this.amigos = amigos;
+    public ModeloTablaAmigos(HashMap<String,ArrayList<MensajeChat>> conversaciones, MainPanel mp) {
+        //this.amigos = amigos;
+        this.conversaciones = conversaciones;
+        this.amigos = new ArrayList<>();
+        for(String amigo: this.conversaciones.keySet()){
+            this.amigos.add(amigo);
+        }
         this.mp = mp;
     }
     
     public ModeloTablaAmigos(MainPanel mp) {
+        this.conversaciones = new HashMap<>();
         this.amigos = new ArrayList<>();
         this.mp = mp;
     }
@@ -47,7 +58,12 @@ public final class ModeloTablaAmigos extends AbstractTableModel {
         Object resultado=null;
 
         switch (columnIndex){
-            case 0: resultado = this.amigos.get(rowIndex); break;
+            case 0: 
+                resultado = this.amigos.get(rowIndex);
+                Integer n = calcularMensajesNoLeidos(this.amigos.get(rowIndex));
+                if(n>0){
+                    resultado += " ("+n+")";
+                }
         }
         return resultado;
     }
@@ -74,9 +90,13 @@ public final class ModeloTablaAmigos extends AbstractTableModel {
 
     // ------------------------------------------------------------------------
     // ------------------------------ Funciones -------------------------------
-    public final void setFilas(java.util.List<String> amigos) {
-        if (amigos != null ) {
-            this.amigos = amigos;
+    public final void setFilas(HashMap<String,ArrayList<MensajeChat>> conversaciones) {
+        if (conversaciones != null ) {
+            this.conversaciones = conversaciones;
+            this.amigos = new ArrayList<>();
+            for(String amigo: this.conversaciones.keySet()){
+                this.amigos.add(amigo);
+            }
             fireTableDataChanged();
         }
     }
@@ -89,8 +109,20 @@ public final class ModeloTablaAmigos extends AbstractTableModel {
         fireTableDataChanged();
     }
 
-    public final void nuevoAmigo(String amigo) {
+    public final void nuevoAmigo(String amigo, ArrayList<MensajeChat> conversacion) {
         this.amigos.add(amigo);
+        this.conversaciones.put(amigo, conversacion);
         fireTableRowsInserted(this.amigos.size() - 1, this.amigos.size() - 1);
+    }
+    
+    private Integer calcularMensajesNoLeidos(String amigo){
+        ArrayList<MensajeChat> conversacion = this.conversaciones.get(amigo);
+        Integer contador = 0;
+        for(MensajeChat mc: conversacion){
+            if(mc.getEmisor().equals(amigo) && !mc.isLeido()){
+                contador++;
+            }
+        }
+        return contador;
     }
 }
