@@ -201,6 +201,50 @@ public class DAOUsuarios extends AbstractDAO{
         return resultado;
     }
     
+    // crea una amistad entre dos amigos
+    public Boolean crearAmistad(String amigo1, String amigo2){
+        PreparedStatement st = null;
+        ResultSet rs;
+        Boolean resultado = false;
+        
+        Connection con = super.getConexion();
+        
+        try {
+            st = con.prepareStatement("INSERT INTO amistad (amigo1, amigo2) "
+                                            + "VALUES (?,?)");
+            st.setString(1, amigo1);
+            st.setString(2, amigo2);
+                
+            resultado = (st.executeUpdate() == 1);
+            
+            if (resultado) {
+                // si se ha insertado correctamente, se actualizan todas las peticiones
+                st = con.prepareStatement("UPDATE solicitudAmistad SET estado = ? "
+                                            + "WHERE (amigoEmisor = ? AND amigoReceptor = ?) OR "
+                                            + "(amigoEmisor = ? AND amigoReceptor = ?)");
+                st.setString(1, "a");
+                st.setString(2, amigo1);
+                st.setString(3, amigo2);
+                st.setString(4, amigo2);
+                st.setString(5, amigo1);
+                
+                resultado = (st.executeUpdate() == 1);
+            } else{
+                resultado = false;
+            }
+        } catch (SQLException e) {
+            this.getFachadaServer().muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                st.close();
+            } catch (SQLException e) {
+                this.getFachadaServer().muestraExcepcion(e.getMessage());
+            }
+        }
+        
+        return resultado;
+    }
+    
     // acepta una peticion existente y devuelve true si se ha completado con exito
     public Boolean aceptarPeticion(String usernameEmisor, String usernameReceptor){
         // Aceptar peticion de amistad
@@ -220,17 +264,9 @@ public class DAOUsuarios extends AbstractDAO{
             rs = st.executeQuery();
             
             if (rs.getBoolean("resultado")) {
-                // si existe esa peticion
-                st = con.prepareStatement("UPDATE solicitudAmistad SET estado = ? "
-                                            + "WHERE amigoEmisor = ? AND amigoReceptor = ?");
-                st.setString(1, "a");
-                // se ponen al revés emisor y receptor
-                st.setString(2, usernameReceptor);
-                st.setString(3, usernameEmisor);
-                
-                resultado = (st.executeUpdate() == 1);
+                // si existen, creamos la amistad y modificamos las peticiones
+                resultado = crearAmistad(usernameEmisor, usernameReceptor);
             } else{
-                // si no existe esa peticion como pendiente, devolvemos false
                 resultado = false;
             }
         } catch (SQLException e) {
