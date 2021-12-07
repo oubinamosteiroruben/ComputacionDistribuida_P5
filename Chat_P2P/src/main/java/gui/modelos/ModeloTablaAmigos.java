@@ -21,12 +21,10 @@ public final class ModeloTablaAmigos extends AbstractTableModel {
     public ModeloTablaAmigos() {
         this.conversaciones = new HashMap<>();
         this.amigos = new ArrayList<>();
-        //this.amigos = new ArrayList<>();
         this.mp = null;
     }
     
     public ModeloTablaAmigos(HashMap<String,ArrayList<MensajeChat>> conversaciones, MainPanel mp) {
-        //this.amigos = amigos;
         this.conversaciones = conversaciones;
         this.amigos = new ArrayList<>();
         for(String amigo: this.conversaciones.keySet()){

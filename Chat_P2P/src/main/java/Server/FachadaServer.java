@@ -81,39 +81,4 @@ public class FachadaServer {
         System.out.println("Excepcion: " + e);
     }
     
-    
-    //--------------------------------------------------------
-    /*
-    public void cerrarConexion(){
-        this.cerrarConexion();
-    }
-    
-    public void muestraExcepcion(String e) {
-        System.out.println("Excepcion: " + e);
-    }
-    
-    public Boolean iniciarSesion(String username, String password){
-        return this.fd.iniciarSesion(username, password);
-    }
-    
-    public Mensaje registrarUsuario(String username, String password){
-        return this.fd.registrarUsuario(username, password);
-    }
-    
-    public ArrayList<String> obtenerAmigos(String username){
-        return this.fd.obtenerAmigos(username);
-    }
-    
-    public Boolean aceptarPeticion(String usernameEmisor, String usernameReceptor){
-        return this.fd.aceptarPeticion(usernameEmisor, usernameReceptor);
-    }
-    
-    public Boolean rechazarPeticion(String usernameEmisor, String usernameReceptor){
-        return this.fd.rechazarPeticion(usernameEmisor, usernameReceptor);
-    }
-    
-    public ArrayList<String> obtenerPeticiones(String usernameReceptor){
-        return this.fd.obtenerPeticiones(usernameReceptor);
-    }
-*/
 }

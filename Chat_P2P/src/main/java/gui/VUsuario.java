@@ -172,15 +172,4 @@ public class VUsuario extends javax.swing.JFrame {
         this.mostrarNumeroSolicitudes();
     }
     
-    /*
-    
-    public void actualizarPeticiones(ArrayList<String> peticiones){
-        this.sp.actualizarPeticiones(peticiones);
-    }
-    
-    
-    public void actualizarAmigos(ArrayList<Usuario> amigos){
-        this.mp.actualizarAmigos(amigos);
-    }*/
-
 }

@@ -9,19 +9,6 @@ import java.util.List;
 
 public interface ServerInterface extends Remote {
     
-
-    //public int get(int n) throws java.rmi.RemoteException;
-    /*
-    public Usuario iniciarSesion(String username, String password) throws RemoteException;
-    
-    public Mensaje registrarUsuario(String username, String password) throws RemoteException;
-    
-    public HashMap<String,Usuario> obtenerAmigos(String username) throws RemoteException;
-    
-    public ArrayList<String> obtenerPeticiones(String usernameReceptor) throws RemoteException;
-
-
-    */
     
     public HashMap<String,PeerChatInterface> iniciarSesion(String username, String password, PeerChatInterface peerChatInterface, PeerConectionInterface peerConnectionInterface) throws RemoteException;
 

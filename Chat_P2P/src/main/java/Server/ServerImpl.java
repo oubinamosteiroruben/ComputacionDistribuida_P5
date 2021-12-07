@@ -60,30 +60,5 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         this.fs.notificarDesconection(usuario);
     }
     
-    /*
-    private Server server;
-    
-    public ServerImpl(Server s) throws RemoteException{
-        super();
-        this.server = s;
-    }
-
-   
-    public Usuario iniciarSesion(String username, String password) throws RemoteException{
-        return server.iniciarSesion(username, password);
-    }
-    
-    public Mensaje registrarUsuario(String username, String password) throws RemoteException{
-        return server.registrarUsuario(username, password);
-    }
-    
-    public HashMap<String,Usuario> obtenerAmigos(String username) throws RemoteException{
-        return server.obtenerAmigos(username);
-    }
-    
-    public ArrayList<String> obtenerPeticiones(String usernameReceptor) throws RemoteException{
-        return server.obtenerPeticiones(usernameReceptor);
-    }
-    
-    */
+  
 }

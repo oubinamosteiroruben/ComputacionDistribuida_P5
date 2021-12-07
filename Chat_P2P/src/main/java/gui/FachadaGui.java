@@ -16,7 +16,6 @@ public class FachadaGui {
     public FachadaGui(FachadaAplicacion fa){
         this.fa = fa;
         vl = new VLogin(fa);
-        //vu = new VUsuario(fa);
     }
 
     public VUsuario getVUsuario() {
@@ -34,7 +33,6 @@ public class FachadaGui {
         // abrimos el chat
         this.vu = new VUsuario(this.fa);
         this.vu.setVisible(true);
-      //  this.vu.actualizarAmigos();
     }
     
     public void actualizarAmigosConectados(ArrayList<String> amigos){

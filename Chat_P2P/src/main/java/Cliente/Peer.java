@@ -20,9 +20,6 @@ public class Peer {
     
     public Peer(){
         this.amigos = new HashMap<>();
-        /*server = server;
-        peerChat = peerChat;
-        peerConection = peerConection;*/
     } 
     
     public static Peer getInstance(){

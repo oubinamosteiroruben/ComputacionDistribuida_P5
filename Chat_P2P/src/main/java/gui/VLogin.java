@@ -29,7 +29,6 @@ public class VLogin extends javax.swing.JFrame {
         initComponents();
         mostrarIniciarSesion();
         this.setTitle(NOMBRE_APP);
-        //this.icon.setIcon(new ImageIcon("src/main/java/img/iconLogo.png"));
         this.setIcon();
     }
 
@@ -99,7 +98,7 @@ public class VLogin extends javax.swing.JFrame {
                         .add(filler1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 17, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(12, Short.MAX_VALUE)
+                        .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .add(icon, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 86, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)))
                 .add(loginPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 346, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
